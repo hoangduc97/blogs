@@ -1,0 +1,38 @@
+version: "3.4"
+
+services:
+    api:
+        build: ./api
+        stdin_open: true
+        volumes:
+            - ./api:/app/api
+        environment:
+            - DB_HOST=${DB_HOST}
+            - DB_NAME=${DB_NAME}
+            - PORT=${API_PORT}
+        ports:
+            - "${API_PORT}:${API_PORT}"
+        restart: unless-stopped
+        depends_on:
+            - db
+
+    client:
+        build: ./client
+        stdin_open: true
+        volumes:
+            - ./client:/app/client
+        environment:
+            - PORT=${CLIENT_PORT}
+            - API_PORT=${API_PORT}
+        ports:
+            - "${CLIENT_PORT}:${CLIENT_PORT}"
+        restart: unless-stopped
+        depends_on:
+            - api
+
+    db:
+        image: mongo
+        container_name: mongo_blogs
+        volumes:
+            - .docker/data/db:/data/db
+        restart: unless-stopped
