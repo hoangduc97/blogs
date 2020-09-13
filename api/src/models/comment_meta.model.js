@@ -1,17 +1,17 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const categoryMeta = new mongoose.Schema({
     comment_id: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Comment'
+        ref: "Comment",
     },
     key: {
         type: String,
-        unique: true
+        unique: true,
     },
     content: {
         type: String,
-    }
+    },
 });
 
-export default mongoose.model('CategoryMeta', categoryMeta);
+export default mongoose.model("CategoryMeta", categoryMeta);

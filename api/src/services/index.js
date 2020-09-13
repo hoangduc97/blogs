@@ -1,5 +1,3 @@
-import UserService from './user_profile.service';
+import UserService from "./user_profile.service";
 
-export {
-    UserService,
-};
+export { UserService };

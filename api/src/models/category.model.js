@@ -1,9 +1,9 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const category = new mongoose.Schema({
     category_name: {
         type: String,
-        unique: true
+        unique: true,
     },
     slug: {
         type: String,
@@ -17,9 +17,9 @@ const category = new mongoose.Schema({
     posts: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'Post'
-        }
-    ]
+            ref: "Post",
+        },
+    ],
 });
 
-export default mongoose.model('Category', category);
+export default mongoose.model("Category", category);

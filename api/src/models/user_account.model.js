@@ -1,13 +1,13 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const userAccount = new mongoose.Schema({
     _id: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'UserProfile'
+        ref: "UserProfile",
     },
     email: {
         type: String,
-        unique: true
+        unique: true,
     },
     hash: {
         type: String,
@@ -17,11 +17,11 @@ const userAccount = new mongoose.Schema({
     },
     email_confirm_token: {
         type: String,
-        default: "1234"
+        default: "1234",
     },
     password_expire: {
         type: Date,
-    }
+    },
 });
 
-export default mongoose.model('UserAccount', userAccount);
+export default mongoose.model("UserAccount", userAccount);
