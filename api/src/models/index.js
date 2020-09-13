@@ -10,7 +10,7 @@ const Tag = require('./tag.model');
 const UserAccount = require('./user_account.model');
 const UserProfile = require('./user_profile.model');
 
-export {
+export default {
     AccountFacebook,
     AccountGoogle,
     AccountTwitter,

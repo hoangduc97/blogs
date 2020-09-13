@@ -1,8 +1,9 @@
-const router = require('express').Router();
-const {
-    apiConstant
-} = require('../utils/constants');
+import express from 'express';
+const { apiConstant } = require('../utils/constants');
+const UserProfileRouter = require('./user_profile.route');
 
-router.use(apiConstant.BASE_URL + '/post');
+import {} from '../utils/constants.js';
+router = express.Router();
+router.use(apiConstant.BASE_URL + '/post', UserProfileRouter);
 
 export default router;

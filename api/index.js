@@ -1,26 +1,23 @@
 // import modules
-const express = require("express");
-const cors = require("cors");
-const logger = require("morgan");
-const database = require('./src/config/database.config');
+import express from 'express';
+import cors from 'cors';
+import logger from 'morgan';
+import database from './src/config/database.config.js';
+import Router from './src/routes/index.js';
 
 // init server
 const app = express();
 // init port
 const PORT = process.env.PORT || 3000;
 
+// config app
 app.use(express.json());
-app.use(express.urlencoded({
-    extended: false
-}));
+app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 app.use(logger('dev'));
+app.use(Router)
 
-app.get("/", (req, res) => {
-    return res.json({
-        hello: "duc",
-    });
-});
+
 // connect to database
 database.connect_mongo()
     .then(() => {
