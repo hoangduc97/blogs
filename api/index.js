@@ -5,6 +5,7 @@ const {
     log,
     ExpressAPILogMiddleware
 } = require("@rama41222/node-logger");
+const database = require('./src/config/database.config');
 
 // init server
 const app = express();
@@ -31,6 +32,10 @@ app.get("/", (req, res) => {
     });
 });
 
-app.listen(PORT, (error) => {
+database.connect_mongo(() => {
+    console.log('connect db success');
+});
+
+app.listen(PORT, () => {
     console.log(`server running with port ${PORT}`);
 });

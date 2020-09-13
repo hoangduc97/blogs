@@ -1,8 +1,8 @@
 const router = require('express').Router();
 const {
-    BASE_URL
+    apiConstant
 } = require('../utils/constants');
 
-router.use(BASE_URL + '/post');
+router.use(apiConstant.BASE_URL + '/post');
 
 export default router;

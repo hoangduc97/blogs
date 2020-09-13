@@ -1,0 +1,2 @@
+const { UserProfile } = require('../models');
+
