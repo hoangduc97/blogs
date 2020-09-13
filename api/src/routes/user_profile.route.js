@@ -1,7 +1,7 @@
 import express from 'express';
-const { UserService } = require('../services');
+import { UserService } from '../services';
 
-router = express.Router();
-router.post('/', UserService.createOne());
+const router = express.Router();
+router.get('/', UserService.getAll);
 
 export default router;

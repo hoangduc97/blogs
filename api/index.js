@@ -2,8 +2,8 @@
 import express from 'express';
 import cors from 'cors';
 import logger from 'morgan';
-import database from './src/config/database.config.js';
-import Router from './src/routes/index.js';
+import database from './src/config/database.config';
+import Router from './src/routes';
 
 // init server
 const app = express();
@@ -16,7 +16,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 app.use(logger('dev'));
 app.use(Router)
-
 
 // connect to database
 database.connect_mongo()

@@ -1,7 +1,7 @@
 import { UserProfile } from '../models';
 
 const createOne = (req, res) => {
-    user_data = req.data;
+    console.log(req);
     const userProfile = new UserProfile({
         first_name: user_data.first_name,
         last_name: user_data.last_name,
@@ -10,8 +10,13 @@ const createOne = (req, res) => {
     return userProfile.save();
 }
 
-const UserService = {
-    createOne
+const getAll = (req, res) => {
+    return UserProfile.find({});
 }
 
-module.exports = UserService;
+const UserService = {
+    createOne,
+    getAll
+}
+
+export default UserService;

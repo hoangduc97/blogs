@@ -1,5 +1,5 @@
-const UserService = require('./user_profile.service');
+import UserService from './user_profile.service';
 
-module.exports = {
+export {
     UserService,
 };

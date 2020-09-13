@@ -1,16 +1,18 @@
-const AccountFacebook = require('./account_facebook.model');
-const AccountGoogle = require('./account_google.model');
-const AccountTwitter = require('./account_twitter.model');
-const Category = require('./category.model');
-const CommentMeta = require('./comment_meta.model');
-const Comment = require('./comment.model');
-const PostMeta = require('./post_meta.model');
-const Post = require('./post.model');
-const Tag = require('./tag.model');
-const UserAccount = require('./user_account.model');
-const UserProfile = require('./user_profile.model');
+import AccountFacebook from './account_facebook.model';
+import AccountGoogle from './account_google.model';
+import AccountTwitter from './account_twitter.model';
+import Category from './category.model';
+import CommentMeta from './comment_meta.model';
+import Comment from './comment.model';
+import PostMeta from './post_meta.model';
+import Post from './post.model';
+import Tag from './tag.model';
+import UserAccount from './user_account.model';
+import UserProfile from './user_profile.model';
 
-export default {
+
+
+export {
     AccountFacebook,
     AccountGoogle,
     AccountTwitter,

@@ -9,7 +9,7 @@ const modelConstant = {
     }
 }
 
-module.exports = {
+export {
     apiConstant,
     modelConstant
 }
