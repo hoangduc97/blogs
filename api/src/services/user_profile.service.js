@@ -1,7 +1,7 @@
 import { UserProfile } from "../models";
 
 const createOne = (req, res) => {
-    user_data = req.body;
+    const user_data = req.body;
     const userProfile = new UserProfile({
         first_name: user_data.first_name,
         last_name: user_data.last_name,
