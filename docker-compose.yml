@@ -3,20 +3,28 @@ version: "3.4"
 services:
     api:
         build: ./api
+        container_name: api_blogs
         volumes:
             - ./api:/app/api
         environment:
             - DB_URI=${DB_URI}
             - PORT=${API_PORT}
+            - REDIS_SECRET=${REDIS_SECRET}
+            - REDIS_NAME=${REDIS_NAME}
+            - REDIS_HOST=${REDIS_HOST}
+            - REDIS_PORT=${REDIS_PORT}
         ports:
             - ${API_PORT}:${API_PORT}
         restart: unless-stopped
+        depends_on: 
+            - redis
+            - db
         networks:
-            - blogs_network
+            - private_network
 
     client:
         build: ./client
-        stdin_open: true
+        container_name: client_blogs
         volumes:
             - ./client:/app/client
         environment:
@@ -26,7 +34,7 @@ services:
             - ${CLIENT_PORT}:${CLIENT_PORT}
         restart: unless-stopped
         networks:
-            - blogs_network
+            - private_network
 
     db:
         image: mongo
@@ -37,8 +45,19 @@ services:
         ports:
             - ${DB_PORT}:${DB_PORT}
         networks:
-            - blogs_network
+            - private_network
 
+    redis:
+        image: redis:5-alpine
+        hostname: redis
+        command: redis-server --appendonly yes
+        volumes:
+            - .docker/data/redis:/var/lib/redis
+        restart: unless-stopped
+        ports:
+            - ${REDIS_PORT}:${REDIS_PORT}
+        networks:
+            - private_network
 networks:
-    blogs_network:
+    private_network:
         driver: bridge

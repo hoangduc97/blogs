@@ -5,19 +5,15 @@ import "./App.css";
 function App() {
     const [data, setData] = useState("");
     useEffect(() => {
-        fetchData()
+        fetchData();
     }, []);
 
-    const fetchData = async() => {
-        const result = await axios.get('http://localhost:9000/');
-        setData(result.data['hello'])
+    const fetchData = async () => {
+        const result = await axios.get("http://localhost:3000/");
+        setData(result.data["hello"]);
     };
 
-    return ( 
-        <div className = "App" >
-            {data}
-        </div>
-    );
+    return <div className="App">{data}</div>;
 }
 
 export default App;

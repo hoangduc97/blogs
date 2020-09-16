@@ -3,19 +3,20 @@ import express from "express";
 import cors from "cors";
 import logger from "morgan";
 import database from "./src/config/database.config";
-import Router from "./src/routes";
+import router from "./src/routes";
+import session from "./src/config/session.config";
 
 // init server
 const app = express();
-// init port
 const PORT = process.env.PORT || 3000;
 
-// config app
+// add and config middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cors());
 app.use(logger("dev"));
-app.use(Router);
+app.use(cors());
+app.use(session)
+app.use(router);
 
 // connect to database
 database
