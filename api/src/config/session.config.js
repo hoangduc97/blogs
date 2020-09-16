@@ -24,7 +24,7 @@ const rootSession = session({
     cookie: { secure: false, maxAge: 60000 },
     store: new redisStore({
         client: RedisClient,
-        ttl: 260,
+        ttl: 86400,
     }),
 });
 
