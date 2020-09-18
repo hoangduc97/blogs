@@ -9,4 +9,8 @@ const modelConstant = {
     },
 };
 
-export { apiConstant, modelConstant };
+const authConstant = {
+    JWT_RANDOM_STRING: "12345abcd",
+};
+
+export { apiConstant, modelConstant, authConstant };

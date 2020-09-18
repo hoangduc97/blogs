@@ -30,4 +30,5 @@ const userProfile = new mongoose.Schema({
     },
 });
 
+
 export default mongoose.model("UserProfile", userProfile);

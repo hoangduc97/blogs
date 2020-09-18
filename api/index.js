@@ -5,6 +5,7 @@ import logger from "morgan";
 import database from "./src/config/database.config";
 import router from "./src/routes";
 import session from "./src/config/session.config";
+import corsOption from "./src/config/cors.config";
 
 // init server
 const app = express();
@@ -14,7 +15,7 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(logger("dev"));
-app.use(cors());
+app.use(cors(corsOption));
 app.use(session)
 app.use(router);
 
