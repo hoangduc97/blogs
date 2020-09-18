@@ -1,9 +1,9 @@
 import express from "express";
-import auth from "../middlewares/auth.middleware";
 import { UserService } from "../services";
 
 const router = express.Router();
-router.get("/", auth, UserService.getAll);
-router.post("/user", auth, UserService.createOne);
+// routes for signin or signup user
+router.post("/signup", UserService.getAll);
+router.post("/signin", UserService.getAll);
 
 export default router;

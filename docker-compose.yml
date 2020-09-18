@@ -9,15 +9,10 @@ services:
         environment:
             - DB_URI=${DB_URI}
             - PORT=${API_PORT}
-            - REDIS_SECRET=${REDIS_SECRET}
-            - REDIS_NAME=${REDIS_NAME}
-            - REDIS_HOST=${REDIS_HOST}
-            - REDIS_PORT=${REDIS_PORT}
         ports:
             - ${API_PORT}:${API_PORT}
         restart: unless-stopped
         depends_on: 
-            - redis
             - db
         networks:
             - private_network
@@ -47,17 +42,6 @@ services:
         networks:
             - private_network
 
-    redis:
-        image: redis:5-alpine
-        hostname: redis
-        command: redis-server --appendonly yes
-        volumes:
-            - .docker/data/redis:/var/lib/redis
-        restart: unless-stopped
-        ports:
-            - ${REDIS_PORT}:${REDIS_PORT}
-        networks:
-            - private_network
 networks:
     private_network:
         driver: bridge

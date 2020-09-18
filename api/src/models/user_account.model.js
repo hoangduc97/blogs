@@ -4,16 +4,20 @@ const userAccount = new mongoose.Schema({
     _id: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "UserProfile",
+        required: true,
     },
     email: {
         type: String,
         unique: true,
+        trim: true,
     },
     hash: {
         type: String,
+        required: true,
     },
     salt: {
         type: String,
+        required: true,
     },
     email_confirm_token: {
         type: String,
@@ -21,6 +25,7 @@ const userAccount = new mongoose.Schema({
     },
     password_expire: {
         type: Date,
+        required: true,
     },
 });
 
