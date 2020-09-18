@@ -30,5 +30,6 @@ const userProfile = new mongoose.Schema({
     },
 });
 
+userProfile.method.Cler
 
 export default mongoose.model("UserProfile", userProfile);

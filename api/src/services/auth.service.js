@@ -1,19 +1,25 @@
 import { validationResult } from "express-validator";
 import { UserProfile, UserAccount } from "../models";
 
-const signup = async (req, res) => {
+const register = async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({
-            errors: errors.array(),
+            success: false,
+            message: errors.array(),
         });
     }
 
-    const { username, email, password } = req.body;
+    const { email, password } = req.body;
     try {
-        const user = UserAccount.findOne({
-            email,
-        });
-        
+        const user = await UserAccount.findOne({ email });
+        if (user) {
+            return res.status(400).json({
+                success: false,
+                message: "User already exists",
+            });
+        }
+
+        const newUser = new UserProfile()
     } catch (error) {}
 };

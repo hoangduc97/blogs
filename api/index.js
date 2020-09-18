@@ -1,26 +1,25 @@
 // import modules
 import express from "express";
 import cors from "cors";
+import dotenv from "dotenv";
 import logger from "morgan";
 import database from "./src/config/database.config";
 import router from "./src/routes";
-import session from "./src/config/session.config";
 import corsOption from "./src/config/cors.config";
-//dot env configuration
-import dotenv from "dotenv";
+import passport from "./src/config/passport.config";
 
 // load env
 dotenv.config();
 // init server
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.API_PORT || 3000;
 
 // add and config middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(logger("dev"));
 app.use(cors(corsOption));
-app.use(session);
+app.use(passport.initialize())
 app.use(router);
 
 // connect to database

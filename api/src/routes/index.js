@@ -1,8 +1,7 @@
 import express from "express";
-import { apiConstant } from "../utils/constants";
 import AuthRoutes from "./auth.route";
 
 const router = express.Router();
-router.use(apiConstant.BASE_PATH + "/auth", AuthRoutes);
+router.use(process.env.AUTH_BASE_PATH, AuthRoutes);
 
 export default router;

@@ -6,9 +6,7 @@ services:
         container_name: api_blogs
         volumes:
             - ./api:/app/api
-        environment:
-            - DB_URI=${DB_URI}
-            - PORT=${API_PORT}
+        env_file: .env
         ports:
             - ${API_PORT}:${API_PORT}
         restart: unless-stopped
