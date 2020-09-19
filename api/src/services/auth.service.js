@@ -20,6 +20,9 @@ const register = async (req, res) => {
             });
         }
 
-        const newUser = new UserProfile()
+        const newUser = new UserProfile({
+            email: email,
+            password: 12,
+        });
     } catch (error) {}
 };

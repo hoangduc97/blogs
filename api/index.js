@@ -13,13 +13,14 @@ dotenv.config();
 // init server
 const app = express();
 const PORT = process.env.API_PORT || 3000;
+const NODE_ENV = process.env.NODE_ENV || "production";
 
 // add and config middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(logger("dev"));
+app.use(logger(NODE_ENV));
 app.use(cors(corsOption));
-app.use(passport.initialize())
+app.use(passport.initialize());
 app.use(router);
 
 // connect to database
