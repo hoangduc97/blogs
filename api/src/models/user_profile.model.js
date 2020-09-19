@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import { increment_days } from "../utils/common.util";
 
 const userProfile = new mongoose.Schema({
     first_name: {
@@ -13,10 +12,7 @@ const userProfile = new mongoose.Schema({
     },
     avatar_url: {
         type: String,
-    },
-    password_expire: {
-        type: Date,
-        default: increment_days(Date.now(), process.env.PASSWORD_DURATION),
+        default: "url://",
     },
     account_facebook: {
         type: mongoose.Schema.Types.ObjectId,
@@ -31,7 +27,5 @@ const userProfile = new mongoose.Schema({
         ref: "AccountTwitter",
     },
 });
-
-userProfile.method.Cler;
 
 export default mongoose.model("UserProfile", userProfile);

@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import bcrypt from "bcryptjs";
+import { random_number, increment_days } from "../utils/common.util";
 
 const userAccount = new mongoose.Schema({
     _id: {
@@ -22,11 +22,11 @@ const userAccount = new mongoose.Schema({
     },
     email_confirm_token: {
         type: String,
-        default: "1234",
+        default: random_number(process.env.EMAIL_CONFIRM_TOKEN_LENGTH),
     },
     password_expire: {
         type: Date,
-        required: true,
+        default: increment_days(Date.now(), process.env.PASSWORD_DURATION),
     },
 });
 
