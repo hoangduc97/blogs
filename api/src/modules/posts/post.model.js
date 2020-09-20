@@ -4,39 +4,46 @@ const post = new mongoose.Schema({
     author_id: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'UserProfile',
+        required: true,
     },
     parent_id: {
         type: mongoose.Schema.Types.ObjectId,
+        ref: 'Post',
     },
     title: {
         type: String,
+        required: true,
     },
     meta_title: {
         type: String,
+        lowercase: true
     },
     slug: {
         type: String,
+        required: true,
     },
     summary: {
         type: String,
     },
     published: {
         type: Boolean,
+        required: true,
+        default: true,
     },
     create_at: {
         type: Date,
-        default: Date.now(),
+        default: Date(),
     },
     update_at: {
         type: Date,
-        default: Date.now(),
     },
     published_at: {
         type: Date,
-        default: Date.now(),
+        default: Date(),
     },
     content: {
         type: String,
+        required: true,
     },
     comments: [
         {
@@ -56,6 +63,17 @@ const post = new mongoose.Schema({
             ref: 'PostMeta',
         },
     ],
+});
+
+post.pre('save', function (next) {
+    const post = this;
+
+    if (this.isModified('update_at') || this.isNew) {
+        post.update_at = new Date();
+        next();
+    } else {
+        return next();
+    }
 });
 
 export default mongoose.model('Post', post);
