@@ -1,15 +1,25 @@
-import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
-const gen_hash = async (password, salt) => {
-    return await bcrypt.hash(password, salt);
+const isValidToken = (token) => {
+    jwt.verify(token, process.env.JWT_SECRET_OR_KEY);
 };
 
-const gen_salt = async (rounds = 10) => {
-    return await bcrypt.genSalt(rounds);
+const retrieveToken = (headers) => {
+    if (headers && headers.authorization) {
+        const tokens = headers.authorization.split(" ");
+        if (tokens && tokens.length === 2) {
+            return tokens[1];
+        }
+    }
+    return null;
 };
 
-const compareHash = async (hashString, normalString, saltString) => {
-    return await bcrypt.compare(normalString + saltString, hashString);
+const createToken = (user) => {
+    if (user) {
+        const token = jwt.sign(user.toJSON(), process.env.JWT_SECRET_OR_KEY, {
+            expiresIn: process.env.JWT_TOKEN_EXPIRATION,
+        });
+        return `${process.env.JWT_TOKEN_PREFIX} ${token}`;
+    }
 };
-
-export { gen_hash, gen_salt, compareHash };
+export { isValidToken, retrieveToken, createToken };

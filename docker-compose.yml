@@ -10,35 +10,22 @@ services:
         ports:
             - ${API_PORT}:${API_PORT}
         restart: unless-stopped
-        depends_on: 
-            - db
         networks:
             - private_network
 
-    client:
-        build: ./client
-        container_name: client_blogs
-        volumes:
-            - ./client:/app/client
-        environment:
-            - PORT=${CLIENT_PORT}
-            - API_PORT=${API_PORT}
-        ports:
-            - ${CLIENT_PORT}:${CLIENT_PORT}
-        restart: unless-stopped
-        networks:
-            - private_network
-
-    db:
-        image: mongo
-        container_name: mongo_blogs
-        volumes:
-            - .docker/data/db:/data/db
-        restart: unless-stopped
-        ports:
-            - ${DB_PORT}:${DB_PORT}
-        networks:
-            - private_network
+    # client:
+    #     build: ./client
+    #     container_name: client_blogs
+    #     volumes:
+    #         - ./client:/app/client
+    #     environment:
+    #         - PORT=${CLIENT_PORT}
+    #         - API_PORT=${API_PORT}
+    #     ports:
+    #         - ${CLIENT_PORT}:${CLIENT_PORT}
+    #     restart: unless-stopped
+    #     networks:
+    #         - private_network
 
 networks:
     private_network:
