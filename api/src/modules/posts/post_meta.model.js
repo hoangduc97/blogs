@@ -1,9 +1,9 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const postMeta = new mongoose.Schema({
     post_id: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Post",
+        ref: 'Post',
     },
     key: {
         type: String,
@@ -14,4 +14,4 @@ const postMeta = new mongoose.Schema({
     },
 });
 
-export default mongoose.model("PostMeta", postMeta);
+export default mongoose.model('PostMeta', postMeta);

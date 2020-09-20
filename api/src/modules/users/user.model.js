@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const userProfile = new mongoose.Schema({
     first_name: {
@@ -12,20 +12,20 @@ const userProfile = new mongoose.Schema({
     },
     avatar_url: {
         type: String,
-        default: "url://",
+        default: 'url://',
     },
     account_facebook: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "AccountFacebook",
+        ref: 'AccountFacebook',
     },
     account_google: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "AccountGoogle",
+        ref: 'AccountGoogle',
     },
     account_twitter: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "AccountTwitter",
+        ref: 'AccountTwitter',
     },
 });
 
-export default mongoose.model("UserProfile", userProfile);
+export default mongoose.model('UserProfile', userProfile);

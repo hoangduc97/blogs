@@ -1,4 +1,4 @@
-import jwt from "jsonwebtoken";
+import jwt from 'jsonwebtoken';
 
 const isValidToken = (token) => {
     jwt.verify(token, process.env.JWT_SECRET_OR_KEY);
@@ -6,7 +6,7 @@ const isValidToken = (token) => {
 
 const retrieveToken = (headers) => {
     if (headers && headers.authorization) {
-        const tokens = headers.authorization.split(" ");
+        const tokens = headers.authorization.split(' ');
         if (tokens && tokens.length === 2) {
             return tokens[1];
         }

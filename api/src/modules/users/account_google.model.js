@@ -1,11 +1,11 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
-const accountTwitter = new mongoose.Schema({
+const accountGoogle = new mongoose.Schema({
     _id: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "UserProfile",
+        ref: 'UserProfile',
     },
-    twitter_id: {
+    google_id: {
         type: String,
     },
     update_at: {
@@ -18,4 +18,4 @@ const accountTwitter = new mongoose.Schema({
     },
 });
 
-export default mongoose.model("AccountTwitter", accountTwitter);
+export default mongoose.model('AccountGoogle', accountGoogle);

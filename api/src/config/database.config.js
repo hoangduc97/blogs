@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const DB_URI = process.env.DB_URI;
 const options = {

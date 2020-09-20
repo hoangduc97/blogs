@@ -1,16 +1,16 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const comment = new mongoose.Schema({
     post_id: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Post",
+        ref: 'Post',
     },
     parent_id: {
         type: mongoose.Schema.Types.ObjectId,
     },
     author_id: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "UserProfile",
+        ref: 'UserProfile',
     },
     published: {
         type: Boolean,
@@ -33,9 +33,9 @@ const comment = new mongoose.Schema({
     comment_meta: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "CommentMeta",
+            ref: 'CommentMeta',
         },
     ],
 });
 
-export default mongoose.model("Comment", comment);
+export default mongoose.model('Comment', comment);

@@ -1,9 +1,9 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const post = new mongoose.Schema({
     author_id: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "UserProfile",
+        ref: 'UserProfile',
     },
     parent_id: {
         type: mongoose.Schema.Types.ObjectId,
@@ -41,21 +41,21 @@ const post = new mongoose.Schema({
     comments: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "Comment",
+            ref: 'Comment',
         },
     ],
     tags: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "Tag",
+            ref: 'Tag',
         },
     ],
     post_meta: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "PostMeta",
+            ref: 'PostMeta',
         },
     ],
 });
 
-export default mongoose.model("Post", post);
+export default mongoose.model('Post', post);

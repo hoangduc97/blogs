@@ -1,9 +1,9 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const accountFacebook = new mongoose.Schema({
     _id: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "UserProfile",
+        ref: 'UserProfile',
     },
     facebook_id: {
         type: String,
@@ -18,4 +18,4 @@ const accountFacebook = new mongoose.Schema({
     },
 });
 
-export default mongoose.model("AccountFacebook", accountFacebook);
+export default mongoose.model('AccountFacebook', accountFacebook);

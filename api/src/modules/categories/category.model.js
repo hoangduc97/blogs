@@ -1,13 +1,12 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
-const tag = new mongoose.Schema({
-    tag_name: {
+const category = new mongoose.Schema({
+    category_name: {
         type: String,
         unique: true,
     },
     slug: {
         type: String,
-        unique: true,
     },
     meta_title: {
         type: String,
@@ -18,9 +17,9 @@ const tag = new mongoose.Schema({
     posts: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "Post",
+            ref: 'Post',
         },
     ],
 });
 
-export default mongoose.model("Tag", tag);
+export default mongoose.model('Category', category);

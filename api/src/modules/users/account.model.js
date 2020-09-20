@@ -1,11 +1,11 @@
-import mongoose from "mongoose";
-import { random_number, increment_days } from "../utils/common.util";
-import bcrypt from "bcryptjs";
+import mongoose from 'mongoose';
+import { random_number, increment_days } from '../../utils/common.util';
+import bcrypt from 'bcryptjs';
 
 const userAccount = new mongoose.Schema({
     _id: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "UserProfile",
+        ref: 'UserProfile',
         required: true,
     },
     email: {
@@ -29,10 +29,10 @@ const userAccount = new mongoose.Schema({
     },
 });
 
-userAccount.pre("save", function (next) {
+userAccount.pre('save', function (next) {
     const account = this;
 
-    if (this.isModified("password") || this.isNew) {
+    if (this.isModified('password') || this.isNew) {
         bcrypt.genSalt(10, function (error, salt) {
             if (error) {
                 return next(error);
@@ -57,4 +57,4 @@ userAccount.methods.comparePassword = function (pw, cd) {
     });
 };
 
-export default mongoose.model("UserAccount", userAccount);
+export default mongoose.model('UserAccount', userAccount);
