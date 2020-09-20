@@ -8,12 +8,12 @@ const router = express.Router();
 // routes for register or login user
 router.post(
     process.env.AUTH_REGISTER_PATH,
-    [signupValidate],
+    [...signupValidate],
     UserService.register
 );
 router.post(
     process.env.AUTH_LOGIN_PATH,
-    [signinValidate],
+    [...signinValidate],
     UserService.login
 );
 

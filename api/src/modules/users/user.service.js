@@ -58,6 +58,8 @@ const register = async (req, res) => {
 };
 
 const login = async (req, res) => {
+    console.log(req.body);
+
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({
@@ -65,7 +67,6 @@ const login = async (req, res) => {
             errors: errors.array(),
         });
     }
-
     const { email, password } = req.body;
     const user = await Account.findOne({ email });
     if (!user) {

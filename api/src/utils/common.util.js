@@ -9,7 +9,8 @@ const random_number = (length) => {
 
 const increment_days = (days) => {
     const currentDate = new Date();
-    return new Date(currentDate.getDate() + days);
+    const afterDate = new Date();
+    return afterDate.setDate(currentDate.getDate() + days);
 };
 
 const gen_uuid = () => v4();

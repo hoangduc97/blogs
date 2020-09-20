@@ -6,13 +6,16 @@ import database from './config/database.config';
 import router from './routes';
 import corsOption from './config/cors.config';
 import passport from './config/passport.config';
+import logger from 'morgan';
 
 // load env
 dotenv.config();
 // init server
 const app = express();
+const API_ENV = process.env.API_ENV || 'prod';
 
 // add and config middleware
+app.use(logger(API_ENV));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors(corsOption));
