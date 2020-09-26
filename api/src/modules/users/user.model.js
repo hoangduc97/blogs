@@ -14,6 +14,10 @@ const userProfile = new mongoose.Schema({
         type: String,
         default: 'url://',
     },
+    account: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'UserAccount',
+    },
     account_facebook: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'AccountFacebook',

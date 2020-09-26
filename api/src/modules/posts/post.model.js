@@ -16,7 +16,7 @@ const post = new mongoose.Schema({
     },
     meta_title: {
         type: String,
-        lowercase: true
+        lowercase: true,
     },
     slug: {
         type: String,
@@ -57,6 +57,12 @@ const post = new mongoose.Schema({
             ref: 'Tag',
         },
     ],
+    categories: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Category',
+        },
+    ],
     post_meta: [
         {
             type: mongoose.Schema.Types.ObjectId,
@@ -70,10 +76,8 @@ post.pre('save', function (next) {
 
     if (this.isModified('update_at') || this.isNew) {
         post.update_at = new Date();
-        next();
-    } else {
-        return next();
     }
+    next();
 });
 
 export default mongoose.model('Post', post);

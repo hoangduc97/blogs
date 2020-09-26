@@ -10,11 +10,11 @@ const accountGoogle = new mongoose.Schema({
     },
     update_at: {
         type: Date,
-        default: Date.now(),
+        default: Date(),
     },
     create_at: {
         type: Date,
-        default: Date.now(),
+        default: Date(),
     },
 });
 

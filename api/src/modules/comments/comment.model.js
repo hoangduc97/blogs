@@ -24,11 +24,11 @@ const comment = new mongoose.Schema({
     },
     published_at: {
         type: Date,
-        default: Date.now(),
+        default: Date.now,
     },
     create_at: {
         type: Date,
-        default: Date.now(),
+        default: Date.now,
     },
     comment_meta: [
         {
