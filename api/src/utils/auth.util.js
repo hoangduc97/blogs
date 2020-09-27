@@ -1,14 +1,10 @@
 import jwt from 'jsonwebtoken';
 
-const isValidToken = (token) => {
-    jwt.verify(token, process.env.JWT_SECRET_OR_KEY);
-};
-
 const retrieveToken = (headers) => {
     if (headers && headers.authorization) {
         const tokens = headers.authorization.split(' ');
         if (tokens && tokens.length === 2) {
-            return tokens[1];
+            return jwt.verify(tokens[1], process.env.JWT_SECRET_OR_KEY);
         }
     }
     return null;
@@ -26,4 +22,4 @@ const createToken = (user) => {
         return `${process.env.JWT_TOKEN_PREFIX} ${token}`;
     }
 };
-export { isValidToken, retrieveToken, createToken };
+export { retrieveToken, createToken };

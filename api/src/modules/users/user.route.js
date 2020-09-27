@@ -1,7 +1,6 @@
 import express from 'express';
 import UserService from './user.service';
-import auth from '../../middlewares/auth.middleware';
-import passport from '../../config/passport.config';
+import { authJwt } from '../../middlewares/auth.middleware';
 import { signinValidate, signupValidate } from './user.validation';
 import { roleConstant } from '../../utils/constants';
 
@@ -20,10 +19,6 @@ router.post(
 );
 
 // routes for user
-router.get(
-    '/',
-    auth([roleConstant.GUEST], passport, 'jwt', { session: false }),
-    UserService.getAll
-);
+router.get('/', authJwt([roleConstant.MANAGER]), UserService.getAll);
 
 export default router;

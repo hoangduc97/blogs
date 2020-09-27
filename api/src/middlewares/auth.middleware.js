@@ -1,7 +1,8 @@
-module.exports = (roles, passport, strategy, opts) => {
+import passport from '../config/passport.config';
+
+const authJwt = (roles) => {
     return (req, res, next) => {
-        passport.authenticate(strategy, opts, (err, user, info) => {
-            console.log(user);
+        passport.authenticate('jwt', { session: false }, (err, user) => {
             if (err || !user) res.status(403).json({ message: 'forbidden' });
             else {
                 if (!roles.length || roles.includes(user.role)) {
@@ -13,3 +14,5 @@ module.exports = (roles, passport, strategy, opts) => {
         })(req, res, next);
     };
 };
+
+export { authJwt };

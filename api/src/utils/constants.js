@@ -6,9 +6,9 @@ const modelConstant = {
 };
 
 const roleConstant = {
-    ADMIN: 0,
+    MANAGER: 0,
     WRITER: 1,
-    GUEST: 2,
+    USER: 2,
 };
 
 export { modelConstant, roleConstant };
