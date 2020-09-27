@@ -16,9 +16,13 @@ const retrieveToken = (headers) => {
 
 const createToken = (user) => {
     if (user) {
-        const token = jwt.sign(user.toJSON(), process.env.JWT_SECRET_OR_KEY, {
-            expiresIn: process.env.JWT_TOKEN_EXPIRATION,
-        });
+        const token = jwt.sign(
+            { id: user._id, role: user.role },
+            process.env.JWT_SECRET_OR_KEY,
+            {
+                expiresIn: process.env.JWT_TOKEN_EXPIRATION,
+            }
+        );
         return `${process.env.JWT_TOKEN_PREFIX} ${token}`;
     }
 };

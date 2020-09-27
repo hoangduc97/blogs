@@ -5,4 +5,10 @@ const modelConstant = {
     },
 };
 
-export { modelConstant };
+const roleConstant = {
+    ADMIN: 0,
+    WRITER: 1,
+    GUEST: 2,
+};
+
+export { modelConstant, roleConstant };

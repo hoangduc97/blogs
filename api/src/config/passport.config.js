@@ -1,6 +1,6 @@
 import passport from 'passport';
 import JwtStrategy from 'passport-jwt';
-import Account from '../modules/users/account.model';
+import User from '../modules/users/user.model';
 
 const jwtOptions = {
     jwtFromRequest: JwtStrategy.ExtractJwt.fromAuthHeaderWithScheme('jwt'),
@@ -10,7 +10,7 @@ const jwtOptions = {
 // configure passport to use the local strategy
 passport.use(
     new JwtStrategy.Strategy(jwtOptions, (jwt_payload, done) => {
-        Account.findOne({ id: jwt_payload.id }, (err, user) => {
+        User.findOne({ _id: jwt_payload.id }, (err, user) => {
             if (err) {
                 done(err, false);
             }
@@ -22,9 +22,5 @@ passport.use(
         });
     })
 );
-
-export const auth = passport.authenticate('jwt', {
-    session: false,
-});
 
 export default passport;

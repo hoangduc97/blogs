@@ -3,11 +3,6 @@ import { random_number, increment_days } from '../../utils/common.util';
 import bcrypt from 'bcryptjs';
 
 const userAccount = new mongoose.Schema({
-    _id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'UserProfile',
-        required: true,
-    },
     email: {
         type: String,
         unique: true,

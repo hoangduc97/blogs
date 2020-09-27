@@ -14,6 +14,11 @@ const userProfile = new mongoose.Schema({
         type: String,
         default: 'url://',
     },
+    role: {
+        type: Number,
+        enum: [0, 1, 2],
+        required: true,
+    },
     account: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'UserAccount',

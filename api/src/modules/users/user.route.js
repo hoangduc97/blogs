@@ -1,7 +1,9 @@
 import express from 'express';
 import UserService from './user.service';
-import { auth } from '../../config/passport.config';
+import auth from '../../middlewares/auth.middleware';
+import passport from '../../config/passport.config';
 import { signinValidate, signupValidate } from './user.validation';
+import { roleConstant } from '../../utils/constants';
 
 const router = express.Router();
 
@@ -18,6 +20,10 @@ router.post(
 );
 
 // routes for user
-router.get('/', [auth], UserService.getAll);
+router.get(
+    '/',
+    auth([roleConstant.GUEST], passport, 'jwt', { session: false }),
+    UserService.getAll
+);
 
 export default router;

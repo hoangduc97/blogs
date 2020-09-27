@@ -1,5 +1,6 @@
 import { validationResult } from 'express-validator';
 import { createToken } from '../../utils/auth.util';
+import { roleConstant } from '../../utils/constants';
 import Account from './account.model';
 import User from './user.model';
 
@@ -11,7 +12,6 @@ const register = async (req, res) => {
             errors: errors.array(),
         });
     }
-
     const { email, password } = req.body;
     try {
         const account = await Account.findOne({ email });
@@ -21,31 +21,31 @@ const register = async (req, res) => {
                 message: 'User already exists!',
             });
         }
-
-        const newUser = new User();
-        newUser.save({}, (error, user) => {
+        const newAccount = new Account({
+            email: email,
+            password: password,
+        });
+        newAccount.save((error, account) => {
             if (error)
                 return res.status(400).json({
                     success: false,
-                    message: 'User create failed!',
+                    error: error,
+                    message: 'Account create failed!',
                 });
-            const newAccount = new Account({
-                _id: user._id,
-                email: email,
-                password: password,
+            const newUser = new User({
+                role: roleConstant.GUEST,
+                account: account._id,
             });
-
-            newAccount.save((error) => {
+            newUser.save({}, (error, user) => {
                 if (error)
                     return res.status(400).json({
                         success: false,
-                        error: error,
-                        message: 'Account create failed!',
+                        message: 'User create failed!',
                     });
-                return res.status(200).json({
-                    success: true,
-                    message: 'Account create success!',
-                });
+            });
+            return res.status(200).json({
+                success: true,
+                message: 'User create success!',
             });
         });
     } catch (error) {
@@ -66,7 +66,10 @@ const login = async (req, res) => {
         });
     }
     const { email, password } = req.body;
-    const user = await Account.findOne({ email });
+    const user = await User.findOne().populate({
+        path: 'account',
+        match: { email: email },
+    });
     if (!user) {
         return res.status(400).json({
             success: false,
@@ -74,7 +77,7 @@ const login = async (req, res) => {
         });
     }
 
-    user.comparePassword(password, (err, isMatch) => {
+    user.account.comparePassword(password, (err, isMatch) => {
         if (isMatch && !err) {
             const token = createToken(user);
             return res.status(200).json({
