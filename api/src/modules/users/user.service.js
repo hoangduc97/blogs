@@ -68,9 +68,11 @@ const login = async (req, res) => {
     const { email, password } = req.body;
     const user = await User.findOne().populate({
         path: 'account',
-        match: { email: email },
+        match: { email: email }
     });
-    if (!user) {
+    console.log('hello');
+    console.log(user);
+    if (!user || !user.account) {
         return res.status(400).json({
             success: false,
             message: 'User not exists!',

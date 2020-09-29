@@ -75,7 +75,7 @@ post.pre('save', function (next) {
     const post = this;
 
     if (this.isModified('update_at') || this.isNew) {
-        post.update_at = new Date();
+        post.update_at = Date.now;
     }
     next();
 });

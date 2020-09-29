@@ -1,3 +1,5 @@
+import dotenv from 'dotenv';
+dotenv.config({debug: true});
 // import modules
 import app from './src/app';
 

@@ -1,15 +1,12 @@
 // import modules
 import express from 'express';
 import cors from 'cors';
-import dotenv from 'dotenv';
 import database from './config/database.config';
 import router from './routes';
 import corsOption from './config/cors.config';
 import passport from './config/passport.config';
 import logger from 'morgan';
 
-// load env
-dotenv.config();
 // init server
 const app = express();
 const API_ENV = process.env.API_ENV || 'prod';
