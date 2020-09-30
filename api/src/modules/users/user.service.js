@@ -33,10 +33,10 @@ const register = async (req, res) => {
                     message: 'Account create failed!',
                 });
             const newUser = new User({
-                role: roleConstant.GUEST,
+                role: roleConstant.USER,
                 account: account._id,
             });
-            newUser.save({}, (error, user) => {
+            newUser.save((error) => {
                 if (error)
                     return res.status(400).json({
                         success: false,
@@ -70,9 +70,7 @@ const login = async (req, res) => {
         path: 'account',
         match: { email: email }
     });
-    console.log('hello');
-    console.log(user);
-    if (!user || !user.account) {
+    if (!user || (user && !user.account)) {
         return res.status(400).json({
             success: false,
             message: 'User not exists!',
