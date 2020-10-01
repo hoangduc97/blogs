@@ -13,19 +13,18 @@ services:
         networks:
             - private_network
 
-    # client:
-    #     build: ./client
-    #     container_name: client_blogs
-    #     volumes:
-    #         - ./client:/app/client
-    #     environment:
-    #         - PORT=${CLIENT_PORT}
-    #         - API_PORT=${API_PORT}
-    #     ports:
-    #         - ${CLIENT_PORT}:${CLIENT_PORT}
-    #     restart: unless-stopped
-    #     networks:
-    #         - private_network
+    client:
+        build: ./client
+        container_name: client_blogs
+        stdin_open: true
+        volumes:
+            - ./client:/app/client
+        env_file: .env
+        ports:
+            - ${CLIENT_PORT}:80
+        restart: unless-stopped
+        networks:
+            - private_network
 
 networks:
     private_network:
