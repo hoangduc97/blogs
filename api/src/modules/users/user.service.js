@@ -25,7 +25,7 @@ const register = async (req, res) => {
             email: email,
             password: password,
         });
-        newAccount.save((error, account) => {
+        newAccount.save({}, (error, account) => {
             if (error)
                 return res.status(400).json({
                     success: false,
@@ -36,7 +36,7 @@ const register = async (req, res) => {
                 role: roleConstant.USER,
                 account: account._id,
             });
-            newUser.save((error) => {
+            newUser.save({}, (error) => {
                 if (error)
                     return res.status(400).json({
                         success: false,
@@ -65,6 +65,7 @@ const login = async (req, res) => {
             errors: errors.array(),
         });
     }
+
     const { email, password } = req.body;
     const user = await User.findOne().populate({
         path: 'account',
@@ -76,7 +77,6 @@ const login = async (req, res) => {
             message: 'User not exists!',
         });
     }
-
     user.account.comparePassword(password, (err, isMatch) => {
         if (isMatch && !err) {
             const token = createToken(user);
