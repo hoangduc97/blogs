@@ -37,12 +37,10 @@ userAccount.pre('save', function (next) {
                     return next(error);
                 }
                 account.password = hash;
-                next();
             });
         });
-    } else {
-        return next();
     }
+    next();
 });
 
 userAccount.methods.comparePassword = function (pw, cd) {
