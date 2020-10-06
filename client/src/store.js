@@ -1,7 +1,7 @@
 import { createEpicMiddleware } from 'redux-observable';
 import { createStore, applyMiddleware } from 'redux';
 import { createLogger } from 'redux-logger';
-import rootReduder from './rootReducer';
+import rootReduder from './root.reducer';
 
 // init middleware list
 const middlewares = [];

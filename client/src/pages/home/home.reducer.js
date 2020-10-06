@@ -1,6 +1,6 @@
 const initialState = [];
 
-const home = (state = initialState, { type, payload }) => {
+const HomeReducer = (state = initialState, { type, payload }) => {
     switch (type) {
         case 'ADD':
             return [
@@ -15,4 +15,4 @@ const home = (state = initialState, { type, payload }) => {
     }
 };
 
-export default home;
+export default HomeReducer;
