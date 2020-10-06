@@ -1,15 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Provider from 'react-redux';
+import { Provider } from 'react-redux';
 
 import store from './store';
+import Router from './pages/router';
 
-const App = () => {
-    return (
-        <Provider store={store}>
-            <h1>Hello</h1>
-        </Provider>
-    );
-};
-
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(
+    <Provider store={store}>
+        <Router />
+    </Provider>,
+    document.getElementById('root')
+);

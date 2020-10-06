@@ -10,10 +10,13 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.js$/,
+                test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
-                loader: 'babel-loader',
-            },
+                use: ['babel-loader'],
+            }, {
+                test: /\.(css|scss)$/,
+                use: ['style-loader', 'css-loader', 'sass-loader']
+            }
         ],
     },
     plugins: [
@@ -22,7 +25,6 @@ module.exports = {
         }),
     ],
     devServer: {
-        host: '0.0.0.0',
         port: 80
     },
 };
