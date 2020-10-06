@@ -13,10 +13,23 @@ module.exports = {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 use: ['babel-loader'],
-            }, {
+            },
+            {
                 test: /\.(css|scss)$/,
-                use: ['style-loader', 'css-loader', 'sass-loader']
-            }
+                use: ['style-loader', 'css-loader', 'sass-loader'],
+            },
+            {
+                test: /\.svg$/,
+                use: ['svg-loader'],
+            },
+            {
+                test: /\.(eot|woff|woff2|svg|ttf|otf)([\?]?.*)$/,
+                use: ['file-loader'],
+            },
+            {
+                test: /\.(png|woff|woff2|eot|ttf|svg|otf)$/,
+                use: ['url-loader?limit=100000'],
+            },
         ],
     },
     plugins: [
@@ -25,6 +38,6 @@ module.exports = {
         }),
     ],
     devServer: {
-        port: 80
+        port: 80,
     },
 };
