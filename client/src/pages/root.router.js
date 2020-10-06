@@ -1,8 +1,8 @@
 import React from 'react';
-import HomePage from './home/home.page';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import HomePage from './home/home.page';
 
-const Router = () => {
+const Router = (props) => {
     return (
         <BrowserRouter>
             <Switch>

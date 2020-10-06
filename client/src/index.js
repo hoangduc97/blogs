@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
 import store from './configs/store';
-import Router from './pages/router';
+import RootPage from './pages/root.page';
 
 import './index.scss';
 
 ReactDOM.render(
     <Provider store={store}>
-        <Router />
+        <RootPage />
     </Provider>,
     document.getElementById('root')
 );
