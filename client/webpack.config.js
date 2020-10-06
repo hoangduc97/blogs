@@ -6,6 +6,7 @@ module.exports = {
     output: {
         filename: 'build.js',
         path: path.join(__dirname, '/public'),
+        publicPath: '/',
     },
     module: {
         rules: [
@@ -39,5 +40,7 @@ module.exports = {
     ],
     devServer: {
         port: 80,
+        historyApiFallback: true,
+        compress: true
     },
 };
