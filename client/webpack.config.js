@@ -5,7 +5,7 @@ module.exports = {
     entry: path.join(__dirname, '/src/index.js'),
     output: {
         filename: 'build.js',
-        path: path.join(__dirname, '/dist'),
+        path: path.join(__dirname, '/public'),
     },
     module: {
         rules: [
@@ -21,7 +21,7 @@ module.exports = {
     },
     plugins: [
         new HWP({
-            template: path.join(__dirname, '/src/index.html'),
+            template: path.join(__dirname, '/public/index.html'),
         }),
     ],
     devServer: {
