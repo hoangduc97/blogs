@@ -3,11 +3,13 @@
 footer {
     background-color: $primary_color;
     color: $text_color_nomal--active;
+    padding: 2em 0;
 }
 
 .footer__container {
     max-width: 1280px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(4, 25%);
+    grid-template-columns: repeat(4, 23%);
+    gap: 2%;
 }
