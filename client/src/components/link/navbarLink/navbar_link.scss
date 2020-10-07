@@ -2,6 +2,8 @@
 
 @include reset-link();
 
-.active {
-    background-color: #3d5a80;
+a {
+    display: block;
+    padding: 1.5em 2em;
+    color: $primary_color;
 }

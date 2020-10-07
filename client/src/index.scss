@@ -18,7 +18,8 @@ body {
     font-family: var(--font_family_nomal);
     font-weight: var(--font_weight_nomal);
 
-    background-color: $bg_nomal;
+    background-color: $bg_color_nomal;
+    color: $primary_color;
 }
 
 ul {

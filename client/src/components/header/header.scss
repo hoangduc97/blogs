@@ -6,16 +6,37 @@ header {
     align-self: center;
     justify-self: center;
     justify-content: space-around;
+    border-bottom: 1px solid #eeeeee;
 
     .header__logo {
         @include reset-link();
     }
     .header__navbar {
         display: inherit;
+        width: 50%;
+        justify-content: space-around;
     }
 }
 
 .navbar__menu,
 .navbar__auth {
     @include horizontal-list();
+    li > .navbar--item {
+        position: relative;
+        &::after {
+            content: '';
+            background-color: $primary_color;
+            width: 0%;
+            height: 5px;
+            left: 0;
+            bottom: 0;
+            position: absolute;
+        }
+    }
+
+    li > .active {
+        &::after {
+            width: 100%;
+        }
+    }
 }
