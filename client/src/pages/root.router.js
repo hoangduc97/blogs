@@ -1,19 +1,20 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import Header from '../components/header/header.component';
+import { Switch, Route } from 'react-router-dom';
 import Home from './home/home.page';
 import SignIn from './signin/signin.page';
 import SignUp from './signup/signup.page';
 
 const Router = (props) => {
     return (
-        <BrowserRouter>
-            <Switch>
-                <Route path="/signin" component={SignIn} />
-                <Route path="/signup" component={SignUp} />
-                <Route exact path="/" component={Home} />
-            </Switch>
-        </BrowserRouter>
+        <Switch>
+            <Route path="/article" component={SignIn} />
+            <Route path="/book" component={SignIn} />
+            <Route path="/tutorial" component={SignIn} />
+            <Route path="/project" component={SignIn} />
+            <Route path="/signin" component={SignIn} />
+            <Route path="/signup" component={SignUp} />
+            <Route exact path="/" component={Home} />
+        </Switch>
     );
 };
 

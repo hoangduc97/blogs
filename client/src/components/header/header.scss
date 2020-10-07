@@ -1,0 +1,21 @@
+@import '../../assets/_mixin';
+
+header {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    justify-self: center;
+    justify-content: space-around;
+
+    .header__logo {
+        @include reset-link();
+    }
+    .header__navbar {
+        display: inherit;
+    }
+}
+
+.navbar__menu,
+.navbar__auth {
+    @include horizontal-list();
+}
