@@ -1,0 +1,21 @@
+
+
+
+@mixin responsive_container {
+    margin: 0 auto;
+    max-width: 80em;
+
+    @media screen and (max-width: 1280px) {
+        max-width: 70em;
+    }
+    @media screen and (max-width: 1024px) {
+
+    }
+    @media screen and (max-width: 1024px) and (orientation: portrait) {
+
+    }
+    @media screen and (max-width: 767px) and (orientation: portrait) {
+
+    }
+}
+

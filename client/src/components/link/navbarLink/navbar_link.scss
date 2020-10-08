@@ -6,4 +6,9 @@ a {
     display: block;
     padding: 1.5em 2em;
     color: $primary_color;
+    transition: 0.3s ease-in-out;
+
+    &:hover {
+        opacity: 0.7;
+    }
 }

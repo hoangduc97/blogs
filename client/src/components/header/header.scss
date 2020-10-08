@@ -1,20 +1,30 @@
 @import '../../assets/_mixin';
+@import '../../assets/_responsive';
 
 header {
+}
+
+.header__container {
+    @include responsive_container();
+
     display: flex;
     flex-direction: row;
     align-self: center;
     justify-self: center;
-    justify-content: space-around;
-    border-bottom: 1px solid #eeeeee;
+    justify-content: space-between;
 
     .header__logo {
         @include reset-link();
+        a {
+            display: block;
+            position: absolute;
+            width: 5em;
+            padding: .5em;
+        }
     }
     .header__navbar {
         display: inherit;
-        width: 50%;
-        justify-content: space-around;
+        justify-content: space-between;
     }
 }
 

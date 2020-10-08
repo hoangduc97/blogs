@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './image_link.scss';
 
-const ImageLink = ({ to, href, alt }) => {
+const ImageLink = ({ to, image, alt }) => {
     return (
         <Link to={to}>
-            {/* <image href={href} alt={alt} /> */}
-            logo
+            <img src={image} alt={alt} />
         </Link>
     );
 };

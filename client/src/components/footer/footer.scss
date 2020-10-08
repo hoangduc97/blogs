@@ -1,4 +1,5 @@
 @import '../../assets/_variable';
+@import '../../assets/_responsive';
 
 footer {
     background-color: $primary_color;
@@ -7,7 +8,7 @@ footer {
 }
 
 .footer__container {
-    max-width: 1280px;
+    @include responsive_container();
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(4, 23%);
