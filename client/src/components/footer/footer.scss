@@ -8,7 +8,6 @@ footer {
 }
 
 .footer__container {
-    @include responsive_container();
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(4, 23%);

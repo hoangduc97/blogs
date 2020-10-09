@@ -2,7 +2,6 @@
 
 .wrapper {
     .wrapper__container {
-        @include responsive_container();
         margin: 5em auto;
     }
 }
