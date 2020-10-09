@@ -1,9 +1,6 @@
 @import '../../assets/_mixin';
 @import '../../assets/_responsive';
 
-header {
-}
-
 .header__container {
     @include responsive_container();
 

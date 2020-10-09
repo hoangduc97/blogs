@@ -9,35 +9,35 @@ const Header = (props) => {
         <header>
             <div className="header__container">
                 <div className="header__logo">
-                    <ImageLink to="/" image={LogoImage} alt={'Logo'} />
+                    <ImageLink to={'/'} srcImage={LogoImage} alt={'Logo'} />
                 </div>
                 <nav className="header__navbar">
                     <ul className="navbar__menu">
                         <li>
                             <NavbarLink
                                 className="navbar--item"
-                                to="/article"
+                                to={'/article'}
                                 label={'Articles'}
                             />
                         </li>
                         <li>
                             <NavbarLink
                                 className="navbar--item"
-                                to="/book"
+                                to={'/book'}
                                 label={'Books'}
                             />
                         </li>
                         <li>
                             <NavbarLink
                                 className="navbar--item"
-                                to="/tutorial"
+                                to={'/tutorial'}
                                 label={'Tutorials'}
                             />
                         </li>
                         <li>
                             <NavbarLink
                                 className="navbar--item"
-                                to="/project"
+                                to={'/project'}
                                 label={'Projects'}
                             />
                         </li>
@@ -46,14 +46,14 @@ const Header = (props) => {
                         <li>
                             <NavbarLink
                                 className="navbar--item"
-                                to="/signin"
+                                to={'/signin'}
                                 label={'Signin'}
                             />
                         </li>
                         <li>
                             <NavbarLink
                                 className="navbar--item"
-                                to="/signup"
+                                to={'/signup'}
                                 label={'Signup'}
                             />
                         </li>
