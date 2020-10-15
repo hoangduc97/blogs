@@ -8,9 +8,7 @@
     justify-self: center;
     justify-content: space-between;
     margin: 0 auto;
-
-    max-width: $large-desktop-width;
-    
+    max-width: $large_desktop;
 
     .header__logo {
         @include reset-link();
