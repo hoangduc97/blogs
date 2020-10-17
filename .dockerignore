@@ -1,4 +1,5 @@
-node_modules
-build
-.dockerignore
-Dockerfile
+./client/node_modules
+./client/Dockerfile
+
+./api/node_modules
+./api/Dockerfile

@@ -6,6 +6,7 @@ services:
         container_name: api_blogs
         volumes:
             - ./api:/app/api
+            - /app/api/node_modules
         env_file: .env
         ports:
             - ${API_PORT}:${API_PORT}
@@ -19,6 +20,7 @@ services:
         stdin_open: true
         volumes:
             - ./client:/app/client
+            - /app/client/node_modules
         env_file: .env
         ports:
             - ${CLIENT_PORT}:80
