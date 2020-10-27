@@ -15,6 +15,7 @@ const Header = (props) => {
                     <ul className="navbar__menu">
                         <li>
                             <NavbarLink
+                                tag={'li'}
                                 className="navbar--item"
                                 to={'/article'}
                                 label={'Articles'}
@@ -22,6 +23,7 @@ const Header = (props) => {
                         </li>
                         <li>
                             <NavbarLink
+                                tag={'li'}
                                 className="navbar--item"
                                 to={'/book'}
                                 label={'Books'}
@@ -29,6 +31,7 @@ const Header = (props) => {
                         </li>
                         <li>
                             <NavbarLink
+                                tag={'li'}
                                 className="navbar--item"
                                 to={'/tutorial'}
                                 label={'Tutorials'}
@@ -36,6 +39,7 @@ const Header = (props) => {
                         </li>
                         <li>
                             <NavbarLink
+                                tag={'li'}
                                 className="navbar--item"
                                 to={'/project'}
                                 label={'Projects'}

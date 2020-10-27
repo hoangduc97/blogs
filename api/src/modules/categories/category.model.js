@@ -8,9 +8,6 @@ const category = new mongoose.Schema({
     slug: {
         type: String,
     },
-    meta_title: {
-        type: String,
-    },
     content: {
         type: String,
     },

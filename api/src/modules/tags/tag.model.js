@@ -9,9 +9,6 @@ const tag = new mongoose.Schema({
         type: String,
         unique: true,
     },
-    meta_title: {
-        type: String,
-    },
     content: {
         type: String,
     },

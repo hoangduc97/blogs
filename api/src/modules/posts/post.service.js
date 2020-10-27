@@ -9,8 +9,6 @@ const createPost = async (req, res) => {
             errors: errors.array(),
         });
     }
-
-    
 };
 
 const updatePost = async (req, res) => {
@@ -25,9 +23,7 @@ const getPost = async (req, res) => {
     const errors = validationResult(req);
 };
 
-const getPosts = async (req, res) => {
-    
-};
+const getPosts = async (req, res) => {};
 
 const PostService = {
     createPost,

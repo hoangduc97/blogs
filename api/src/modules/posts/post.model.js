@@ -14,10 +14,6 @@ const post = new mongoose.Schema({
         type: String,
         required: true,
     },
-    meta_title: {
-        type: String,
-        lowercase: true,
-    },
     slug: {
         type: String,
         required: true,
