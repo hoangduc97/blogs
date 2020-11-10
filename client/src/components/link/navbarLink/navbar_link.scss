@@ -1,15 +1,18 @@
 @import '../../../assets/_mixin';
+@import '../../../assets/_variable';
 
 @include reset-link();
+li {
+    a {
+        display: block;
+        padding: 2.75em 2em;
+        color: $primary_color;
+        transition: 0.3s ease-in-out;
+        font-weight: 500;
 
-a {
-    display: block;
-    padding: 1.5em 2em;
-    color: $primary_color;
-    transition: 0.3s ease-in-out;
-    font-weight: 600;
-
-    &:hover {
-        opacity: 0.7;
+        &:hover {
+            opacity: 0.7;
+        }
     }
 }
+

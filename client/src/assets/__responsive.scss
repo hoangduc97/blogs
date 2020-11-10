@@ -1,16 +1,10 @@
 $desktop: 1024px;
-$large_desktop: 1280px;
 
 /* Media Queries */
 $media_queries: (
     'mobile': 'only screen and (max-width: 667px)',
     'tablet': 'only screen and (min-width: 668px) and (max-width: $desktop)',
-    'desktop': 'only screen and (min-width: ($desktop + 1)) and (max-width: $large_desktop)',
-    'large_desktop': 'only screen and (min-width: ($large_desktop + 1))',
-    'retina2': 'only screen and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi)',
-    'retina3': 'only screen and (-webkit-min-device-pixel-ratio: 3) and (min-resolution: 288dpi)',
-    'landscape': 'screen and (orientation:landscape) ',
-    'portrait': 'screen and (orientation:portrait) ',
+    'desktop': 'only screen and (max-width: $desktop)',
 );
 
 @mixin media($names) {

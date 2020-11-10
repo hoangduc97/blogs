@@ -1,6 +1,10 @@
 @import '../../assets/_mixin';
 @import '../../assets/_responsive';
+@import '../../assets/_variable';
 
+#header {
+    background: $primary_color--header;
+}
 .header__container {
     display: flex;
     flex-direction: row;
@@ -8,19 +12,34 @@
     justify-self: center;
     justify-content: space-between;
     margin: 0 auto;
-    max-width: $large_desktop;
+    max-width: $desktop;
+    height: 7em;
 
     .header__logo {
+        display: inherit;
+        align-items: center;
         @include reset-link();
-        a {
-            display: block;
-            position: absolute;
-            width: 7em;
-            padding: .5em;
+        &--primary {
+            font-size: 40px;
+            font-family: 'Pacifico', cursive;
+            cursor: pointer;
+            a {
+                color: inherit;
+            }
+        }
+        &--secondary {
+            font-size: 12px;
+        }
+        &--split {
+            height: 1.5em;
+            width: 1px;
+            background-color: #9c9c9c;
+            margin: 1.5em;
         }
     }
     .header__navbar {
         display: inherit;
+        align-items: center;
         justify-content: space-between;
     }
 }
@@ -28,7 +47,7 @@
 .navbar__menu,
 .navbar__auth {
     @include horizontal-list();
-    li > .navbar--item {
+    .navbar--item {
         position: relative;
         &::after {
             content: '';
@@ -40,8 +59,7 @@
             position: absolute;
         }
     }
-
-    li > .active {
+    .active {
         &::after {
             width: 100%;
         }

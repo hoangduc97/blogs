@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Exo:wght@100;200;300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;500;600&display=swap');
 @import './assets/_variable';
 
 html,
@@ -8,24 +8,23 @@ body {
 }
 
 html {
-    --font_family_nomal: 'Exo', sans-serif;
-    --font_size_nomal: 1em;
-    --font_weight_nomal: 500;
+    --font_family_nomal: 'Poppins', sans-serif;
+    --font_size_nomal: .9em;
+    --font_weight_nomal: 400;
 }
 
 body {
     font-size: var(--font_size_nomal);
     font-family: var(--font_family_nomal);
     font-weight: var(--font_weight_nomal);
-
-    background-color: $bg_color_nomal;
+    background:url('./assets/image/bg.png') #333333e0;
+    background-blend-mode: saturation;
     color: $primary_color;
 }
 
 ul {
     margin: 0;
     padding: 0;
-
     li {
         list-style: none;
     }
@@ -34,4 +33,8 @@ ul {
 img {
     max-width: 100%;
     display: block;
+}
+
+p, h1, h2, h3, h4, h5 {
+    margin: 0;
 }

@@ -1,7 +1,9 @@
+@import '../assets/_variable';
 @import '../assets/_responsive';
 
-.wrapper {
-    .wrapper__container {
-        margin: 5em auto;
-    }
+.wrapper__container {
+    margin: auto;
+    min-height: 100vh;
+    max-width: $desktop;
+    background: $primary_color--body;
 }
