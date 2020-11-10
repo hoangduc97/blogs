@@ -11,9 +11,8 @@
     align-self: center;
     justify-self: center;
     justify-content: space-between;
-    margin: 0 auto;
+    margin: auto;
     max-width: $desktop;
-    height: 7em;
 
     .header__logo {
         display: inherit;
@@ -62,6 +61,18 @@
     .active {
         &::after {
             width: 100%;
+        }
+    }
+}
+
+.navbar__auth {
+    &--menu {
+        font-size: 1.5em;
+        color: inherit;
+        padding: 0 2em;
+        transition: .3s all;
+        &:hover {
+            opacity: .7;
         }
     }
 }

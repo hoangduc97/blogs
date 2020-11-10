@@ -1,11 +1,12 @@
 import React from 'react';
 import { useRouteMatch } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import CustomLink from '../link/customLink/custom_link.component';
 import NavbarLink from '../link/navbarLink/navbar_link.component';
 import './header.scss';
 
 const Header = (props) => {
-    const personal = useRouteMatch({ path: '/resume' }) ? "resume" : "home";
+    const personal = useRouteMatch({ path: '/resume' }) ? 'resume' : 'home';
     return (
         <header id="header">
             <div className="header__container">
@@ -14,7 +15,9 @@ const Header = (props) => {
                         <CustomLink to={'/'}>Zrik</CustomLink>
                     </p>
                     <span className="header__logo--split"></span>
-                    <p className="header__logo--secondary">personal home</p>
+                    <p className="header__logo--secondary">
+                        personal {personal}
+                    </p>
                 </div>
                 <nav className="header__navbar">
                     <ul className="navbar__menu">
@@ -45,16 +48,12 @@ const Header = (props) => {
                         />
                     </ul>
                     <ul className="navbar__auth">
-                        <NavbarLink
-                            className="navbar--item"
+                        <CustomLink
                             to={'/signin'}
-                            label={'signin'}
-                        />
-                        <NavbarLink
-                            className="navbar--item"
-                            to={'/signup'}
-                            label={'signup'}
-                        />
+                            className="navbar--item navbar__auth--menu"
+                        >
+                            <FontAwesomeIcon icon="user" />
+                        </CustomLink>
                     </ul>
                 </nav>
             </div>
