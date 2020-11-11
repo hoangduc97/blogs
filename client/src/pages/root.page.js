@@ -11,7 +11,6 @@ const RootPage = (props) => {
             <div className="wrapper__container">
                 <RootRouter />
             </div>
-            <Footer />
         </div>
     );
 };

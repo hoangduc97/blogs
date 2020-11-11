@@ -7,6 +7,8 @@ import './header.scss';
 
 const Header = (props) => {
     const personal = useRouteMatch({ path: '/resume' }) ? 'resume' : 'home';
+    const navbar_list = ['article', 'book', 'tutorial', 'project', 'resume'];
+
     return (
         <header id="header">
             <div className="header__container">
@@ -21,40 +23,23 @@ const Header = (props) => {
                 </div>
                 <nav className="header__navbar">
                     <ul className="navbar__menu">
-                        <NavbarLink
-                            className="navbar--item"
-                            to={'/article'}
-                            label={'article'}
-                        />
-                        <NavbarLink
-                            className="navbar--item"
-                            to={'/book'}
-                            label={'book'}
-                        />
-                        <NavbarLink
-                            className="navbar--item"
-                            to={'/tutorial'}
-                            label={'tutorial'}
-                        />
-                        <NavbarLink
-                            className="navbar--item"
-                            to={'/project'}
-                            label={'project'}
-                        />
-                        <NavbarLink
-                            className="navbar--item"
-                            to={'/resume'}
-                            label={'resume'}
-                        />
+                        {navbar_list.map((element, index) => 
+                            <NavbarLink
+                                key={index}
+                                className="navbar--item"
+                                to={'/' + element}
+                                label={element}
+                            />
+                        )}
                     </ul>
-                    <ul className="navbar__auth">
+                    <div className="navbar__auth">
                         <CustomLink
                             to={'/signin'}
                             className="navbar--item navbar__auth--menu"
                         >
                             <FontAwesomeIcon icon="user" />
                         </CustomLink>
-                    </ul>
+                    </div>
                 </nav>
             </div>
         </header>
