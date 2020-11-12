@@ -3,6 +3,9 @@
 @import '../../assets/_variable';
 
 #header {
+    position: fixed;
+    width: 100%;
+    z-index: 1;
     background: $primary_color--header;
 }
 .header__container {
@@ -13,6 +16,7 @@
     justify-content: space-between;
     margin: auto;
     max-width: $desktop;
+    padding: 0 2em;
 
     .header__logo {
         display: inherit;
@@ -28,6 +32,7 @@
         }
         &--secondary {
             font-size: 12px;
+            font-weight: 100;
         }
         &--split {
             height: 1.5em;
@@ -70,9 +75,9 @@
         font-size: 1.5em;
         color: inherit;
         padding: 0 2em;
-        transition: .3s all;
+        transition: 0.3s all;
         &:hover {
-            opacity: .7;
+            opacity: 0.7;
         }
     }
 }

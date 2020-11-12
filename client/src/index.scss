@@ -5,12 +5,11 @@ html,
 body {
     padding: 0;
     margin: 0;
-    overflow: hidden;
 }
 
 html {
     --font_family_nomal: 'Poppins', sans-serif;
-    --font_size_nomal: .9em;
+    --font_size_nomal: 0.85em;
     --font_weight_nomal: 400;
 }
 
@@ -18,7 +17,7 @@ body {
     font-size: var(--font_size_nomal);
     font-family: var(--font_family_nomal);
     font-weight: var(--font_weight_nomal);
-    background:url('./assets/image/bg.png') #333333e0;
+    background: url('./assets/image/bg.png') #333333e0;
     background-blend-mode: saturation;
     color: $primary_color;
 }
@@ -36,6 +35,25 @@ img {
     display: block;
 }
 
-p, h1, h2, h3, h4, h5 {
+p,
+h1,
+h2,
+h3,
+h4,
+h5 {
     margin: 0;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: #3d3d3d;
+}
+::-webkit-scrollbar-thumb {
+    background: #292828;
+    border-radius: 15px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }

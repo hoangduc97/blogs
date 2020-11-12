@@ -24,11 +24,11 @@ module.exports = {
                 use: ['svg-loader'],
             },
             {
-                test: /\.(eot|woff|woff2|svg|ttf|otf)([\?]?.*)$/,
+                test: /\.(eot|woff|woff2|svg|ttf|otf|jpg)([\?]?.*)$/,
                 use: ['file-loader'],
             },
             {
-                test: /\.(png|woff|woff2|eot|ttf|svg|otf)$/,
+                test: /\.(png|woff|woff2|eot|ttf|svg|otf|jpg)$/,
                 use: ['url-loader?limit=100000'],
             },
         ],

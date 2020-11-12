@@ -6,7 +6,7 @@ const NavbarLink = ({ label, to, className }) => {
     const match = useRouteMatch({
         path: to,
     });
-    const styleClass = className + (match ? ' active' : '');
+    const styleClass = 'navbar ' + className + (match ? ' active' : '');
 
     return (
         <li className={styleClass}>

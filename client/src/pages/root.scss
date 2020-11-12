@@ -1,10 +1,12 @@
 @import '../assets/_variable';
 @import '../assets/_responsive';
 
-.wrapper{
+.wrapper {
     background: $primary_color--body;
     &__container {
-    margin: auto;
-    max-width: $desktop;
-}
+        margin: auto;
+        max-width: $desktop;
+        padding: 6.2em 2em 0;
+        min-height: 100vh;
+    }
 }

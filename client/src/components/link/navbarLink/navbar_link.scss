@@ -2,10 +2,10 @@
 @import '../../../assets/_variable';
 
 @include reset-link();
-li {
+.navbar {
     a {
         display: block;
-        padding: 2.75em 2em;
+        padding: 2.4em 2em;
         color: $primary_color;
         transition: 0.3s ease-in-out;
         font-weight: 500;
