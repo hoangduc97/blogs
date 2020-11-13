@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRouteMatch } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FaUser } from 'react-icons/fa';
 import CustomLink from '../link/customLink/custom_link.component';
 import NavbarLink from '../link/navbarLink/navbar_link.component';
 import './header.scss';
@@ -23,21 +23,21 @@ const Header = (props) => {
                 </div>
                 <nav className="header__navbar">
                     <ul className="navbar__menu">
-                        {navbar_list.map((element, index) => 
+                        {navbar_list.map((element, index) => (
                             <NavbarLink
                                 key={index}
                                 className="navbar--item"
                                 to={'/' + element}
                                 label={element}
                             />
-                        )}
+                        ))}
                     </ul>
                     <div className="navbar__auth">
                         <CustomLink
                             to={'/signin'}
                             className="navbar--item navbar__auth--menu"
                         >
-                            <FontAwesomeIcon icon="user" />
+                            <FaUser />
                         </CustomLink>
                     </div>
                 </nav>
