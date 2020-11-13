@@ -25,15 +25,6 @@ const socials = [
 ];
 const skills = [
     {
-        group: 'web development',
-        skills: [
-            { name: 'html5/css3', total: 3 },
-            { name: 'javascript', total: 3 },
-            { name: 'nodejs', total: 2 },
-            { name: 'reactjs', total: 2 },
-        ],
-    },
-    {
         group: 'software development',
         skills: [
             { name: 'python', total: 2 },
