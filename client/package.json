@@ -10,6 +10,7 @@
         "build": "webpack --mode production"
     },
     "dependencies": {
+        "@react-google-maps/api": "^1.13.0",
         "axios": "^0.20.0",
         "react": "^16.13.1",
         "react-dom": "^16.13.1",
