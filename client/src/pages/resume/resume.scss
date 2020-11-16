@@ -72,6 +72,7 @@
         width: 32em;
         padding: 0 1em;
         overflow-y: scroll;
+        scroll-behavior: smooth;
     }
 
     &__title {
