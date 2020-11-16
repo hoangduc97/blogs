@@ -1,26 +1,19 @@
 $desktop: 1024px;
 
-/* Media Queries */
-$media_queries: (
-    'mobile': 'only screen and (max-width: 667px)',
-    'tablet': 'only screen and (min-width: 668px) and (max-width: $desktop)',
-    'desktop': 'only screen and (max-width: $desktop)',
-);
-
-@mixin media($names) {
-    $conditions: ();
-    @each $breakpoint in $names {
-        @if map-has-key($media_queries, $breakpoint) {
-            $conditions: append(
-                $conditions,
-                #{inspect(map-get($media_queries, $breakpoint))},
-                comma
-            );
-        } @else {
-            @warn "Breakpoints not exist!";
-        }
+@mixin mobile {
+    @media only screen and (max-width: 667px) {
+        @content;
     }
-    @media #{$conditions} {
+}
+
+@mixin tablet {
+    @media only screen and (min-width: 668px) and (max-width: $desktop){
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media only screen and (min-width: $desktop){
         @content;
     }
 }

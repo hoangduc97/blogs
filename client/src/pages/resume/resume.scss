@@ -1,5 +1,6 @@
 @import '../../assets/_variable';
 @import '../../assets/_animation';
+@import '../../assets/_responsive';
 
 .resume {
     scroll-behavior: smooth;
@@ -16,7 +17,7 @@
         height: 100%;
 
         &--group {
-            margin: 19em 0 10em 5em;
+            margin: auto 0 auto 5em;
             height: 13em;
             display: flex;
             flex-direction: column;
@@ -63,23 +64,34 @@
 
     &__avatar {
         width: 35em;
-        margin-left: 3em;
+        margin-left: 4em;
         position: relative;
         overflow: hidden;
+
+        @include mobile {
+            display: none;
+        }
     }
 
     &__detail {
         width: 32em;
         padding: 0 1em;
         overflow-y: scroll;
+        overflow-x: hidden;
         scroll-behavior: smooth;
+        transition: .3s ease-in-out;
+
+        @include mobile {
+            width: 38em;
+            margin-left: 5em;
+        }
     }
 
     &__title {
         display: flex;
         align-items: center;
 
-        &>* {
+        & > * {
             font-size: 2em;
         }
 
@@ -117,7 +129,6 @@
                 overflow: hidden;
                 animation: animate 3s linear infinite;
             }
-
         }
     }
 
@@ -127,7 +138,6 @@
             color: $text_color--hover;
 
             &--item {
-
                 &:nth-child(1),
                 &:nth-child(2) {
                     &::after {
@@ -155,9 +165,9 @@
         &--method {
             margin: 1em auto;
             display: grid;
-            grid-template-columns: auto auto;
+            grid-template-columns: repeat(auto-fit, minmax(12em, 1fr));
 
-            &>* {
+            & > * {
                 font-size: 1.5em;
                 color: $text_color--hover;
                 margin: 1em 0;
@@ -174,15 +184,13 @@
                     margin-left: 1em;
                 }
             }
-
-
         }
 
         &--form {
             display: flex;
             flex-direction: column;
 
-            &>* {
+            & > * {
                 margin: 1em 0;
             }
         }
@@ -203,7 +211,7 @@
             border: 2px solid $text_color--hover;
             outline: none;
             cursor: pointer;
-            transition: .3s ease;
+            transition: 0.3s ease;
 
             &:hover {
                 background-color: white;
@@ -215,7 +223,7 @@
     section {
         border-bottom: 1px solid #3b3b3b;
 
-        &>* {
+        & > * {
             margin: 2em auto;
         }
     }
@@ -240,8 +248,8 @@
 
     &--listgroup {
         display: grid;
-        grid-template-columns: 33% 33% 33%;
         margin: 1em;
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
 
         &--item {
             margin-bottom: 1em;

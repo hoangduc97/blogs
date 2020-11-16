@@ -5,7 +5,7 @@ import {
     FaProjectDiagram,
     FaPhoneAlt,
 } from 'react-icons/fa';
-import { ImLocation2, ImMail } from 'react-icons/im';
+import { ImLocation2 } from 'react-icons/im';
 import { AiOutlineMail } from 'react-icons/ai';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import * as data from './resume.data';
@@ -52,8 +52,8 @@ function Resume() {
             <div className="resume__avatar">
                 <img src={avatar} alt="Zrik" />
                 <div className="resume__author">
-                    <p className="name" data-text="DucTH">
-                        DucTH
+                    <p className="name" data-text="Duc">
+                        Duc
                     </p>
                 </div>
             </div>
@@ -143,7 +143,9 @@ function Resume() {
                                 zoom={8}
                                 center={{ lat: 16.061088, lng: 108.214309 }}
                             ></GoogleMap>
-                            <Marker position={{ lat: 16.061088, lng: 108.214309 }} />
+                            <Marker
+                                position={{ lat: 16.061088, lng: 108.214309 }}
+                            />
                         </LoadScript>
                         <div className="resume__contact--method">
                             <div
@@ -160,7 +162,7 @@ function Resume() {
                             </div>
                             <div
                                 className="resume__contact--method--email"
-                                data-text="hoangduc97dn@gmail.com"
+                                data-text="hoangzrik@gmail.com"
                             >
                                 <AiOutlineMail />
                             </div>
@@ -168,11 +170,13 @@ function Resume() {
                     </div>
                     <form
                         className="resume__contact--form"
-                        action="mailto:hoangduc97dn@gmail.com"
+                        action="mailto:hoangzrik@gmail.com"
                         method="post"
                         encType="text/plain"
                     >
-                        <span className="resume__contact--title">send message</span>
+                        <span className="resume__contact--title">
+                            send message
+                        </span>
                         <input
                             className="resume__contact--username"
                             type="text"
@@ -192,7 +196,11 @@ function Resume() {
                             name="message"
                             placeholder="content message"
                         />
-                        <input className="resume__contact--button" type="submit" value="send" />
+                        <input
+                            className="resume__contact--button"
+                            type="submit"
+                            value="send"
+                        />
                     </form>
                 </section>
             </div>
