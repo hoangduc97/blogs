@@ -141,9 +141,9 @@ function Resume() {
                             <GoogleMap
                                 id="resume__map"
                                 zoom={8}
-                                center={{ lat: 16.054, lng: 108.202 }}
+                                center={{ lat: 16.061088, lng: 108.214309 }}
                             ></GoogleMap>
-                            <Marker position={{ lat: 16.054, lng: 108.202 }} />
+                            <Marker position={{ lat: 16.061088, lng: 108.214309 }} />
                         </LoadScript>
                         <div className="resume__contact--method">
                             <div
