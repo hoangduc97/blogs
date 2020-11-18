@@ -51,11 +51,6 @@ function Resume() {
             </div>
             <div className="resume__avatar">
                 <img src={avatar} alt="Zrik" />
-                <div className="resume__author">
-                    <p className="name" data-text="Duc">
-                        Duc
-                    </p>
-                </div>
             </div>
             <div className="resume__detail">
                 <section className="resume__about" id="resume__about">

@@ -1,0 +1,26 @@
+@import '../../../assets/_variable';
+@import '../../../assets/_animation';
+
+.header__logo--primary {
+    a {
+        position: relative;
+        text-align: center;
+        -webkit-text-stroke: 1px #9c9c9c82;
+        color: $primary_color--header;
+        width: fit-content;
+        margin: auto;
+
+        &::before {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            color: $primary_color;
+            -webkit-text-stroke: 1px $primary_color;
+            overflow: hidden;
+            animation: animate 3s linear infinite;
+        }
+    }
+}

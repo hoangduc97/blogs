@@ -16,7 +16,7 @@ const Header = (props) => {
             <div className="header__container">
                 <div className="header__logo">
                     <p className="header__logo--primary">
-                        <CustomLink to={'/'}>Zrik</CustomLink>
+                        <CustomLink to={'/'} data-text="Zrik">Zrik</CustomLink>
                     </p>
                     <span className="header__logo--split"></span>
                     <p className="header__logo--secondary">

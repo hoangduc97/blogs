@@ -4,7 +4,7 @@ import "./custom_link.scss";
 
 function CustomLink(props) {
     return (
-        <Link to={props.to} className={props.className}>
+        <Link to={props.to} className={props.className} {...props}>
             {props.children}
         </Link>
     )

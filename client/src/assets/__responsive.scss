@@ -13,7 +13,7 @@ $desktop: 1024px;
 }
 
 @mixin desktop {
-    @media only screen and (min-width: $desktop){
+    @media only screen and (min-width: $desktop + 1){
         @content;
     }
 }

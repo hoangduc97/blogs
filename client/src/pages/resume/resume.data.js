@@ -25,10 +25,17 @@ const socials = [
 ];
 const skills = [
     {
+        group: 'web development',
+        skills: [
+            { name: 'html5/css3', total: 2 },
+            { name: 'javascript', total: 2 },
+        ],
+    },
+    {
         group: 'software development',
         skills: [
-            { name: 'python', total: 2 },
-            { name: 'c/c++', total: 2 },
+            { name: 'python', total: 3 },
+            { name: 'c/c++', total: 3 },
         ],
     },
     {
@@ -37,6 +44,7 @@ const skills = [
             { name: 'aws', total: 2 },
             { name: 'linux system', total: 3 },
             { name: 'docker', total: 2 },
+            { name: 'no-sql', total: 2 },
         ],
     },
 ];
