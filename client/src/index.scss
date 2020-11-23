@@ -16,15 +16,15 @@ body {
 }
 
 html {
-    --font_family_nomal: 'Poppins', sans-serif;
-    --font_size_nomal: 13px;
-    --font_weight_nomal: 400;
+    --font_family_normal: 'Poppins', sans-serif;
+    --font_size_normal: 13px;
+    --font_weight_normal: 400;
 }
 
 body {
-    font-size: var(--font_size_nomal);
-    font-family: var(--font_family_nomal);
-    font-weight: var(--font_weight_nomal);
+    font-size: var(--font_size_normal);
+    font-family: var(--font_family_normal);
+    font-weight: var(--font_weight_normal);
     background: url('./assets/image/bg.png') #333333e0;
     background-blend-mode: saturation;
     color: $primary_color;

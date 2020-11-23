@@ -7,6 +7,7 @@
     display: flex;
     justify-content: space-between;
     height: calc(100vh - 6.3em);
+    background-color: $primary_color--body;
 
     @include mobile {
         height: inherit;

@@ -4,7 +4,8 @@ const HWP = require('html-webpack-plugin');
 module.exports = {
     entry: path.join(__dirname, '/src/index.js'),
     output: {
-        filename: 'build.js',
+        filename: 'app.js',
+        chunkFilename: '[name].bundle.js',
         path: path.join(__dirname, '/public'),
         publicPath: '/',
     },
@@ -13,7 +14,9 @@ module.exports = {
             {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
-                use: ['babel-loader'],
+                use: {
+                    loader: 'babel-loader',
+                },
             },
             {
                 test: /\.(css|scss)$/,
@@ -40,7 +43,7 @@ module.exports = {
     ],
     devServer: {
         port: 80,
-        // host: '0.0.0.0',
+        host: '0.0.0.0',
         historyApiFallback: true,
         compress: true,
     },

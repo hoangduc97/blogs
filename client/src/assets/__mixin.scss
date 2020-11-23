@@ -17,3 +17,25 @@
         display: inline-block;
     }
 }
+
+@mixin curved__arrow($primary_color, $item_rotate) {
+    position: relative;
+    width: 0;
+    height: 0;
+    border-top: 1em solid transparent;
+    border-right: 1em solid $primary_color;
+    transform: rotate($item_rotate);
+
+    &::after {
+        content: "";
+        position: absolute;
+        border: 0 solid transparent;
+        border-bottom: 5px solid $primary_color;
+        border-radius: 0 0 0 17px;
+        top: -30px;
+        left: 0;
+        width: 20px;
+        height: 20px;
+        transform: rotate(45deg);
+    }
+}

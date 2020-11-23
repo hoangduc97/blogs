@@ -1,11 +1,43 @@
 @import '../assets/_variable';
 @import '../assets/_responsive';
+@import '../assets/_mixin';
 
 .wrapper {
-    background: $primary_color--body;
+    background-image: url(../assets/image/bg_g.png),
+        url(../assets/image/bg_g.png);
+    background-repeat: no-repeat;
+    background-color: $primary_color--body;
+    background-position: -6em bottom, top right;
+
     &__container {
         margin: auto;
+        background: url(../assets/image/bg.png) #333333e0;
+        background-blend-mode: saturation;
         max-width: $desktop;
         padding: 6.2em 0 0;
     }
+}
+
+.fade-appear,
+.fade-enter {
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+.fade-appear-active,
+.fade-enter-active {
+    transition: 0.3s ease-in;
+    transform: translateY(0px);
+    opacity: 1;
+}
+
+.fade-exit {
+    transition: 0.3s ease-out;
+    transform: translateY(0px);
+    opacity: 1;
+}
+
+.fade-exit-active {
+    opacity: 0;
+    transform: translateY(10px);
 }

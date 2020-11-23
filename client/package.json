@@ -1,13 +1,23 @@
 {
     "name": "client",
     "version": "1.0.0",
-    "main": "index.js",
+    "main": "./src/index.js",
     "author": "zrik",
     "license": "MIT",
     "private": true,
     "scripts": {
         "start": "webpack-dev-server --mode development --open --hot",
         "build": "webpack --mode production"
+    },
+    "babel": {
+        "presets": [
+            "@babel/preset-env",
+            "@babel/preset-react"
+        ],
+        "plugins": [
+            "@babel/plugin-syntax-dynamic-import",
+            "@babel/plugin-proposal-class-properties"
+        ]
     },
     "dependencies": {
         "@react-google-maps/api": "^1.13.0",
@@ -23,10 +33,12 @@
         "redux-thunk": "^2.3.0"
     },
     "devDependencies": {
-        "babel-core": "^6.26.3",
-        "babel-loader": "7",
-        "babel-preset-env": "^1.7.0",
-        "babel-preset-react": "^6.24.1",
+        "@babel/core": "^7.12.7",
+        "@babel/plugin-proposal-class-properties": "^7.12.1",
+        "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+        "@babel/preset-env": "^7.12.7",
+        "@babel/preset-react": "^7.12.7",
+        "babel-loader": "^8.2.1",
         "css-loader": "^4.3.0",
         "file-loader": "^6.1.0",
         "html-webpack-plugin": "^4.5.0",

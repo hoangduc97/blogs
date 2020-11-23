@@ -2,15 +2,15 @@ import React from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
 import './navbar_link.scss';
 
-const NavbarLink = ({ label, to, className }) => {
+const NavbarLink = (props) => {
     const match = useRouteMatch({
-        path: to,
+        path: props.to,
     });
-    const styleClass = 'navbar ' + className + (match ? ' active' : '');
+    const styleClass = 'navbar ' + props.className + (match ? ' active' : '');
 
     return (
-        <li className={styleClass}>
-            <Link to={to}>{label}</Link>
+        <li className={styleClass} onClick={props.onClick}>
+            <Link to={props.to}>{props.label}</Link>
         </li>
     );
 };
