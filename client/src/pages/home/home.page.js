@@ -4,7 +4,7 @@ import Card from '../../components/card/card.component';
 import Search from '../../components/search/search.component';
 import './home.scss';
 
-const Home = () => {
+const Home = (props) => {
     return (
         <div className="home">
             <div className="home__search">
@@ -17,21 +17,9 @@ const Home = () => {
                 </div>
                 <div className="home__section--list">
                     <div className="list__card">
-                        <Card />
-                        <Card />
-                        <Card />
-                        <Card />
-                        <Card />
-                        <Card />
-                        <Card />
-                        <Card />
-                        <Card />
-                        <Card />
-                        <Card />
-                        <Card />
-                        <Card />
-                        <Card />
-                        <Card />
+                        {props.new_article && props.new_article.map((ele, index) => (
+                            <Card key={index} {...ele} />
+                        ))}
                     </div>
                 </div>
             </section>

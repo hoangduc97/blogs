@@ -23,11 +23,27 @@
             align-items: center;
             margin: 1em 0;
             padding: 1em 0;
-            border-bottom: 1px solid;
-
-            & > svg {
+            border-bottom: 1px solid #4a4a4a;
+            
+            &>svg {
                 font-size: 1.5em;
                 margin-right: .5em;
+            }
+        }
+
+        &--list {
+            .list__card {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 3.4em;
+
+                @include tablet {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+
+                @include mobile {
+                    grid-template-columns: repeat(1, 1fr);
+                }
             }
         }
     }
