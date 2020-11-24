@@ -17,43 +17,31 @@ const routes = [
     {
         path: '/article',
         Component: React.lazy(() =>
-            fakeDelay(TIMEOUT)(import('./home/home.page'))
+            fakeDelay(TIMEOUT)(import('./article/article.page'))
         ),
     },
     {
         path: '/book',
         Component: React.lazy(() =>
-            fakeDelay(TIMEOUT)(import('./home/home.page'))
+            fakeDelay(TIMEOUT)(import('./book/book.page'))
         ),
     },
     {
         path: '/tutorial',
         Component: React.lazy(() =>
-            fakeDelay(TIMEOUT)(import('./home/home.page'))
+            fakeDelay(TIMEOUT)(import('./tutorial/tutorial.page'))
         ),
     },
     {
         path: '/project',
         Component: React.lazy(() =>
-            fakeDelay(TIMEOUT)(import('./home/home.page'))
+            fakeDelay(TIMEOUT)(import('./project/project.page'))
         ),
     },
     {
         path: '/resume',
         Component: React.lazy(() =>
             fakeDelay(TIMEOUT)(import('./resume/resume.page'))
-        ),
-    },
-    {
-        path: '/signin',
-        Component: React.lazy(() =>
-            fakeDelay(TIMEOUT)(import('./sign/signin/signin.page'))
-        ),
-    },
-    {
-        path: '/signup',
-        Component: React.lazy(() =>
-            fakeDelay(TIMEOUT)(import('./sign/signup/signup.page'))
         ),
     },
     {

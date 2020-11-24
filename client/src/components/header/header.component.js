@@ -41,14 +41,6 @@ const Header = (props) => {
                             />
                         ))}
                     </ul>
-                    <div className="navbar__auth">
-                        <CustomLink
-                            to={'/signin'}
-                            className="navbar--item navbar__auth--menu"
-                        >
-                            <FaUser/>
-                        </CustomLink>
-                    </div>
                     <button
                         className={
                             'header__navbar--menu' +

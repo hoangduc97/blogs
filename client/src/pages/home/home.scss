@@ -1,0 +1,34 @@
+@import '../../assets/_variable';
+@import '../../assets/_responsive';
+
+.home {
+    display: flex;
+    flex-direction: column;
+    background-color: $primary_color--body;
+    padding: 1em;
+
+    @include desktop {
+        padding: 1em 2em;
+    }
+
+    &__search {
+        margin: 2em 0;
+        align-self: flex-end;
+    }
+
+    &__section {
+        &--title {
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            margin: 1em 0;
+            padding: 1em 0;
+            border-bottom: 1px solid;
+
+            & > svg {
+                font-size: 1.5em;
+                margin-right: .5em;
+            }
+        }
+    }
+}
