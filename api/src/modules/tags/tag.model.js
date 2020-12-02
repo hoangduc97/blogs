@@ -14,10 +14,14 @@ const tag = new mongoose.Schema({
     },
     posts: [
         {
-            type: mongoose.Schema.Types.ObjectId,
+            type: mongoose.Schema.ObjectID,
             ref: 'Post',
         },
     ],
+    categories: {
+        type: mongoose.Schema.ObjectID,
+        ref: 'Categories'
+    }
 });
 
 export default mongoose.model('Tag', tag);

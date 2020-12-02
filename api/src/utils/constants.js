@@ -11,4 +11,18 @@ const roleConstant = {
     USER: 2,
 };
 
-export { modelConstant, roleConstant };
+const apiStatus = {
+    CREATE_SUCCESS: 201,
+    CREATE_FAILURE: 404,
+
+    GET_SUCCESS: 200,
+    GET_FAILURE: 404,
+
+    UPDATE_SUCCESS: 200,
+    UPDATE_FAILURE: 404,
+
+    DELETE_SUCCESS: 200,
+    DELETE_FAILURE: 404
+}
+
+export { modelConstant, roleConstant, apiStatus };
