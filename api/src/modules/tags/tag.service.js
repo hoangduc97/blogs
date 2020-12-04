@@ -64,7 +64,7 @@ const _create = async (req, res, next) => {
     try {
         const new_tag = {
             tag_name: req.body.tag_name,
-            slug: await convert_slug(req.body.tag_name),
+            slug: convert_slug(req.body.tag_name),
             content: req.body.content,
             categories: req.body.categories,
         };
@@ -106,7 +106,7 @@ const _update = async (req, res, next) => {
     try {
         const update = {
             tag_name: req.body.tag_name,
-            slug: await convert_slug(req.body.tag_name),
+            slug: convert_slug(req.body.tag_name),
             content: req.body.content,
             categories: req.body.categories,
         };

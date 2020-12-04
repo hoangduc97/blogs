@@ -72,12 +72,7 @@ const _create = async (req, res, next) => {
             author_id: _author.id,
             parent_id: req.body.parent_id,
             title: req.body.title,
-            slug: req.body.title
-                .normalize('NFD')
-                .replace(/[\u0300-\u036f]/g, '')
-                .replace(/đ|Đ/g, 'd')
-                .replace(/ /g, '-')
-                .toLowerCase(),
+            slug: convert_slug(req.body.title),
             summary: req.body.summary,
             content: req.body.content,
             tags: req.body.tags ? [...req.body.tags] : null,
@@ -85,7 +80,6 @@ const _create = async (req, res, next) => {
         };
         await Post.create(new_post)
             .then((data) => {
-                console.log(data);
                 return res.status(apiStatus.GET_SUCCESS).json({
                     success: true,
                     message: 'Created Successfull',

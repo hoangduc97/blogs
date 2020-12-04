@@ -14,8 +14,12 @@ const increment_days = (days) => {
 
 const gen_uuid = () => v4();
 
-const convert_slug = async (str) =>
-    await str
-        .toUppercase();
+const convert_slug = (str) =>
+    str
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/đ|Đ/g, 'd')
+        .replace(/ /g, '-')
+        .toLowerCase();
 
 export { random_number, increment_days, gen_uuid, convert_slug };
