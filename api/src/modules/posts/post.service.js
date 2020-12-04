@@ -9,6 +9,10 @@ import Post from './post.model';
 const _getAll = async (req, res, next) => {
     try {
         Post.find({})
+            .populate('author_id')
+            .populate('tags')
+            .populate('categories')
+            .exec()
             .then((data) => {
                 return res.status(apiStatus.GET_SUCCESS).json({
                     success: true,
@@ -118,7 +122,7 @@ const _update = async (req, res, next) => {
             author_id: _author.id,
         };
         // Check post_id existed
-        const found = await check_existed(filter);
+        const found = await check_existed(Post, filter);
         console.log('run 2');
         if (found) {
             const data_update = {
@@ -161,7 +165,7 @@ const _update = async (req, res, next) => {
 const _delete = async (req, res, next) => {
     try {
         const filter = { _id: req.params['id'] };
-        const found = await check_existed(filter);
+        const found = await check_existed(Post, filter);
         if (found) {
             Post.findByIdAndDelete(filter)
                 .then((data) => {

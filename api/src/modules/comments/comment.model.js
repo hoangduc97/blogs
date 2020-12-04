@@ -14,10 +14,7 @@ const comment = new mongoose.Schema({
     },
     published: {
         type: Boolean,
-        default: false,
-    },
-    title: {
-        type: String,
+        default: true,
     },
     content: {
         type: String,

@@ -14,12 +14,12 @@ const tag = new mongoose.Schema({
     },
     posts: [
         {
-            type: mongoose.Schema.ObjectID,
+            type: mongoose.Schema.Types.ObjectID,
             ref: 'Post',
         },
     ],
     categories: {
-        type: mongoose.Schema.ObjectID,
+        type: mongoose.Schema.Types.ObjectID,
         ref: 'Categories'
     }
 });
