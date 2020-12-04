@@ -22,7 +22,9 @@ const apiStatus = {
     UPDATE_FAILURE: 404,
 
     DELETE_SUCCESS: 200,
-    DELETE_FAILURE: 404
+    DELETE_FAILURE: 404,
+
+    
 }
 
 export { modelConstant, roleConstant, apiStatus };

@@ -2,6 +2,10 @@
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 const NodemonPlugin = require('nodemon-webpack-plugin');
+const webpack = require('webpack');
+const dotenv = require('dotenv').config({
+    path: path.join(__dirname, '.env'),
+});
 
 const config = {
     entry: './index.js',
@@ -12,17 +16,22 @@ const config = {
     externals: [nodeExternals()],
     target: 'node',
     module: {
-        rules: [{
-            test: /\.js$/,
-            exclude: /node_modules/,
-            use: {
-                loader: "babel-loader"
-            }
-        }]
+        rules: [
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                },
+            },
+        ],
     },
     plugins: [
-        new NodemonPlugin()
-    ]
+        new NodemonPlugin(),
+        new webpack.DefinePlugin({
+            'process.env': JSON.stringify(dotenv.parsed),
+        }),
+    ],
 };
 
 module.exports = config;

@@ -7,7 +7,13 @@ import { roleConstant } from '../../utils/constants';
 const router = express.Router();
 
 router
-    .get('/', TagService._get)
+    .get('/', TagService._getAll)
+    .get('/:id', TagService._getOne)
+    .post(
+        '/',
+        [authJwt([roleConstant.MANAGER, roleConstant.WRITER]), ...tagValidate],
+        TagService._create
+    )
     .put(
         '/:id',
         [authJwt([roleConstant.MANAGER, roleConstant.WRITER]), ...tagValidate],
@@ -22,10 +28,5 @@ router
         '/:id',
         [authJwt([roleConstant.MANAGER, roleConstant.WRITER])],
         TagService._delete
-    )
-    .post(
-        '/',
-        [authJwt([roleConstant.MANAGER, roleConstant.WRITER]), ...tagValidate],
-        TagService._create
     );
 export default router;

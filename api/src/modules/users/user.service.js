@@ -1,25 +1,28 @@
 import { validationResult } from 'express-validator';
 import { createToken } from '../../utils/auth.util';
-import { roleConstant } from '../../utils/constants';
+import { roleConstant, apiStatus } from '../../utils/constants';
+import { ErrorHandler } from '../../utils/error.util';
 import Account from './account.model';
 import User from './user.model';
 
-const register = async (req, res) => {
+const register = async (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        return res.status(400).json({
-            success: false,
-            errors: errors.array(),
-        });
+        throw new ErrorHandler(
+            apiStatus.CREATE_FAILURE,
+            'Invalid Register Type',
+            13021
+        );
     }
     const { email, password } = req.body;
     try {
         const account = await Account.findOne({ email });
         if (account) {
-            return res.status(400).json({
-                success: false,
-                message: 'User already exists!',
-            });
+            throw new ErrorHandler(
+                apiStatus.CREATE_FAILURE,
+                'User already exists',
+                1309
+            );
         }
         const newAccount = new Account({
             email: email,
@@ -27,80 +30,92 @@ const register = async (req, res) => {
         });
         newAccount.save({}, (error, account) => {
             if (error)
-                return res.status(400).json({
-                    success: false,
-                    error: error,
-                    message: 'Account create failed!',
-                });
+                throw new ErrorHandler(
+                    apiStatus.CREATE_FAILURE,
+                    'Account create failed',
+                    1310
+                );
             const newUser = new User({
                 role: roleConstant.USER,
                 account: account._id,
             });
             newUser.save({}, (error) => {
                 if (error)
-                    return res.status(400).json({
-                        success: false,
-                        message: 'User create failed!',
-                    });
+                    throw new ErrorHandler(
+                        apiStatus.CREATE_FAILURE,
+                        'Account create failed',
+                        1310
+                    );
             });
-            return res.status(200).json({
+            return res.status(apiStatus.CREATE_SUCCESS).json({
                 success: true,
-                message: 'User create success!',
+                message: 'Account create success',
+                data: account,
             });
         });
+        next();
     } catch (error) {
-        return res.status(400).json({
-            success: false,
-            message: 'Register error!',
-            errors: error,
-        });
+        next(error);
     }
 };
 
-const login = async (req, res) => {
+const login = async (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        return res.status(400).json({
-            success: false,
-            errors: errors.array(),
-        });
+        throw new ErrorHandler(
+            apiStatus.GET_FAILURE,
+            'Invalid Login Type',
+            1302
+        );
     }
 
     const { email, password } = req.body;
-    const user = await User.findOne().populate({
-        path: 'account',
-        match: { email: email }
-    });
-    if (!user || (user && !user.account)) {
-        return res.status(400).json({
-            success: false,
-            message: 'User not exists!',
+    try {
+        const user = await User.findOne().populate({
+            path: 'account',
+            match: { email: email },
         });
-    }
-    user.account.comparePassword(password, (err, isMatch) => {
-        if (isMatch && !err) {
-            const token = createToken(user);
-            return res.status(200).json({
-                success: true,
-                token: token,
-                message: 'Login success!',
-            });
+        if (!user || (user && !user.account)) {
+            throw new ErrorHandler(apiStatus.GET_FAILURE, 'Login Error', 1304);
         }
-        return res.status(400).json({
-            success: false,
-            message: 'Login failed!',
+        user.account.comparePassword(password, (err, isMatch) => {
+            if (isMatch && !err) {
+                const token = createToken(user);
+                return res.status(apiStatus.GET_SUCCESS).json({
+                    success: true,
+                    token: token,
+                    message: 'Login success',
+                });
+            }
+            throw new ErrorHandler(apiStatus.GET_FAILURE, 'Login Error', 1304);
         });
-    });
+        next();
+    } catch (err) {
+        next(err);
+    }
 };
 
-const getAll = (req, res) => {
-    return User.find({})
-        .then((data) => {
-            return res.status(200).json(data);
-        })
-        .catch((err) => {
-            return res.status(500).json(err);
-        });
+const getAll = async (req, res, next) => {
+    try {
+        User.find({})
+            .then((data) => {
+                return res.status(apiStatus.GET_SUCCESS).json({
+                    success: true,
+                    message: 'Data found',
+                    data: data,
+                });
+            })
+            .catch((error) => {
+                throw new ErrorHandler(
+                    apiStatus.GET_FAILURE,
+                    'Not found',
+                    1105
+                );
+            });
+        next();
+    } catch (error) {
+        next(error);
+    }
 };
 
 const UserService = {

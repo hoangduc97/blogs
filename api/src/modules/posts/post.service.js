@@ -1,9 +1,64 @@
-import {validationResult} from 'express-validator';
-import {retrieveToken} from "../../utils/auth.util";
-import {apiStatus} from "../../utils/constants";
+import { validationResult } from 'express-validator';
+import { retrieveToken } from '../../utils/auth.util';
+import { check_existed } from '../../utils/request.util';
+import { apiStatus } from '../../utils/constants';
+import { ErrorHandler } from '../../utils/error.util';
 import Post from './post.model';
 
-const _create = async (req, res) => {
+const _getAll = async (req, res, next) => {
+    try {
+        Post.find({})
+            .then((data) => {
+                return res.status(apiStatus.GET_SUCCESS).json({
+                    success: true,
+                    message: 'Data Found',
+                    data: data,
+                });
+            })
+            .catch((err) => {
+                throw new ErrorHandler(
+                    apiStatus.GET_FAILURE,
+                    'Not Found',
+                    1105
+                );
+            });
+        next();
+    } catch (error) {
+        next(error);
+    }
+};
+
+const _getOne = async (req, res, next) => {
+    try {
+        const filter = { _id: req.params['id'] };
+        Post.findOne(filter)
+            .populate('UserProfile')
+            .populate('Comment')
+            .populate('Tag')
+            .populate('Category')
+            .populate('PostMeta')
+            .exec()
+            .then((data) => {
+                return res.status(apiStatus.GET_SUCCESS).json({
+                    success: true,
+                    message: 'Data Found',
+                    data: data,
+                });
+            })
+            .catch((err) => {
+                throw new ErrorHandler(
+                    apiStatus.GET_FAILURE,
+                    'Not Found',
+                    1105
+                );
+            });
+        next();
+    } catch (error) {
+        next(error);
+    }
+};
+
+const _create = async (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(apiStatus.CREATE_FAILURE).json({
@@ -11,35 +66,42 @@ const _create = async (req, res) => {
             errors: errors.array(),
         });
     }
+    try {
+        const _author = await retrieveToken(req.headers);
+        const new_post = {
+            author_id: _author.id,
+            parent_id: req.body.parent_id,
+            title: req.body.title,
+            slug: req.body.slug,
+            summary: req.body.summary,
+            content: req.body.content,
+            tags: req.body.tags ? [...req.body.tags] : null,
+            categories: req.body.categories ? [...req.body.categories] : null,
+        };
 
-    const _author = await retrieveToken(req.headers);
-    const new_post = {
-        author_id: _author.id,
-        parent_id: req.body.parent_id,
-        title: req.body.title,
-        slug: req.body.slug,
-        summary: req.body.summary,
-        content: req.body.content,
-        tags: req.body.tags ? [...req.body.tags]: null,
-        categories: req.body.categories ? [...req.body.categories] : null
+        const post = new Post(new_post);
+        post.save({})
+            .then((data) => {
+                return res.status(apiStatus.GET_SUCCESS).json({
+                    success: true,
+                    message: 'Created Successfull',
+                    data: data,
+                });
+            })
+            .catch((err) => {
+                throw new ErrorHandler(
+                    apiStatus.GET_FAILURE,
+                    'Invalid Social Type',
+                    1303
+                );
+            });
+        next();
+    } catch (error) {
+        next(error);
     }
-
-    const post = new Post(new_post);
-    post.save().then((post_data) => {
-        return res.status(apiStatus.CREATE_SUCCESS).json({
-            success: true,
-            message: "Create new post success.",
-            data: post_data
-        });
-    }).catch((e) => {
-        return res.status(apiStatus.CREATE_FAILURE).json({
-            success: false,
-            message: "Can't create new post."
-        });
-    })
 };
 
-const _update = async (req, res) => {
+const _update = async (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(apiStatus.UPDATE_FAILURE).json({
@@ -47,32 +109,90 @@ const _update = async (req, res) => {
             errors: errors.array(),
         });
     }
+    try {
+        // Get filter
+        const _author = await retrieveToken(req.headers);
+        const filter = {
+            _id: req.body['_id'],
+            author_id: _author.id,
+        };
+        // Check post_id existed
+        const found = await check_existed(filter);
+        if (found) {
+            const data_update = {
+                author_id: _author.id,
+                parent_id: req.body.parent_id,
+                title: req.body.title,
+                slug: req.body.slug,
+                summary: req.body.summary,
+                content: req.body.content,
+                tags: [...req.body.tags],
+                categories: [...req.body.categories],
+            };
+            Post.findOneAndUpdate(filter, data_update)
+                .then((data) => {
+                    return res.status(apiStatus.UPDATE_SUCCESS).json({
+                        success: true,
+                        message: 'Updated Successfull',
+                        data: data,
+                    });
+                })
+                .catch((err) => {
+                    throw new ErrorHandler(
+                        apiStatus.UPDATE_FAILURE,
+                        'Invalid Social Type',
+                        1303
+                    );
+                });
+        } else {
+            throw new ErrorHandler(
+                apiStatus.UPDATE_FAILURE,
+                'Post _id not existed.',
+                1303
+            );
+        }
+        next();
+    } catch (error) {
+        next(error);
+    }
 };
 
-const _delete = async (req, res) => {
-    const errors = validationResult(req);
-};
-
-const _get = async (req, res) => {
-    Post.find({}).then((posts) => {
-        return res
-            .status(apiStatus.GET_SUCCESS)
-            .json({
-                success: true,
-                data: posts
-            });
-    }).catch((err) => {
-        return res
-            .status(apiStatus.GET_FAILURE)
-            .json({
-                success: false,
-                message: "Can't get all post",
-            })
-    });
+const _delete = async (req, res, next) => {
+    try {
+        const filter = { _id: req.params['id'] };
+        const found = await check_existed(filter);
+        if (found) {
+            Post.findByIdAndDelete(filter)
+                .then((data) => {
+                    return res.status(apiStatus.DELETE_SUCCESS).json({
+                        success: true,
+                        message: 'Deleted Successfull',
+                        data: data,
+                    });
+                })
+                .catch((err) => {
+                    throw new ErrorHandler(
+                        apiStatus.DELETE_FAILURE,
+                        'Invalid Social Type',
+                        1303
+                    );
+                });
+        } else {
+            throw new ErrorHandler(
+                apiStatus.DELETE_FAILURE,
+                'Post _id not existed',
+                1303
+            );
+        }
+        next();
+    } catch (error) {
+        next(error);
+    }
 };
 
 const PostService = {
-    _get,
+    _getAll,
+    _getOne,
     _create,
     _update,
     _delete,

@@ -6,6 +6,7 @@ import router from './routes';
 import corsOption from './config/cors.config';
 import passport from './config/passport.config';
 import logger from 'morgan';
+import { handleError } from './utils/error.util';
 
 // init server
 const app = express();
@@ -29,4 +30,7 @@ database
         console.error(err);
     });
 
+app.use((err, req, res, next) => {
+    return handleError(err, res);
+});
 export default app;
