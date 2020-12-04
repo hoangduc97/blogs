@@ -73,7 +73,7 @@ post.pre('save', function (next) {
     if (this.isModified('update_at') || this.isNew) {
         post.update_at = Date.now;
     }
-    next();
+    
 });
 
 export default mongoose.model('Post', post);

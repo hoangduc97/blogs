@@ -23,7 +23,7 @@ const _getAll = async (req, res, next) => {
                     1105
                 );
             });
-        next();
+        
     } catch (error) {
         console.log('run here');
         next(error);
@@ -48,7 +48,7 @@ const _getOne = async (req, res, next) => {
                     1105
                 );
             });
-        next();
+        
     } catch (error) {
         next(error);
     }
@@ -99,7 +99,7 @@ const _create = async (req, res, next) => {
                     );
                 });
         }
-        next();
+        
     } catch (error) {
         next(error);
     }
@@ -138,7 +138,7 @@ const _update = async (req, res, next) => {
                 1303
             );
         }
-        next();
+        
     } catch (error) {
         next(error);
     }
@@ -171,7 +171,7 @@ const _delete = async (req, res, next) => {
                 1303
             );
         }
-        next();
+        
     } catch (error) {
         next(error);
     }

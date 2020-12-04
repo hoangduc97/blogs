@@ -7,7 +7,7 @@ const authJwt = (roles) => {
                 return res.status(403).json({ message: 'forbidden' });
             else {
                 if (!roles.length || roles.includes(user.role)) {
-                    next();
+                    
                 } else {
                     return res.status(403).json({ message: 'forbidden' });
                 }

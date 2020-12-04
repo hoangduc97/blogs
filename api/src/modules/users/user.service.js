@@ -53,7 +53,7 @@ const register = async (req, res, next) => {
                 data: account,
             });
         });
-        next();
+        
     } catch (error) {
         next(error);
     }
@@ -89,7 +89,7 @@ const login = async (req, res, next) => {
             }
             throw new ErrorHandler(apiStatus.GET_FAILURE, 'Login Error', 1304);
         });
-        next();
+        
     } catch (err) {
         next(err);
     }
@@ -112,7 +112,7 @@ const getAll = async (req, res, next) => {
                     1105
                 );
             });
-        next();
+        
     } catch (error) {
         next(error);
     }

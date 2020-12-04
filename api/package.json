@@ -4,13 +4,14 @@
     "description": "blog api",
     "main": "index.js",
     "scripts": {
-        "start": "webpack --watch --mode development"
+        "start": "webpack --watch --mode development",
+        "build": "webpack --mode production",
+        "compile": "babel ./index.js -d dist ./src -d dist/src --source-maps"
     },
     "author": "zrik",
     "license": "MIT",
     "private": true,
     "dependencies": {
-        "@babel/runtime": "^7.11.2",
         "bcryptjs": "^2.4.3",
         "cookie-parser": "^1.4.5",
         "cors": "^2.8.5",
@@ -32,9 +33,11 @@
         "uuid": "^8.3.0"
     },
     "devDependencies": {
+        "@babel/cli": "^7.12.8",
         "@babel/core": "^7.11.6",
         "@babel/plugin-transform-runtime": "^7.11.5",
         "@babel/preset-env": "^7.11.5",
+        "@babel/runtime": "^7.11.2",
         "babel-loader": "^8.1.0",
         "nodemon": "^2.0.4",
         "nodemon-webpack-plugin": "^4.3.2",
