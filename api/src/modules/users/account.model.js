@@ -40,7 +40,7 @@ userAccount.pre('save', function (next) {
             });
         });
     }
-    
+    next();
 });
 
 userAccount.methods.comparePassword = function (pw, cd) {

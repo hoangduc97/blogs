@@ -31,6 +31,6 @@ database
     });
 
 app.use((err, req, res, next) => {
-    return handleError(err, res);
+    handleError(err, res);
 });
 export default app;

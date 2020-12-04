@@ -23,7 +23,6 @@ const _getAll = async (req, res, next) => {
                     1105
                 );
             });
-        
     } catch (error) {
         console.log('run here');
         next(error);
@@ -48,7 +47,6 @@ const _getOne = async (req, res, next) => {
                     1105
                 );
             });
-        
     } catch (error) {
         next(error);
     }
@@ -66,7 +64,7 @@ const _create = async (req, res, next) => {
     try {
         const new_tag = {
             tag_name: req.body.tag_name,
-            slug: convert_slug(req.body.tag_name),
+            slug: await convert_slug(req.body.tag_name),
             content: req.body.content,
             categories: req.body.categories,
         };
@@ -99,7 +97,6 @@ const _create = async (req, res, next) => {
                     );
                 });
         }
-        
     } catch (error) {
         next(error);
     }
@@ -109,7 +106,7 @@ const _update = async (req, res, next) => {
     try {
         const update = {
             tag_name: req.body.tag_name,
-            slug: convert_slug(req.body.tag_name),
+            slug: await convert_slug(req.body.tag_name),
             content: req.body.content,
             categories: req.body.categories,
         };
@@ -138,7 +135,6 @@ const _update = async (req, res, next) => {
                 1303
             );
         }
-        
     } catch (error) {
         next(error);
     }
@@ -171,7 +167,6 @@ const _delete = async (req, res, next) => {
                 1303
             );
         }
-        
     } catch (error) {
         next(error);
     }
