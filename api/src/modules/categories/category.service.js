@@ -100,7 +100,7 @@ const _update = async (req, res, next) => {
         const filter = { _id: req.params['id'] };
         const found = await check_existed(Category, filter);
         if (found) {
-            Category.findOneAndUpdate(filter, update)
+            Category.findOneAndUpdate(filter, update, { new: true })
                 .then((data) => {
                     return res.status(status.SUCCESS).json({
                         success: true,

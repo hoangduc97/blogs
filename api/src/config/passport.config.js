@@ -10,7 +10,7 @@ const jwtOptions = {
 // configure passport to use the local strategy
 passport.use(
     new JwtStrategy.Strategy(jwtOptions, (jwt_payload, done) => {
-        User.findOne({ _id: jwt_payload.id }, (err, user) => {
+        User.findOne({ _id: jwt_payload._id }, (err, user) => {
             if (err) {
                 done(err, false);
             }

@@ -6,7 +6,7 @@ import router from './routes';
 import corsOption from './config/cors.config';
 import passport from './config/passport.config';
 import { handleError } from './utils/error.util';
-import { logRequest, logError } from './logger/logger';
+import { logError, logRequest } from './logger/logger';
 import './config/redis.config';
 
 const configApp = async () => {
@@ -17,7 +17,9 @@ const configApp = async () => {
     app.use(express.urlencoded({ extended: false }));
     app.use(cors(corsOption));
     app.use(passport.initialize());
+    app.use(logRequest);
     app.use(process.env.BASE_PATH, router);
+
     // connect to database
     await database
         .connect_mongo()
@@ -27,8 +29,7 @@ const configApp = async () => {
         .catch((err) => {
             console.error(err);
         });
-
-    app.use(logRequest);
+        
     app.use(logError);
     app.use((err, req, res, next) => {
         if (err.statusCode === 500) {

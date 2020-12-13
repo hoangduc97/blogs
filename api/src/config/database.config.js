@@ -4,6 +4,7 @@ const DB_URI = process.env.DB_URI;
 const options = {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useFindAndModify: false,
     useCreateIndex: true,
 };
 

@@ -65,11 +65,11 @@ const _create = async (req, res, next) => {
 
         const _author = await retrieveToken(req.headers);
         const new_article = {
-            author: _author.id,
+            author: _author._id,
             title: req.body.title,
             slug: convert_slug(req.body.title),
             content: req.body.content,
-            tags: [...req.body.tags],
+            tags: req.body.tags ? [...req.body.tags] : [],
             category: req.body.category,
         };
         const found = await check_existed(Article, {
@@ -91,6 +91,7 @@ const _create = async (req, res, next) => {
                 throw new ErrorHandler(status.BAD_REQUEST, Message[1322], 1322);
             });
     } catch (error) {
+        console.log(error);
         next(error);
     }
 };
@@ -107,7 +108,7 @@ const _update = async (req, res, next) => {
         const _author = await retrieveToken(req.headers);
         const filter = {
             _id: req.body['_id'],
-            author: _author.id,
+            author: _author._id,
         };
         // Check article_id existed
         const found = await check_existed(Article, filter);
@@ -115,14 +116,14 @@ const _update = async (req, res, next) => {
             throw new ErrorHandler(status.BAD_REQUEST, Message[1323], 1323);
         }
         const data_update = {
-            author_id: _author.id,
+            author_id: _author._id,
             title: req.body.title,
             slug: convert_slug(req.body.title),
             content: req.body.content,
-            tags: [...req.body.tags],
+            tags: req.body.tags ? [...req.body.tags] : [],
             category: req.body.category,
         };
-        Article.findOneAndUpdate(filter, data_update)
+        Article.findOneAndUpdate(filter, data_update, { new: true })
             .then((data) => {
                 return res.status(status.SUCCESS).json({
                     success: true,

@@ -14,11 +14,12 @@ export default logger;
 
 function logRequest(req, res, next) {
     logger.info(req.url);
-    next(res);
+    next();
 }
+
 function logError(err, req, res, next) {
     logger.error(err);
     next(err);
 }
 
-export { logRequest, logError };
+export { logError, logRequest };

@@ -86,8 +86,8 @@ const logout = async (req, res, next) => {
             throw new ErrorHandler(status.BAD_REQUEST, Message[1306], 1306);
         }
 
-        const userId = await retrieveRefreshToken(refreshToken);
-        client.DEL(userId + '', (err, val) => {
+        const user = await retrieveRefreshToken(refreshToken);
+        client.DEL(user._id + '', (err, val) => {
             if (err) {
                 throw new ErrorHandler(
                     status.INTERNAL_ERROR,
@@ -108,8 +108,9 @@ const refreshToken = async (req, res, next) => {
         if (!refreshToken)
             throw new ErrorHandler(status.BAD_REQUEST, Message[1306], 1306);
 
-        const newAccessToken = createAccessToken(req.headers);
-        const newRefreshToken = signRefreshToken(req.headers);
+        const user = await retrieveRefreshToken(refreshToken);
+        const newAccessToken = createAccessToken(user);
+        const newRefreshToken = createRefreshToken(user);
         res.status(status.SUCCESS).json({
             success: true,
             message: Message[2101],

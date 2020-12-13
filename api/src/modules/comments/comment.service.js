@@ -38,7 +38,7 @@ const _create = async (req, res, next) => {
         const new_comment = {
             article: req.params['article'],
             parent: req.body.parent,
-            author: _author.id,
+            author: _author._id,
             content: req.body.content,
         };
         Comment.create(new_comment)
@@ -69,7 +69,7 @@ const _update = async (req, res, next) => {
         if (found) {
             throw new ErrorHandler(status.BAD_REQUEST, Message[1328], 1328);
         }
-        Comment.findOneAndUpdate(filter, update)
+        Comment.findOneAndUpdate(filter, update, { new: true })
             .then((data) => {
                 return res.status(status.SUCCESS).json({
                     success: true,

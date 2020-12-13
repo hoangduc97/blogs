@@ -17,7 +17,7 @@ const retrieveToken = (headers) => {
 const createAccessToken = (user) => {
     if (user) {
         const accessToken = jwt.sign(
-            { id: user._id, role: user.role },
+            { _id: user._id, role: user.role },
             process.env.JWT_SECRET_OR_KEY,
             {
                 expiresIn: process.env.JWT_TOKEN_EXPIRATION,
@@ -30,7 +30,7 @@ const createAccessToken = (user) => {
 const createRefreshToken = (user) => {
     if (user) {
         const refreshToken = jwt.sign(
-            { id: user._id, role: user.role },
+            { _id: user._id, role: user.role },
             process.env.JWT_SECRET_OR_KEY,
             {
                 expiresIn: '1y',
@@ -51,7 +51,6 @@ const createRefreshToken = (user) => {
 
 const retrieveRefreshToken = (refreshToken) => {
     const token = refreshToken.split(' ');
-
     return jwt.verify(
         token[1],
         process.env.JWT_SECRET_OR_KEY,
@@ -59,7 +58,7 @@ const retrieveRefreshToken = (refreshToken) => {
             if (err) {
                 throw new ErrorHandler(status.BAD_REQUEST, Message[1307], 1307);
             }
-            await client.GET(payload.id, (err) => {
+            await client.GET(payload._id, (err) => {
                 if (err) {
                     throw new ErrorHandler(
                         status.BAD_REQUEST,
@@ -68,7 +67,7 @@ const retrieveRefreshToken = (refreshToken) => {
                     );
                 }
             });
-            return payload.id;
+            return payload;
         }
     );
 };

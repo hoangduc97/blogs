@@ -4,11 +4,11 @@ import { status } from '../utils/constants';
 const authJwt = (roles) => {
     return (req, res, next) => {
         passport.authenticate('jwt', { session: false }, (err, user) => {
-            if (err || !user)
+            if (err || !user) {
                 return res
                     .status(status.FORBIDDEN)
                     .json({ message: 'forbidden' });
-            else {
+            } else {
                 if (roles.includes(user.role)) {
                     next();
                 } else {
