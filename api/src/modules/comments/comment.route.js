@@ -5,10 +5,9 @@ import validate from './comment.validate';
 import CommentService from './comment.service';
 
 const router = express.Router();
-router.get('/', CommentService._getAll);
-router.get('/:id', CommentService._getOne);
+router.get('/:article', CommentService._getAllByArticle);
 router.post(
-    '/',
+    '/:article',
     [authJwt([role.MANAGER, role.WRITER]), ...validate],
     CommentService._create
 );

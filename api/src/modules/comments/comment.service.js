@@ -1,171 +1,114 @@
+import { status } from '../../utils/constants';
+import { validationResult } from 'express-validator';
+import { ErrorHandler } from '../../utils/error.util';
+import { check_existed } from '../../utils/request.util';
+import { retrieveToken } from '../../utils/auth.util';
 import Comment from './comment.model';
 import Article from '../article/article.model';
-import {status} from "../../utils/constants";
-import {validationResult} from "express-validator";
-import {ErrorHandler} from '../../utils/error.util';
-import {check_existed} from "../../utils/request.util";
-import {retrieveToken} from "../../utils/auth.util";
+import Message from '../../logger/message.data';
+import Logger from '../../logger/message.data';
 
-const _getAll = async (req, res, next) => {
+const _getAllByArticle = async (req, res, next) => {
     try {
-        Comment.find({})
-            .then((data) => {
-                return res.status(status.GET_SUCCESS).json({
-                    success: true,
-                    message: 'Data found',
-                    data: data
-                })
-            })
-            .catch((err) => {
-                throw new ErrorHandler(
-                    status.GET_FAILURE,
-                    'Not Found',
-                    1105
-                )
-            });
-    } catch (error) {
-        next(error);
-    }
-}
-
-const _getOne = async (req, res, next) => {
-    try {
-        const filter = {_id: req.params['id']};
+        const filter = { article: req.params['article'] };
         Comment.find(filter)
             .then((data) => {
-                return res.status(status.GET_SUCCESS).json({
+                return res.status(status.SUCCESS).json({
                     success: true,
-                    message: 'Data Found',
+                    message: Message[2100],
                     data: data,
                 });
             })
-            .catch((err) => {
-                throw new ErrorHandler(
-                    status.GET_FAILURE,
-                    'Not Found',
-                    1105
-                );
+            .catch((error) => {
+                Logger.error(error);
+                throw new ErrorHandler(status.BAD_REQUEST, Message[1100], 1100);
             });
     } catch (error) {
         next(error);
     }
-}
+};
 
 const _create = async (req, res, next) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        throw new ErrorHandler(
-            status.CREATE_FAILURE,
-            'Invalid Social Type',
-            1303
-        );
-    }
     try {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            throw new ErrorHandler(status.BAD_REQUEST, Message[1326], 1326);
+        }
         const _author = await retrieveToken(req.headers);
         const new_comment = {
-            article_id: req.body.article_id,
-            parent_id: req.body.parent_id ? req.body.parent_id : null,
-            author_id: _author.id,
+            article: req.params['article'],
+            parent: req.body.parent,
+            author: _author.id,
             content: req.body.content,
         };
-        const found = await Article.findByIdAndUpdate(
-            {_id: new_comment.article_id},
-            {$push: new_comment.article_id}).count();
-        if (found) {
-            await Comment.create(new_comment)
-                .then((data) => {
-                    return res.status(status.CREATE_SUCCESS).json({
-                        success: true,
-                        message: 'Created successfully',
-                        data: data,
-                    });
-                })
-                .catch((err) => {
-                    throw new ErrorHandler(
-                        status.CREATE_FAILURE,
-                        'Invalid Social Type',
-                        1105
-                    );
+        Comment.create(new_comment)
+            .then((data) => {
+                return res.status(status.CREATED).json({
+                    success: true,
+                    message: Message[2327],
+                    data: data,
                 });
-        } else {
-            throw new ErrorHandler(
-                status.CREATE_FAILURE,
-                'Article _id not existed',
-                1105);
-        }
-
+            })
+            .catch((error) => {
+                Logger.error(error);
+                throw new ErrorHandler(status.BAD_REQUEST, Message[1323], 1323);
+            });
     } catch (error) {
         next(error);
     }
-}
+};
 
 const _update = async (req, res, next) => {
     try {
         const update = {
-            parent_id: req.body.parent_id ? req.body.parent_id : null,
+            parent: req.body.parent,
             content: req.body.content,
         };
-        const filter = {_id: req.params['id']};
+        const filter = { _id: req.params['id'] };
         const found = await check_existed(Comment, filter);
         if (found) {
-            Comment.findOneAndUpdate(filter, update)
-                .then((data) => {
-                    return res.status(status.UPDATE_SUCCESS).json({
-                        success: true,
-                        message: 'Updated successfully',
-                        data: data,
-                    });
-                })
-                .catch((err) => {
-                    throw new ErrorHandler(
-                        status.UPDATE_FAILURE,
-                        'Invalid Social Type',
-                        1105
-                    );
-                });
-        } else {
-            throw new ErrorHandler(
-                status.UPDATE_FAILURE,
-                `Comment ${update.category_name} not exist`,
-                1303
-            );
+            throw new ErrorHandler(status.BAD_REQUEST, Message[1328], 1328);
         }
+        Comment.findOneAndUpdate(filter, update)
+            .then((data) => {
+                return res.status(status.SUCCESS).json({
+                    success: true,
+                    message: Message[2329],
+                    data: data,
+                });
+            })
+            .catch((error) => {
+                Logger.error(error);
+                throw new ErrorHandler(status.BAD_REQUEST, Message[1329], 1329);
+            });
     } catch (error) {
         next(error);
     }
-}
+};
 
 const _delete = async (req, res, next) => {
     try {
-        const filter = {_id: req.param['id']};
+        const filter = { _id: req.param['id'] };
         const found = await check_existed(Comment, filter);
         if (found) {
-            Comment.findByIdAndDelete(filter)
-                .then((data) => {
-                    return res.status(status.DELETE_SUCCESS).json({
-                        success: true,
-                        message: 'Deleted successfully',
-                        data: data,
-                    });
-                })
-                .catch((err) => {
-                    throw new ErrorHandler(
-                        status.DELETE_FAILURE,
-                        'Invalid Social Type',
-                        1105
-                    );
-                });
-        } else {
-            throw new ErrorHandler(
-                status.DELETE_FAILURE,
-                'Tag not existed',
-                1303
-            );
+            throw new ErrorHandler(status.BAD_REQUEST, Message[1328], 1328);
         }
+        Comment.findByIdAndDelete(filter)
+            .then((data) => {
+                return res.status(status.SUCCESS).json({
+                    success: true,
+                    message: Message[2330],
+                    data: data,
+                });
+            })
+            .catch((error) => {
+                Logger.error(error);
+                throw new ErrorHandler(status.BAD_REQUEST, Message[1330], 1330);
+            });
     } catch (error) {
         next(error);
     }
-}
+};
 
-const CommentService = {_getAll, _getOne, _create, _update, _delete};
+const CommentService = { _getAllByArticle, _create, _update, _delete };
 export default CommentService;

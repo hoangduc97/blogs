@@ -45,6 +45,15 @@ const Message = {
     1324: 'Update article error',
     2325: 'Delete article successful',
     1325: 'Delete article error',
+    // comment
+    1326: 'Invalid comment type',
+    2327: 'Create comment successful',
+    1327: 'Create comment error',
+    1328: 'Comment not exist',
+    2329: 'Update comment successful',
+    1329: 'Update comment error',
+    2330: 'Delete comment successful',
+    1330: 'Delete comment error',
 };
 
 export default Message;
