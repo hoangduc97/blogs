@@ -1,79 +1,56 @@
 import mongoose from 'mongoose';
 
-const post = new mongoose.Schema({
-    author_id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'UserProfile',
-        required: true,
-    },
-    parent_id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Post',
-    },
-    title: {
-        type: String,
-        required: true,
-    },
-    slug: {
-        type: String,
-        required: true,
-    },
-    summary: {
-        type: String,
-    },
-    published: {
-        type: Boolean,
-        required: true,
-        default: true,
-    },
-    create_at: {
-        type: Date,
-        default: Date(),
-    },
-    update_at: {
-        type: Date,
-    },
-    published_at: {
-        type: Date,
-        default: Date(),
-    },
-    content: {
-        type: String,
-        required: true,
-    },
-    comments: [
-        {
+const article = new mongoose.Schema(
+    {
+        author: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'Comment',
+            ref: 'User',
+            required: true,
         },
-    ],
-    tags: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Tag',
-        },
-    ],
-    categories: [
-        {
+        category: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Category',
+            required: true,
         },
-    ],
-    post_meta: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'PostMeta',
+        tags: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'Tag',
+            },
+        ],
+        title: {
+            type: String,
+            required: true,
         },
-    ],
-});
+        slug: {
+            type: String,
+            required: true,
+            unique: true,
+            lowercase: true,
+        },
+        content: {
+            type: String,
+            required: true,
+        },
+        bookmark_user: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'User',
+            },
+        ],
+        published: {
+            type: Boolean,
+            required: true,
+            default: true,
+        },
+        comments: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'Comment',
+            },
+        ],
+    },
+    { timestamps: true }
+);
 
-post.pre('save', function (next) {
-    const post = this;
-
-    if (this.isModified('update_at') || this.isNew) {
-        post.update_at = Date.now;
-    }
-    next();
-});
-
-export default mongoose.model('Post', post);
+export default mongoose.model('Article', article);

@@ -1,38 +1,32 @@
 import mongoose from 'mongoose';
 
-const comment = new mongoose.Schema({
-    post_id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Post',
-    },
-    parent_id: {
-        type: mongoose.Schema.Types.ObjectId,
-    },
-    author_id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'UserProfile',
-    },
-    published: {
-        type: Boolean,
-        default: true,
-    },
-    content: {
-        type: String,
-    },
-    published_at: {
-        type: Date,
-        default: Date.now,
-    },
-    create_at: {
-        type: Date,
-        default: Date.now,
-    },
-    comment_meta: [
-        {
+const comment = new mongoose.Schema(
+    {
+        article: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'CommentMeta',
+            ref: 'Article',
+            required: true,
         },
-    ],
-});
+        parent: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Comment',
+            default: null,
+        },
+        author: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User',
+            required: true,
+        },
+        content: {
+            type: String,
+            default: '',
+        },
+        published: {
+            type: Boolean,
+            default: true,
+        },
+    },
+    { timestamps: true }
+);
 
 export default mongoose.model('Comment', comment);

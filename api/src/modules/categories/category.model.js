@@ -1,23 +1,23 @@
 import mongoose from 'mongoose';
 
-const category = new mongoose.Schema({
-    category_name: {
-        type: String,
-        unique: true,
-    },
-    slug: {
-        type: String,
-        unique: true
-    },
-    content: {
-        type: String,
-    },
-    posts: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Post',
+const category = new mongoose.Schema(
+    {
+        title: {
+            type: String,
+            unique: true,
+            required: true
         },
-    ],
-});
+        slug: {
+            type: String,
+            unique: true,
+            lowercase: true,
+        },
+        count_article: {
+            type: Number,
+            default: 0,
+        },
+    },
+    { timestamps: true }
+);
 
 export default mongoose.model('Category', category);

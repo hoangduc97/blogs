@@ -1,4 +1,4 @@
 const check_existed = async (Schema, filter) => {
-    return await Schema.count(filter, (count) => count > 0);
+    return await Schema.exists(filter);
 };
 export { check_existed };

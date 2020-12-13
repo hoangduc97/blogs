@@ -1,19 +1,50 @@
 const Message = {
+    // auth
     3000: 'Please enter a valid email',
     3001: 'Please enter a valid password',
-
     1301: 'Invalid Register Type',
     1302: 'Invalid Login Type',
-
     1303: 'User already exists',
     1304: 'Register Error',
     2304: 'Register success',
-
     1305: 'Login Error',
     2305: 'Login success',
-
     2100: 'Data Found',
-    1100: 'Not Found'
+    1100: 'Not Found',
+    2101: 'Refresh token success',
+    1306: 'Logout refresh token not found',
+    1307: 'Refresh token invalid',
+    5000: 'Internal server error',
+    // category
+    1308: 'Invalid category type',
+    1309: 'Category existed',
+    2310: 'Create category successful',
+    1310: 'Create category error',
+    2311: 'Update category successful',
+    1311: 'Update category error',
+    1312: 'Category not exist',
+    2313: 'Delete category successful',
+    1313: 'Delete category error',
+    // tag
+    1314: 'Invalid tag type',
+    1315: 'Tag existed',
+    2316: 'Create tag successful',
+    1316: 'Create tag error',
+    2317: 'Update tag successful',
+    1317: 'Update tag error',
+    1318: 'Tag not exist',
+    2319: 'Delete tag successful',
+    1319: 'Delete tag error',
+    // article
+    1320: 'Invalid article type',
+    1321: 'Article title existed',
+    2322: 'Create article successful',
+    1322: 'Create article error',
+    1323: 'Article not exist',
+    2324: 'Update article successful',
+    1324: 'Update article error',
+    2325: 'Delete article successful',
+    1325: 'Delete article error',
 };
 
 export default Message;

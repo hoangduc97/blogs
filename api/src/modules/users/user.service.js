@@ -1,7 +1,12 @@
 import { validationResult } from 'express-validator';
-import { createAccessToken, createRefreshToken } from '../../utils/auth.util';
-import { roleConstant, status } from '../../utils/constants';
+import {
+    createAccessToken,
+    createRefreshToken,
+    retrieveRefreshToken,
+} from '../../utils/auth.util';
+import { role, status } from '../../utils/constants';
 import { ErrorHandler } from '../../utils/error.util';
+import client from '../../config/redis.config';
 import Message from '../../logger/message.data';
 import Logger from '../../logger/logger';
 import User from './user.model';
@@ -20,17 +25,16 @@ const register = async (req, res, next) => {
         }
 
         await User.create({
-            role: roleConstant.USER,
+            role: role.USER,
             account: {
                 email: email,
                 hash: password,
             },
         })
             .then(async (user) => {
-                console.log(user);
                 const accessToken = createAccessToken(user);
                 const refreshToken = createRefreshToken(user);
-                return res.status(status.SUCCESS).json({
+                return res.status(status.CREATED).json({
                     success: true,
                     message: Message[2304],
                     data: { accessToken, refreshToken },
@@ -75,6 +79,50 @@ const login = async (req, res, next) => {
     }
 };
 
+const logout = async (req, res, next) => {
+    try {
+        const { refreshToken } = req.body;
+        if (!refreshToken) {
+            throw new ErrorHandler(status.BAD_REQUEST, Message[1306], 1306);
+        }
+
+        const userId = await retrieveRefreshToken(refreshToken);
+        client.DEL(userId + '', (err, val) => {
+            if (err) {
+                throw new ErrorHandler(
+                    status.INTERNAL_ERROR,
+                    Message[5000],
+                    5000
+                );
+            }
+            res.sendStatus(status.NO_RESPONSE);
+        });
+    } catch (error) {
+        next(error);
+    }
+};
+
+const refreshToken = async (req, res, next) => {
+    try {
+        const { refreshToken } = req.body;
+        if (!refreshToken)
+            throw new ErrorHandler(status.BAD_REQUEST, Message[1306], 1306);
+
+        const newAccessToken = createAccessToken(req.headers);
+        const newRefreshToken = signRefreshToken(req.headers);
+        res.status(status.SUCCESS).json({
+            success: true,
+            message: Message[2101],
+            data: {
+                accessToken: newAccessToken,
+                refreshToken: newRefreshToken,
+            },
+        });
+    } catch (error) {
+        next(error);
+    }
+};
+
 const getAll = async (req, res, next) => {
     try {
         User.find({})
@@ -97,7 +145,9 @@ const getAll = async (req, res, next) => {
 const UserService = {
     register,
     login,
+    logout,
     getAll,
+    refreshToken,
 };
 
 export default UserService;

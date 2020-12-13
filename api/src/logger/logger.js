@@ -10,6 +10,7 @@ const myWinstonOptions = {
     ],
 };
 const logger = new winston.createLogger(myWinstonOptions);
+export default logger;
 
 function logRequest(req, res, next) {
     logger.info(req.url);
@@ -21,5 +22,3 @@ function logError(err, req, res, next) {
 }
 
 export { logRequest, logError };
-
-export default logger;

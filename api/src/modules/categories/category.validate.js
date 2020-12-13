@@ -1,8 +1,5 @@
-import {check} from 'express-validator';
+import { check } from 'express-validator';
 
-const categoryValidate = [
-    check('category_name').notEmpty(),
-    check('content').notEmpty()
-];
+const categoryValidate = [check('title').notEmpty().isString()];
 
-export {categoryValidate};
+export default categoryValidate;

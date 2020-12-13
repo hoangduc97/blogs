@@ -1,5 +1,5 @@
 import Comment from './comment.model';
-import Post from '../article/article.model';
+import Article from '../article/article.model';
 import {status} from "../../utils/constants";
 import {validationResult} from "express-validator";
 import {ErrorHandler} from '../../utils/error.util';
@@ -63,14 +63,14 @@ const _create = async (req, res, next) => {
     try {
         const _author = await retrieveToken(req.headers);
         const new_comment = {
-            post_id: req.body.post_id,
+            article_id: req.body.article_id,
             parent_id: req.body.parent_id ? req.body.parent_id : null,
             author_id: _author.id,
             content: req.body.content,
         };
-        const found = await Post.findByIdAndUpdate(
-            {_id: new_comment.post_id},
-            {$push: new_comment.post_id}).count();
+        const found = await Article.findByIdAndUpdate(
+            {_id: new_comment.article_id},
+            {$push: new_comment.article_id}).count();
         if (found) {
             await Comment.create(new_comment)
                 .then((data) => {
@@ -90,7 +90,7 @@ const _create = async (req, res, next) => {
         } else {
             throw new ErrorHandler(
                 status.CREATE_FAILURE,
-                'Post _id not existed',
+                'Article _id not existed',
                 1105);
         }
 

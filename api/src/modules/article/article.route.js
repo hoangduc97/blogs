@@ -1,25 +1,25 @@
 import express from 'express';
-import PostService from './article.service';
 import { authJwt } from '../../middlewares/auth.middleware';
-import { postValidate } from './article.validate';
-import { roleConstant } from '../../utils/constants';
+import { role } from '../../utils/constants';
+import ArticleService from './article.service';
+import validate from './article.validate';
 
 const router = express.Router();
-router.get('/', PostService._getAll);
-router.get('/:id', PostService._getOne);
+router.get('/', ArticleService._getAll);
+router.get('/:id', ArticleService._getOne);
 router.post(
     '/',
-    [authJwt([roleConstant.MANAGER, roleConstant.WRITER]), ...postValidate],
-    PostService._create
+    [authJwt([role.MANAGER, role.WRITER]), ...validate],
+    ArticleService._create
 );
 router.put(
     '/:id',
-    [authJwt([roleConstant.MANAGER, roleConstant.WRITER]), ...postValidate],
-    PostService._update
+    [authJwt([role.MANAGER, role.WRITER]), ...validate],
+    ArticleService._update
 );
 router.delete(
     '/:id',
-    [authJwt([roleConstant.MANAGER, roleConstant.WRITER])],
-    PostService._delete
+    [authJwt([role.MANAGER, role.WRITER])],
+    ArticleService._delete
 );
 export default router;

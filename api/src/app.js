@@ -32,7 +32,7 @@ const configApp = async () => {
     app.use(logError);
     app.use((err, req, res, next) => {
         if (err.statusCode === 500) {
-            return res.statusCode(500);
+            return res.status(500).send();
         }
         handleError(err, res);
     });

@@ -1,5 +1,8 @@
 import jwt from 'jsonwebtoken';
 import client from '../config/redis.config';
+import Message from '../logger/message.data';
+import { ErrorHandler } from './error.util';
+import { status } from './constants';
 
 const retrieveToken = (headers) => {
     if (headers && headers.authorization) {
@@ -39,35 +42,35 @@ const createRefreshToken = (user) => {
             'EX',
             365 * 24 * 60 * 60,
             (err) => {
-                if (err) throw Error(err);
+                if (err) throw new Error(err);
             }
         );
         return `${process.env.JWT_TOKEN_PREFIX} ${refreshToken}`;
     }
 };
 
-const retrieveRefreshToken = (headers) => {
-    if (headers && headers.authorization) {
-        const tokens = headers.authorization.split(' ');
-        if (tokens && tokens.length === 2) {
-            return jwt.verify(
-                tokens[1],
-                process.env.JWT_SECRET_OR_KEY,
-                (err, payload) => {
-                    if (err) throw Error(err.responseText).status(500);
-                    client.GET(payload.id, (err, result) => {
-                        if (err) {
-                            console.log(err.message);
-                            return;
-                        }
-                        if (refreshToken === result) return payload.id;
-                        throw Error(err.responseText).status(500);
-                    });
+const retrieveRefreshToken = (refreshToken) => {
+    const token = refreshToken.split(' ');
+
+    return jwt.verify(
+        token[1],
+        process.env.JWT_SECRET_OR_KEY,
+        async (err, payload) => {
+            if (err) {
+                throw new ErrorHandler(status.BAD_REQUEST, Message[1307], 1307);
+            }
+            await client.GET(payload.id, (err) => {
+                if (err) {
+                    throw new ErrorHandler(
+                        status.BAD_REQUEST,
+                        Message[1307],
+                        1307
+                    );
                 }
-            );
+            });
+            return payload.id;
         }
-    }
-    return null;
+    );
 };
 
 export {

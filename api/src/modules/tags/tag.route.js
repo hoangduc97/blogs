@@ -1,31 +1,26 @@
 import express from 'express';
+import { authJwt } from '../../middlewares/auth.middleware';
+import { role } from '../../utils/constants';
+import validate from './tag.validate';
 import TagService from './tag.service';
-import {authJwt} from '../../middlewares/auth.middleware';
-import {tagValidate} from './tag.validate';
-import {roleConstant} from '../../utils/constants';
 
 const router = express.Router();
 
-router.get('/', TagService._getAll)
-router.get('/:id', TagService._getOne)
+router.get('/', TagService._getAll);
+router.get('/:id', TagService._getOne);
 router.post(
     '/',
-    [authJwt([roleConstant.MANAGER, roleConstant.WRITER]), ...tagValidate],
+    [authJwt([role.MANAGER, role.WRITER]), ...validate],
     TagService._create
-)
+);
 router.put(
     '/:id',
-    [authJwt([roleConstant.MANAGER, roleConstant.WRITER]), ...tagValidate],
+    [authJwt([role.MANAGER, role.WRITER]), ...validate],
     TagService._update
-)
-router.patch(
-    '/:id',
-    [authJwt([roleConstant.MANAGER, roleConstant.WRITER]), ...tagValidate],
-    TagService._update
-)
+);
 router.delete(
     '/:id',
-    [authJwt([roleConstant.MANAGER, roleConstant.WRITER])],
+    [authJwt([role.MANAGER, role.WRITER])],
     TagService._delete
 );
 export default router;

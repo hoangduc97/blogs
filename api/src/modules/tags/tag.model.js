@@ -1,27 +1,26 @@
 import mongoose from 'mongoose';
 
 const tag = new mongoose.Schema({
-    tag_name: {
+    title: {
         type: String,
         unique: true,
+        required: true,
     },
     slug: {
         type: String,
         unique: true,
+        lowercase: true,
     },
-    content: {
-        type: String,
+    count_article: {
+        type: Number,
+        default: 0,
     },
-    posts: [
+    articles: [
         {
             type: mongoose.Schema.Types.ObjectID,
-            ref: 'Post',
+            ref: 'Article',
         },
     ],
-    categories: {
-        type: mongoose.Schema.Types.ObjectID,
-        ref: 'Categories'
-    }
 });
 
 export default mongoose.model('Tag', tag);

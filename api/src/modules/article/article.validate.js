@@ -1,10 +1,9 @@
 import { check } from 'express-validator';
 
-const postValidate = [
-    check('title').notEmpty().isLength({ min: 10}),
-    check('categories').notEmpty().isArray(),
-    check('summary').notEmpty().isLength({ min: 10 }),
+const articleValidate = [
+    check('title').notEmpty().isLength({ min: 10 }),
+    check('category').notEmpty().isMongoId(),
     check('content').notEmpty().isLength({ min: 10 }),
 ];
 
-export { postValidate };
+export default articleValidate;

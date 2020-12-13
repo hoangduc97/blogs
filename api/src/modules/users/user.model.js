@@ -6,6 +6,7 @@ const User = new mongoose.Schema(
         account: Account.schema,
         username: {
             type: String,
+            default: '',
         },
         avatar_url: {
             type: String,
@@ -16,6 +17,12 @@ const User = new mongoose.Schema(
             enum: [0, 1, 2],
             required: true,
         },
+        bookmark_article: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'Article',
+            },
+        ],
     },
     { timestamps: true }
 );
