@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2020-12-13T12:44:25.163Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36" etag="Blc4p_xzV7pqJsIsMSWT" version="14.0.1" type="github">
+<mxfile host="app.diagrams.net" modified="2020-12-13T15:36:58.918Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36" etag="h130EBmPzSbX_jDedkG5" version="14.0.1" type="github">
   <diagram id="R2lEEEUBdFMjLlhIrx00" name="Page-1">
     <mxGraphModel dx="1185" dy="670" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0" extFonts="Permanent Marker^https://fonts.googleapis.com/css?family=Permanent+Marker">
       <root>
@@ -316,7 +316,7 @@
         <mxCell id="2LTZjDrw-esx16HxftwA-99" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;" parent="2LTZjDrw-esx16HxftwA-98" vertex="1">
           <mxGeometry width="30" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="2LTZjDrw-esx16HxftwA-100" value="article_id" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;" parent="2LTZjDrw-esx16HxftwA-98" vertex="1">
+        <mxCell id="2LTZjDrw-esx16HxftwA-100" value="article" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;" parent="2LTZjDrw-esx16HxftwA-98" vertex="1">
           <mxGeometry x="30" width="150" height="30" as="geometry" />
         </mxCell>
         <mxCell id="2LTZjDrw-esx16HxftwA-101" value="" style="shape=partialRectangle;collapsible=0;dropTarget=0;pointerEvents=0;fillColor=none;top=0;left=0;bottom=0;right=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="2LTZjDrw-esx16HxftwA-94" vertex="1">
@@ -325,7 +325,7 @@
         <mxCell id="2LTZjDrw-esx16HxftwA-102" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;" parent="2LTZjDrw-esx16HxftwA-101" vertex="1">
           <mxGeometry width="30" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="2LTZjDrw-esx16HxftwA-103" value="user_id" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;" parent="2LTZjDrw-esx16HxftwA-101" vertex="1">
+        <mxCell id="2LTZjDrw-esx16HxftwA-103" value="author" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;" parent="2LTZjDrw-esx16HxftwA-101" vertex="1">
           <mxGeometry x="30" width="150" height="30" as="geometry" />
         </mxCell>
         <mxCell id="2LTZjDrw-esx16HxftwA-104" value="" style="shape=partialRectangle;collapsible=0;dropTarget=0;pointerEvents=0;fillColor=none;top=0;left=0;bottom=0;right=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="2LTZjDrw-esx16HxftwA-94" vertex="1">
@@ -334,7 +334,7 @@
         <mxCell id="2LTZjDrw-esx16HxftwA-105" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;" parent="2LTZjDrw-esx16HxftwA-104" vertex="1">
           <mxGeometry width="30" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="2LTZjDrw-esx16HxftwA-106" value="parent_id" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;" parent="2LTZjDrw-esx16HxftwA-104" vertex="1">
+        <mxCell id="2LTZjDrw-esx16HxftwA-106" value="parent" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;" parent="2LTZjDrw-esx16HxftwA-104" vertex="1">
           <mxGeometry x="30" width="150" height="30" as="geometry" />
         </mxCell>
         <mxCell id="2LTZjDrw-esx16HxftwA-119" value="" style="shape=partialRectangle;collapsible=0;dropTarget=0;pointerEvents=0;fillColor=none;top=0;left=0;bottom=0;right=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="2LTZjDrw-esx16HxftwA-94" vertex="1">
