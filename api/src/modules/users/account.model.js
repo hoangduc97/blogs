@@ -1,53 +1,40 @@
 import mongoose from 'mongoose';
-import { random_number, increment_days } from '../../utils/common.util';
 import bcrypt from 'bcryptjs';
 
-const userAccount = new mongoose.Schema({
+const Account = new mongoose.Schema({
     email: {
         type: String,
         unique: true,
         trim: true,
     },
-    password: {
+    hash: {
         type: String,
         required: true,
     },
-    email_confirm_token: {
-        type: String,
-        default: random_number(
-            parseInt(process.env.EMAIL_CONFIRM_TOKEN_LENGTH)
-        ),
-    },
-    password_expire: {
-        type: Date,
-        default: increment_days(parseInt(process.env.PASSWORD_DURATION)),
-    },
 });
 
-userAccount.pre('save', function (next) {
+Account.pre('save', function (next) {
     const account = this;
 
-    if (this.isModified('password') || this.isNew) {
+    if (this.isModified('hash') || this.isNew) {
         bcrypt.genSalt(10, function (error, salt) {
-            if (error) {
-                return next(error);
-            }
-            bcrypt.hash(account.password, salt, function (error, hash) {
-                if (error) {
-                    return next(error);
-                }
-                account.password = hash;
+            if (error) return next(error);
+            bcrypt.hash(account.hash, salt, function (error, hash) {
+                if (error) return next(error);
+                account.hash = hash;
+                next();
             });
         });
+    } else{
+        next();
     }
-    next();
 });
 
-userAccount.methods.comparePassword = function (pw, cd) {
-    bcrypt.compare(pw, this.password, (error, isMatch) => {
+Account.methods.compareHash = function (pw, cd) {
+    bcrypt.compare(pw, this.hash, (error, isMatch) => {
         if (error) return cd(error);
         cd(null, isMatch);
     });
 };
 
-export default mongoose.model('UserAccount', userAccount);
+export default mongoose.model('Account', Account);

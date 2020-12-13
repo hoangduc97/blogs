@@ -11,20 +11,16 @@ const roleConstant = {
     USER: 2,
 };
 
-const apiStatus = {
-    CREATE_SUCCESS: 201,
-    CREATE_FAILURE: 404,
+const status = {
+    SUCCESS: 200,
+    CREATED: 201,
 
-    GET_SUCCESS: 200,
-    GET_FAILURE: 404,
+    BAD_REQUEST: 400,
+    UNAUTHORIZED: 401,
 
-    UPDATE_SUCCESS: 200,
-    UPDATE_FAILURE: 404,
-
-    DELETE_SUCCESS: 200,
-    DELETE_FAILURE: 404,
-
-    
+    FORBIDDEN: 403,
+    NOTFOUND: 404,
+    INTERNAL_ERROR: 500
 }
 
-export { modelConstant, roleConstant, apiStatus };
+export { modelConstant, roleConstant, status };

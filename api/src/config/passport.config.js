@@ -3,7 +3,7 @@ import JwtStrategy from 'passport-jwt';
 import User from '../modules/users/user.model';
 
 const jwtOptions = {
-    jwtFromRequest: JwtStrategy.ExtractJwt.fromAuthHeaderWithScheme('jwt'),
+    jwtFromRequest: JwtStrategy.ExtractJwt.fromAuthHeaderAsBearerToken(),
     secretOrKey: process.env.JWT_SECRET_OR_KEY,
 };
 

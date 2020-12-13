@@ -1,10 +1,10 @@
 import { validationResult } from 'express-validator';
 import { retrieveToken } from '../../utils/auth.util';
 import { check_existed } from '../../utils/request.util';
-import { apiStatus } from '../../utils/constants';
+import { status } from '../../utils/constants';
 import { ErrorHandler } from '../../utils/error.util';
 import { convert_slug } from '../../utils/common.util';
-import Post from './post.model';
+import Post from './article.model';
 
 const _getAll = async (req, res, next) => {
     try {
@@ -14,7 +14,7 @@ const _getAll = async (req, res, next) => {
             .populate('categories')
             .exec()
             .then((data) => {
-                return res.status(apiStatus.GET_SUCCESS).json({
+                return res.status(status.GET_SUCCESS).json({
                     success: true,
                     message: 'Data Found',
                     data: data,
@@ -22,7 +22,7 @@ const _getAll = async (req, res, next) => {
             })
             .catch((err) => {
                 throw new ErrorHandler(
-                    apiStatus.GET_FAILURE,
+                    status.GET_FAILURE,
                     'Not Found',
                     1105
                 );
@@ -43,7 +43,7 @@ const _getOne = async (req, res, next) => {
             .populate('PostMeta')
             .exec()
             .then((data) => {
-                return res.status(apiStatus.GET_SUCCESS).json({
+                return res.status(status.GET_SUCCESS).json({
                     success: true,
                     message: 'Data Found',
                     data: data,
@@ -51,7 +51,7 @@ const _getOne = async (req, res, next) => {
             })
             .catch((err) => {
                 throw new ErrorHandler(
-                    apiStatus.GET_FAILURE,
+                    status.GET_FAILURE,
                     'Not Found',
                     1105
                 );
@@ -64,7 +64,7 @@ const _getOne = async (req, res, next) => {
 const _create = async (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        return res.status(apiStatus.CREATE_FAILURE).json({
+        return res.status(status.CREATE_FAILURE).json({
             success: false,
             errors: errors.array(),
         });
@@ -84,7 +84,7 @@ const _create = async (req, res, next) => {
         };
         await Post.create(new_post)
             .then((data) => {
-                return res.status(apiStatus.GET_SUCCESS).json({
+                return res.status(status.GET_SUCCESS).json({
                     success: true,
                     message: 'Created Successfull',
                     data: data,
@@ -94,7 +94,7 @@ const _create = async (req, res, next) => {
                 console.log(err);
 
                 throw new ErrorHandler(
-                    apiStatus.GET_FAILURE,
+                    status.GET_FAILURE,
                     'Invalid Social Type',
                     1303
                 );
@@ -108,7 +108,7 @@ const _create = async (req, res, next) => {
 const _update = async (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        return res.status(apiStatus.UPDATE_FAILURE).json({
+        return res.status(status.UPDATE_FAILURE).json({
             success: false,
             errors: errors.array(),
         });
@@ -137,7 +137,7 @@ const _update = async (req, res, next) => {
             };
             Post.findOneAndUpdate(filter, data_update)
                 .then((data) => {
-                    return res.status(apiStatus.UPDATE_SUCCESS).json({
+                    return res.status(status.UPDATE_SUCCESS).json({
                         success: true,
                         message: 'Updated Successfull',
                         data: data,
@@ -145,14 +145,14 @@ const _update = async (req, res, next) => {
                 })
                 .catch((err) => {
                     throw new ErrorHandler(
-                        apiStatus.UPDATE_FAILURE,
+                        status.UPDATE_FAILURE,
                         'Invalid Social Type',
                         1303
                     );
                 });
         } else {
             throw new ErrorHandler(
-                apiStatus.UPDATE_FAILURE,
+                status.UPDATE_FAILURE,
                 'Post _id not existed.',
                 1303
             );
@@ -169,7 +169,7 @@ const _delete = async (req, res, next) => {
         if (found) {
             Post.findByIdAndDelete(filter)
                 .then((data) => {
-                    return res.status(apiStatus.DELETE_SUCCESS).json({
+                    return res.status(status.DELETE_SUCCESS).json({
                         success: true,
                         message: 'Deleted Successfull',
                         data: data,
@@ -177,14 +177,14 @@ const _delete = async (req, res, next) => {
                 })
                 .catch((err) => {
                     throw new ErrorHandler(
-                        apiStatus.DELETE_FAILURE,
+                        status.DELETE_FAILURE,
                         'Invalid Social Type',
                         1303
                     );
                 });
         } else {
             throw new ErrorHandler(
-                apiStatus.DELETE_FAILURE,
+                status.DELETE_FAILURE,
                 'Post _id not existed',
                 1303
             );

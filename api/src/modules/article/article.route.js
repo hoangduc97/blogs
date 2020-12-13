@@ -1,7 +1,7 @@
 import express from 'express';
-import PostService from './post.service';
+import PostService from './article.service';
 import { authJwt } from '../../middlewares/auth.middleware';
-import { postValidate } from './post.validate';
+import { postValidate } from './article.validate';
 import { roleConstant } from '../../utils/constants';
 
 const router = express.Router();
