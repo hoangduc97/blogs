@@ -56,7 +56,7 @@ const login = async (req, res, next) => {
         const { email, password } = req.body;
         const user = await User.findOne({ 'account.email': email });
         if (!user) {
-            throw new ErrorHandler(status.BAD_REQUEST, Message[1305], 1305);
+            throw new ErrorHandler(status.UNAUTHORIZED, Message[1305], 1305);
         }
         user.account.compareHash(password, (err, isMatch) => {
             if (isMatch && !err) {
@@ -68,7 +68,7 @@ const login = async (req, res, next) => {
                     data: { accessToken, refreshToken },
                 });
             }
-            throw new ErrorHandler(status.BAD_REQUEST, Message[1305], 1305);
+            throw new ErrorHandler(status.UNAUTHORIZED, Message[1305], 1305);
         });
     } catch (error) {
         next(error);

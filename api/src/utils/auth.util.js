@@ -1,5 +1,4 @@
 import jwt from 'jsonwebtoken';
-import { stringify } from 'uuid';
 import client from '../config/redis.config';
 
 const retrieveToken = (headers) => {
@@ -39,11 +38,11 @@ const createRefreshToken = (user) => {
             refreshToken,
             'EX',
             365 * 24 * 60 * 60,
-            (err, reply) => {
+            (err) => {
                 if (err) throw Error(err);
-                return `${process.env.JWT_TOKEN_PREFIX} ${refreshToken}`;
             }
         );
+        return `${process.env.JWT_TOKEN_PREFIX} ${refreshToken}`;
     }
 };
 
