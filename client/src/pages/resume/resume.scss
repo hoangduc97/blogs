@@ -3,7 +3,7 @@
 
 .resume {
     max-width: $desktop;
-    margin: auto;
+    margin: 5em auto;
     display: flex;
 
     &__sidebar {
@@ -12,11 +12,11 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        position: fixed;
 
         .navbar {
             display: flex;
             flex-direction: column;
+            position: fixed;
 
             &--item {
                 text-transform: uppercase;
@@ -25,9 +25,11 @@
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
+
                 font: {
                     family: var(--font-family-second);
                 }
+
                 margin: 2em auto;
 
                 &::before {
@@ -44,5 +46,53 @@
 
     &__content {
         width: 70%;
+
+        .about {
+            display: flex;
+
+            &>svg {
+                font-size: 12em;
+            }
+
+            .info {
+                color: $color3;
+                font-style: italic;
+
+                span:nth-child(1),
+                span:nth-child(2) {
+                    &::after {
+                        content: '/';
+                        margin: 0 10px;
+                    }
+                }
+            }
+        }
+
+        .item {
+            &>* {
+                margin-bottom: 1em;
+            }
+
+            .title {
+                display: flex;
+                color: $color3;
+
+                svg {
+                    font-size: 3em;
+                }
+
+                span {
+                    font-family: var(--font-family-second);
+                    font-size: 2em;
+                    margin: auto 1em;
+                }
+            }
+
+
+        }
+
+        section {
+            border-bottom: 1px solid $color4;
+        }
     }
 }

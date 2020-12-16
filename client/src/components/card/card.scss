@@ -25,6 +25,12 @@
             font-weight: 500;
             text-overflow: ellipsis;
             line-height: 2;
+            text-decoration: none;
+            color: $color2;
+
+            &:hover {
+                text-decoration: underline;
+            }
         }
 
         &--orther {

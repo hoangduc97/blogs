@@ -14,7 +14,6 @@ export default function Resume() {
                         </li>
                     ))}
                 </ul>
-                <span className="vline"></span>
             </div>
             <div className="resume__content">
                 <section className="about">
