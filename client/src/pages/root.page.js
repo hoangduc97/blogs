@@ -21,7 +21,7 @@ const RootPage = (props) => {
                 <div
                     className="wrapper__layer"
                     style={{
-                        opacity: toggle ? 0.7 : 0,
+                        opacity: toggle ? 0.9 : 0,
                         visibility: toggle ? 'visible' : 'hidden',
                     }}
                     onClick={(e)=>handleToggle(false)}

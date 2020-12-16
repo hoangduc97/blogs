@@ -1,5 +1,10 @@
 import React from 'react';
-import { MdClose } from 'react-icons/all';
+import {
+    MdClose,
+    AiOutlineFacebook,
+    FiGithub,
+    AiOutlineInstagram,
+} from 'react-icons/all';
 import { Link } from 'react-router-dom';
 import SidebarData from './sidebar.data';
 import './sidebar.scss';
@@ -14,11 +19,22 @@ export default function Sidebar(props) {
             </div>
             <ul className="sidebar__content">
                 {SidebarData.map((ele, index) => (
-                    <li key={index}>
+                    <li key={index} className="sidebar__content--item">
                         <Link to={ele.path}>{ele.title}</Link>
                     </li>
                 ))}
             </ul>
+            <div className="sidebar__footer">
+                <a href="https://facebook.com">
+                    <AiOutlineFacebook />
+                </a>
+                <a href="https://github.com/hoangduc97dn">
+                    <FiGithub />
+                </a>
+                <a href="https://instagram.com">
+                    <AiOutlineInstagram />
+                </a>
+            </div>
         </div>
     );
 }

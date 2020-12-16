@@ -7,6 +7,7 @@
     width: 20em;
     position: absolute;
     top: 0;
+    background-color: $color1;
     box-shadow: 1px 0 0 0 $color4, 0 1px 0 0 $color4, 0px 0px 0 0 $color4,
         0px 0 0 0 $color4 inset, 0 0px 0 0 $color4 inset;
     transition: transform 0.5s ease;
@@ -17,10 +18,78 @@
         align-items: center;
         justify-content: flex-end;
         padding: 0 2em;
-        
+
         svg {
             font-size: 2em;
             cursor: pointer;
+            transform: rotate(0deg);
+            transition: all .3s ease-in-out;
+
+            &:hover {
+                transform: rotate(90deg);
+            }
+        }
+    }
+
+    &__content {
+        &--item {
+            box-shadow: 1px 0 0 0 $color4, 0 1px 0 0 $color4,
+                0px 0px 0 0 $color4, 0px 0 0 0 $color4 inset,
+                0 1px 0 0 $color4 inset;
+            a {
+                display: block;
+                position: relative;
+                text-decoration: none;
+                font-size: 1.2em;
+                font-weight: 500;
+                color: $color2;
+                padding: 1.3em 3em;
+
+                &:hover {
+                    background-color: $color5;
+                    transition: background-color 0.3s ease;
+                }
+            }
+        }
+    }
+
+    &__footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        font-size: 2em;
+        margin: 1em;
+
+        a {
+            display: flex;
+            &:nth-child(1) {
+                svg {
+                    color: #4867aa;
+                }
+            }
+            &:nth-child(2) {
+                svg {
+                    color: $color2;
+                }
+            }
+            &:nth-child(3) {
+                svg {
+                    display: inline-block;
+                    text-align: center;
+                    border-radius: 8px;
+                    color: aliceblue;
+                    line-height: 250px;
+                    vertical-align: middle;
+                    background: radial-gradient(
+                        circle at 30% 107%,
+                        #fdf497 0%,
+                        #fdf497 5%,
+                        #fd5949 45%,
+                        #d6249f 60%,
+                        #285aeb 90%
+                    );
+                }
+            }
         }
     }
 }
