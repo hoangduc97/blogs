@@ -20,7 +20,12 @@ export default function Sidebar(props) {
             <ul className="sidebar__content">
                 {SidebarData.map((ele, index) => (
                     <li key={index} className="sidebar__content--item">
-                        <Link to={ele.path}>{ele.title}</Link>
+                        <Link
+                            to={ele.path}
+                            onClick={(e) => handleToggle(false)}
+                        >
+                            {ele.title}
+                        </Link>
                     </li>
                 ))}
             </ul>

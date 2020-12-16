@@ -6,6 +6,10 @@
     height: 5em;
     display: flex;
     justify-content: space-between;
+    position: fixed;
+    width: 100%;
+    background-color: $color1;
+    z-index: 1;
 
     & > * {
         height: 100%;
@@ -35,6 +39,8 @@
         position: relative;
 
         &__logo {
+            color: $color2;
+            text-decoration: none;
             font: {
                 family: var(--font-family-second);
                 size: 1.8em;
