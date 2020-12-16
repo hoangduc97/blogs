@@ -21,25 +21,19 @@ const routes = [
         ),
     },
     {
-        path: '/book',
-        Component: React.lazy(() =>
-            fakeDelay(TIMEOUT)(import('./book/book.page'))
-        ),
-    },
-    {
-        path: '/tutorial',
-        Component: React.lazy(() =>
-            fakeDelay(TIMEOUT)(import('./tutorial/tutorial.page'))
-        ),
-    },
-    {
-        path: '/project',
-        Component: React.lazy(() =>
-            fakeDelay(TIMEOUT)(import('./project/project.page'))
-        ),
-    },
-    {
         path: '/resume',
+        Component: React.lazy(() =>
+            fakeDelay(TIMEOUT)(import('./resume/resume.page'))
+        ),
+    },
+    {
+        path: '/login',
+        Component: React.lazy(() =>
+            fakeDelay(TIMEOUT)(import('./resume/resume.page'))
+        ),
+    },
+    {
+        path: '/register',
         Component: React.lazy(() =>
             fakeDelay(TIMEOUT)(import('./resume/resume.page'))
         ),
@@ -48,6 +42,12 @@ const routes = [
         path: '/',
         Component: React.lazy(() =>
             fakeDelay(TIMEOUT)(import('./home/home.page'))
+        ),
+    },
+    {
+        path: '*',
+        Component: React.lazy(() =>
+            fakeDelay(TIMEOUT)(import('./notfound/notfound.page'))
         ),
     },
 ];

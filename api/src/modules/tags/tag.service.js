@@ -37,7 +37,7 @@ const _getOne = async (req, res, next) => {
                     data: data,
                 });
             })
-            .catch((err) => {
+            .catch((error) => {
                 Logger.error(error);
                 throw new ErrorHandler(status.BAD_REQUEST, Message[1100], 1100);
             });

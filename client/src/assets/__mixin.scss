@@ -1,36 +1,18 @@
-@mixin reset-link {
-    a {
-        text-decoration: none;
-    }
-}
 
-@mixin reset-list {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
 
-@mixin horizontal-list {
-    @include reset-list();
-
-    li {
-        display: inline-block;
-    }
-}
-
-@mixin curved__arrow($primary_color, $item_rotate) {
+@mixin curved__arrow($color, $rotate) {
     position: relative;
     width: 0;
     height: 0;
     border-top: 1em solid transparent;
-    border-right: 1em solid $primary_color;
-    transform: rotate($item_rotate);
+    border-right: 1em solid $color;
+    transform: rotate($rotate);
 
     &::after {
-        content: "";
+        content: '';
         position: absolute;
         border: 0 solid transparent;
-        border-bottom: 5px solid $primary_color;
+        border-bottom: 5px solid $color;
         border-radius: 0 0 0 17px;
         top: -30px;
         left: 0;

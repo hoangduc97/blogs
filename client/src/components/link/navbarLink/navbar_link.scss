@@ -1,18 +1,2 @@
 @import '../../../assets/_mixin';
 @import '../../../assets/_variable';
-
-@include reset-link();
-.navbar {
-    a {
-        display: block;
-        padding: 2.4em 2em;
-        color: $primary_color;
-        transition: 0.3s ease-in-out;
-        font-weight: 500;
-
-        &:hover {
-            opacity: 0.7;
-        }
-    }
-}
-

@@ -1,5 +1,9 @@
 const path = require('path');
 const HWP = require('html-webpack-plugin');
+const webpack = require('webpack');
+const dotenv = require('dotenv').config({
+    path: path.join(__dirname, '.env'),
+});
 
 module.exports = {
     entry: path.join(__dirname, '/src/index.js'),
@@ -23,26 +27,30 @@ module.exports = {
                 use: ['style-loader', 'css-loader', 'sass-loader'],
             },
             {
-                test: /\.svg$/,
-                use: ['svg-loader'],
-            },
-            {
-                test: /\.(eot|woff|woff2|svg|ttf|otf|jpg)([\?]?.*)$/,
-                use: ['file-loader'],
-            },
-            {
-                test: /\.(png|woff|woff2|eot|ttf|svg|otf|jpg)$/,
-                use: ['url-loader?limit=100000'],
+                test: /\.(eot|woff|woff2|ttf|otf)([\?]?.*)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name].[ext]',
+                            outputPath: './assets/font/',
+                        },
+                    },
+                ],
             },
         ],
     },
+    watch: true,
     plugins: [
         new HWP({
             template: path.join(__dirname, '/public/index.html'),
         }),
+        new webpack.DefinePlugin({
+            'process.env': JSON.stringify(dotenv.parsed),
+        }),
     ],
     devServer: {
-        port: 80,
+        port: dotenv.parsed.CLIENT_PORT,
         historyApiFallback: true,
         compress: true,
     },

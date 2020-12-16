@@ -3,19 +3,18 @@
 @import '../assets/_mixin';
 
 .wrapper {
-    background-image: url(../assets/image/bg_g.png),
-        url(../assets/image/bg_g.png);
-    background-repeat: no-repeat;
-    background-color: $primary_color--body;
-    background-position: -6em bottom, top right;
-    overflow: hidden;
+    transition: transform 0.5s ease;
 
+    &__layer {
+        position: absolute;
+        height: 100vh;
+        width: 100%;
+        top: 0;
+        z-index: 1;
+        background-color: $color2;
+        transition: all 0.5s ease-in-out;
+    }
     &__container {
-        margin: auto;
-        background: url(../assets/image/bg.png) #333333e0;
-        background-blend-mode: saturation;
-        max-width: $desktop;
-        padding: 6.2em 0 0;
     }
 }
 

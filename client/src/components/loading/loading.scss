@@ -3,27 +3,5 @@
 @import '../../assets/_animation';
 
 .loading {
-    height: calc(100vh - 6.3em);
-    background-color: $primary_color--body;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    .spin {
-        display: flex;
-        width: 4em;
-        justify-content: space-between;
-        animation: spin 1s infinite linear;
-
-        .curved__arrow {
-
-            &:nth-child(1) {
-                @include curved__arrow($primary_color, 30deg);
-            }
-
-            &:nth-child(2) {
-                @include curved__arrow($primary_color, 220deg);
-            }
-        }
-    }
+   
 }

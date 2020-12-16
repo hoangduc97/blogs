@@ -1,65 +1,39 @@
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+@import './assets/_font';
 @import './assets/_variable';
-@import './assets/_responsive';
 
-html,
-body {
-    padding: 0;
-    margin: 0;
-}
 * {
     box-sizing: border-box;
 }
 
-html {
-    --font_family_normal: 'Poppins', sans-serif;
-    --font_size_normal: 13px;
-    --font_weight_normal: 400;
+:root {
+    --font-size: 14px;
+    --font-family-primary: 'Roboto', sans-serif;
+    --font-family-second: 'OARC', sans-serif;
+    --font-weight: 400;
 }
 
 body {
-    font-size: var(--font_size_normal);
-    font-family: var(--font_family_normal);
-    font-weight: var(--font_weight_normal);
-    background: url('./assets/image/bg.png') #333333e0;
-    background-blend-mode: saturation;
-    color: $primary_color;
+    margin: 0;
+    font: {
+        family: var(--font-family-primary);
+        size: var(--font-size);
+        weight: var(--font-weight);
+    }
+    color: $color2;
+    background-color: $color1;
+    overflow-x: hidden;
+}
+
+p {
+    margin: 0;
 }
 
 ul {
     margin: 0;
     padding: 0;
+
     li {
-        list-style: none;
+        display: block;
     }
-}
-
-img {
-    max-width: 100%;
-    display: block;
-}
-
-p,
-h1,
-h2,
-h3,
-h4,
-h5 {
-    margin: 0;
-}
-
-::-webkit-scrollbar {
-    width: 10px;
-}
-::-webkit-scrollbar-track {
-    background: #3d3d3d;
-    border-radius: 15px;
-}
-::-webkit-scrollbar-thumb {
-    background: #292828;
-    border-radius: 15px;
-    transition: all .3s ease .2s;
-}
-::-webkit-scrollbar-thumb:hover {
-    background: #555;
 }

@@ -26,8 +26,8 @@ const configApp = async () => {
         .then(() => {
             console.log('connect database success!');
         })
-        .catch((err) => {
-            console.error(err);
+        .catch((error) => {
+            console.error(error);
         });
         
     app.use(logError);
