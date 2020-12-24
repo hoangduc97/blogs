@@ -22,7 +22,7 @@
 
     &--menu,
     &--theme {
-        width: 11em;
+        width: 150px;
 
         svg {
             font-size: 1.5em;
@@ -35,7 +35,7 @@
     }
 
     &--content {
-        width: calc(100% - 11em);
+        width: calc(100% - 300px);
         position: relative;
 
         &__logo {
