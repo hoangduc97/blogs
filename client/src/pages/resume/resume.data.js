@@ -4,7 +4,6 @@ import {
     FaLinkedinIn,
     FaGithubAlt,
 } from 'react-icons/fa';
-const sidebar = ['about', 'skills', 'services', 'contact'];
 const socials = [
     {
         link: 'https://facebook.com',

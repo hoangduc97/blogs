@@ -13,10 +13,6 @@
     --font-weight: 400;
 }
 
-html {
-    scroll-behavior: smooth;
-}
-
 body {
     margin: 0;
     font: {
@@ -26,7 +22,6 @@ body {
     }
     color: $color2;
     background-color: $color1;
-    overflow-x: hidden;
 }
 
 p {

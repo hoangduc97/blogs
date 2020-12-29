@@ -8,7 +8,7 @@ function Card(props) {
             <Link to={'/article/abc'}>
                 <img
                     className="card__image"
-                    src="https://via.placeholder.com/400"
+                    src="https://dummyimage.com/640x360"
                     alt="card"
                 />
             </Link>
