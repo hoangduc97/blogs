@@ -4,9 +4,8 @@
     "description": "blog api",
     "main": "index.js",
     "scripts": {
-        "start": "webpack --watch --mode development",
-        "build": "webpack --mode production",
-        "compile": "babel ./index.js -d dist ./src -d dist/src --source-maps"
+        "start": "webpack --watch --mode=development",
+        "build": "webpack --mode=production"
     },
     "author": "zrik",
     "license": "MIT",

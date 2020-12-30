@@ -30,12 +30,12 @@ const configApp = async () => {
         .catch((error) => {
             console.error(error);
         });
-        
-    app.use(logError);
+
+    // app.use(logError);
     app.use((err, req, res, next) => {
         if (err.statusCode === 500) {
             return res.status(500).send();
-        }
+        } 
         handleError(err, res);
     });
     return app;

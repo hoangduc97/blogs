@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken';
+import User from '../modules/users/user.model';
 import client from '../config/redis.config';
 import Message from '../logger/message.data';
 import { ErrorHandler } from './error.util';
@@ -49,32 +50,44 @@ const createRefreshToken = (user) => {
     }
 };
 
-const retrieveRefreshToken = (refreshToken) => {
+const retrieveRefreshToken = async (refreshToken) => {
     const token = refreshToken.split(' ');
-    return jwt.verify(
-        token[1],
-        process.env.JWT_SECRET_OR_KEY,
-        async (err, payload) => {
-            if (err) {
-                throw new ErrorHandler(status.BAD_REQUEST, Message[1307], 1307);
+    const user = jwt.verify(token[1], process.env.JWT_SECRET_OR_KEY);
+    return new Promise((res, rej) => {
+        client.get(user._id + '', (err, reply) => {
+            if (err || !reply) {
+                rej(err);
+                return;
             }
-            await client.GET(payload._id, (err) => {
-                if (err) {
-                    throw new ErrorHandler(
-                        status.BAD_REQUEST,
-                        Message[1307],
-                        1307
-                    );
-                }
-            });
-            return payload;
-        }
-    );
+            res(user);
+        });
+    });
 };
+
+async function getUserRefreshToken(token) {
+    try {
+        const user = await retrieveRefreshToken(token);
+        const newUser = await User.findById(user._id);
+        if (!newUser) throw new Error();
+        return newUser;
+    } catch (error) {
+        throw new ErrorHandler(status.BAD_REQUEST, Message[1307], 1307);
+    }
+}
+
+function setTokenCookie(res, token) {
+    const cookieOptions = {
+        httpOnly: true,
+        expires: new Date(Date.now() + 304 * 60 * 60 * 1000),
+    };
+    res.cookie('refreshToken', token, cookieOptions);
+}
 
 export {
     retrieveToken,
     retrieveRefreshToken,
     createAccessToken,
     createRefreshToken,
+    setTokenCookie,
+    getUserRefreshToken,
 };

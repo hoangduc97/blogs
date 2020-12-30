@@ -91,7 +91,6 @@ const _create = async (req, res, next) => {
                 throw new ErrorHandler(status.BAD_REQUEST, Message[1322], 1322);
             });
     } catch (error) {
-        console.log(error);
         next(error);
     }
 };

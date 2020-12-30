@@ -15,6 +15,7 @@ const config = {
     },
     externals: [nodeExternals()],
     target: 'node',
+    mode: 'development',
     module: {
         rules: [
             {

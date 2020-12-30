@@ -2,7 +2,8 @@ import { validationResult } from 'express-validator';
 import {
     createAccessToken,
     createRefreshToken,
-    retrieveRefreshToken,
+    getUserRefreshToken,
+    setTokenCookie,
 } from '../../utils/auth.util';
 import { role, status } from '../../utils/constants';
 import { ErrorHandler } from '../../utils/error.util';
@@ -34,7 +35,7 @@ const register = async (req, res, next) => {
             .then(async (user) => {
                 const accessToken = createAccessToken(user);
                 const refreshToken = createRefreshToken(user);
-                res.cookie('refreshToken', refreshToken, { httpOnly: true });
+                setTokenCookie(res, refreshToken);
 
                 return res.status(status.CREATED).json({
                     success: true,
@@ -75,7 +76,7 @@ const login = async (req, res, next) => {
             if (isMatch && !err) {
                 const accessToken = createAccessToken(user);
                 const refreshToken = createRefreshToken(user);
-                res.cookie('refreshToken', refreshToken, { httpOnly: true });
+                setTokenCookie(res, refreshToken);
 
                 return res.status(status.SUCCESS).json({
                     success: true,
@@ -99,37 +100,21 @@ const login = async (req, res, next) => {
 
 const logout = async (req, res, next) => {
     try {
-        const { refreshToken } = req.body;
-        if (!refreshToken) {
-            throw new ErrorHandler(status.BAD_REQUEST, Message[1306], 1306);
-        }
-
-        const user = await retrieveRefreshToken(refreshToken);
-        client.DEL(user._id + '', (err, val) => {
-            if (err) {
-                throw new ErrorHandler(
-                    status.INTERNAL_ERROR,
-                    Message[5000],
-                    5000
-                );
-            }
-            res.sendStatus(status.NO_RESPONSE);
-        });
-    } catch (error) {
-        next(error);
-    }
+        const { refreshToken } = req.cookies;
+        const user = await getUserRefreshToken(refreshToken);
+        await client.DEL(user._id + '');
+    } catch (error) {}
+    res.sendStatus(status.NO_RESPONSE);
 };
 
 const refreshToken = async (req, res, next) => {
     try {
-        const { refreshToken } = req.body;
-        if (!refreshToken)
-            throw new ErrorHandler(status.BAD_REQUEST, Message[1306], 1306);
+        const { refreshToken } = req.cookies;
+        const user = await getUserRefreshToken(refreshToken);
 
-        const user = await retrieveRefreshToken(refreshToken);
         const newAccessToken = createAccessToken(user);
         const newRefreshToken = createRefreshToken(user);
-        res.cookie('refreshToken', newRefreshToken, { httpOnly: true });
+        setTokenCookie(res, newRefreshToken);
 
         res.status(status.SUCCESS).json({
             success: true,
