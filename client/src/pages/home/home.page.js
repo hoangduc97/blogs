@@ -4,18 +4,14 @@ import Card from '../../components/card/card.component';
 import './home.scss';
 
 export default function Home(props) {
-    const articles = [...Array(4).keys()];
+    const articles = [...Array(8).keys()];
 
     return (
         <div className="home">
             <div className="home__menubar">
                 <div className="home__menubar--category">
-                    <span className="title" >
-                        category &#9660;
-                    </span>
-                    <ul
-                        className="content"
-                    >
+                    <span className="title">category</span>
+                    <ul className="content">
                         <li className="content--item">
                             <Link to={'/category/data-struct-and-algorithm'}>
                                 Data structure and Algorithm
@@ -32,12 +28,8 @@ export default function Home(props) {
                     </ul>
                 </div>
                 <div className="home__menubar--tag">
-                    <span className="title">
-                        tag &#9660;
-                    </span>
-                    <ul
-                        className="content"
-                    >
+                    <span className="title">tag</span>
+                    <ul className="content">
                         <li className="content--item">
                             <Link to={'/category/data-struct-and-algorithm'}>
                                 C/C++

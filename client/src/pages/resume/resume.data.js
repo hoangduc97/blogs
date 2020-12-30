@@ -48,4 +48,4 @@ const skills = [
     },
 ];
 
-export { sidebar, socials, skills };
+export { socials, skills };

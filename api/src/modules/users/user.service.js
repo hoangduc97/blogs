@@ -34,10 +34,19 @@ const register = async (req, res, next) => {
             .then(async (user) => {
                 const accessToken = createAccessToken(user);
                 const refreshToken = createRefreshToken(user);
+                res.cookie('refreshToken', refreshToken, { httpOnly: true });
+
                 return res.status(status.CREATED).json({
                     success: true,
                     message: Message[2304],
-                    data: { accessToken, refreshToken },
+                    user: {
+                        username: user.username,
+                        avatar_url: user.avatar_url,
+                        bookmark_article: user.bookmark_article,
+                        _id: user._id,
+                        email: user.account.email,
+                    },
+                    token: accessToken,
                 });
             })
             .catch((error) => {
@@ -66,10 +75,19 @@ const login = async (req, res, next) => {
             if (isMatch && !err) {
                 const accessToken = createAccessToken(user);
                 const refreshToken = createRefreshToken(user);
+                res.cookie('refreshToken', refreshToken, { httpOnly: true });
+
                 return res.status(status.SUCCESS).json({
                     success: true,
                     message: Message[2305],
-                    data: { accessToken, refreshToken },
+                    user: {
+                        username: user.username,
+                        avatar_url: user.avatar_url,
+                        bookmark_article: user.bookmark_article,
+                        _id: user._id,
+                        email: user.account.email,
+                    },
+                    token: accessToken,
                 });
             }
             throw new ErrorHandler(status.UNAUTHORIZED, Message[1305], 1305);
@@ -111,13 +129,19 @@ const refreshToken = async (req, res, next) => {
         const user = await retrieveRefreshToken(refreshToken);
         const newAccessToken = createAccessToken(user);
         const newRefreshToken = createRefreshToken(user);
+        res.cookie('refreshToken', newRefreshToken, { httpOnly: true });
+
         res.status(status.SUCCESS).json({
             success: true,
             message: Message[2101],
-            data: {
-                accessToken: newAccessToken,
-                refreshToken: newRefreshToken,
+            user: {
+                username: user.username,
+                avatar_url: user.avatar_url,
+                bookmark_article: user.bookmark_article,
+                _id: user._id,
+                email: user.account.email,
             },
+            token: newAccessToken,
         });
     } catch (error) {
         next(error);

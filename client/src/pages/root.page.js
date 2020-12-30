@@ -16,7 +16,10 @@ const RootPage = (props) => {
             />
             <div
                 className="wrapper"
-                style={{ transform: toggle ? 'translateX(20em)' : '' }}
+                style={{
+                    transform: toggle ? 'translateX(20em)' : '',
+                    overflowY: toggle ? 'hidden' : 'scroll',
+                }}
             >
                 <div
                     className="wrapper__layer"
@@ -24,7 +27,7 @@ const RootPage = (props) => {
                         opacity: toggle ? 0.9 : 0,
                         visibility: toggle ? 'visible' : 'hidden',
                     }}
-                    onClick={(e)=>handleToggle(false)}
+                    onClick={(e) => handleToggle(false)}
                 ></div>
                 <Header handleToggle={handleToggle} />
                 <div className="wrapper__container">

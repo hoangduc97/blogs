@@ -24,6 +24,7 @@
                 text-align: center;
                 position: relative;
                 cursor: pointer;
+                transition: all .3s ease-in-out;
 
                 &:hover~.content {
                     transform: translateY(0);
@@ -53,7 +54,6 @@
                     padding: 1em;
                     margin: 1em;
                     border: 1px solid;
-                    border-radius: 2em;
                     justify-content: center;
                     align-items: center;
                     display: flex;

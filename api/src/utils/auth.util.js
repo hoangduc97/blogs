@@ -33,14 +33,14 @@ const createRefreshToken = (user) => {
             { _id: user._id, role: user.role },
             process.env.JWT_SECRET_OR_KEY,
             {
-                expiresIn: '1y',
+                expiresIn: '30d',
             }
         );
         client.SET(
             user._id + '',
             refreshToken,
             'EX',
-            365 * 24 * 60 * 60,
+            30 * 24 * 60 * 60,
             (err) => {
                 if (err) throw new Error(err);
             }
