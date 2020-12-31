@@ -40,7 +40,6 @@ module.exports = {
             },
         ],
     },
-    watch: true,
     plugins: [
         new HWP({
             template: path.join(__dirname, '/public/index.html'),
@@ -49,9 +48,4 @@ module.exports = {
             'process.env': JSON.stringify(dotenv.parsed),
         }),
     ],
-    devServer: {
-        port: dotenv.parsed.CLIENT_PORT,
-        historyApiFallback: true,
-        compress: true,
-    },
 };
