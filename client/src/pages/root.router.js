@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import Loading from '../components/loading/loading.component';
 
-const TIMEOUT = 0;
+const TIMEOUT = 500;
 
 const fakeDelay = (ms) => (promise) =>
     promise.then(
