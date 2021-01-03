@@ -6,8 +6,8 @@
     "license": "MIT",
     "private": true,
     "scripts": {
-        "start": "webpack-dev-server --mode development --open --hot",
-        "build": "webpack --mode production"
+        "start": "webpack-dev-server --mode=development --open --hot",
+        "build": "webpack --mode=production"
     },
     "babel": {
         "presets": [

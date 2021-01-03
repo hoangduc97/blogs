@@ -1,10 +1,12 @@
 @import '../../assets/_variable';
+@import '../../assets/_animation';
 
 .loading {
-    margin: auto;
-    position: relative;
+    position: absolute;
     width: 80px;
     height: 80px;
+    top: 50%;
+    left: calc(50% - 40px);
 
     &>* {
         position: absolute;
