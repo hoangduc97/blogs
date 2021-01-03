@@ -53,8 +53,9 @@ const createRefreshToken = (user) => {
 const retrieveRefreshToken = async (refreshToken) => {
     const token = refreshToken.split(' ');
     const user = jwt.verify(token[1], process.env.JWT_SECRET_OR_KEY);
+
     return new Promise((res, rej) => {
-        client.get(user._id + '', (err, reply) => {
+        client.GET(user._id + '', (err, reply) => {
             if (err || !reply) {
                 rej(err);
                 return;

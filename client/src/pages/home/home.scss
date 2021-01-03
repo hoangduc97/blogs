@@ -66,25 +66,4 @@
             }
         }
     }
-
-    &__new-article {
-        margin: 4em auto;
-        display: grid;
-
-        @media only screen and (max-width: 850px) {
-            grid-template-columns: repeat(1, 1fr);
-        }
-
-        @media only screen and (min-width: 851px) and (max-width: 1260px) {
-            grid-template-columns: repeat(2, 1fr);
-        }
-
-        @media only screen and (min-width: 1261px) and (max-width: 1708px) {
-            grid-template-columns: repeat(3, 1fr);
-        }
-
-        @media only screen and (min-width: 1709px) {
-            grid-template-columns: repeat(4, 1fr);
-        }
-    }
 }

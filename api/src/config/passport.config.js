@@ -5,6 +5,7 @@ import User from '../modules/users/user.model';
 const jwtOptions = {
     jwtFromRequest: JwtStrategy.ExtractJwt.fromAuthHeaderAsBearerToken(),
     secretOrKey: process.env.JWT_SECRET_OR_KEY,
+    algorithms: ['HS256']
 };
 
 // configure passport to use the local strategy

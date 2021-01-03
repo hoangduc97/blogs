@@ -5,7 +5,11 @@ import Loading from '../components/loading/loading.component';
 
 const routes = [
     {
-        path: '/article',
+        path: '/category/:category_id',
+        Component: React.lazy(() => import('./article/article.page')),
+    },
+    {
+        path: '/tag/:tag_id',
         Component: React.lazy(() => import('./article/article.page')),
     },
     {
@@ -14,11 +18,11 @@ const routes = [
     },
     {
         path: '/login',
-        Component: React.lazy(() => import('./resume/resume.page')),
+        Component: React.lazy(() => import('./auth/login.page')),
     },
     {
         path: '/register',
-        Component: React.lazy(() => import('./resume/resume.page')),
+        Component: React.lazy(() => import('./auth/register.page')),
     },
     {
         path: '/',

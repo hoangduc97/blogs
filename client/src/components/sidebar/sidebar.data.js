@@ -7,10 +7,10 @@ const sidebarData = [
         title: 'Home',
         path: '/',
     },
-    {
-        title: 'Article',
-        path: '/article',
-    },
+    // {
+    //     title: 'Article',
+    //     path: '/article',
+    // },
     {
         title: 'Resume',
         path: '/resume',

@@ -110,6 +110,7 @@ const logout = async (req, res, next) => {
 const refreshToken = async (req, res, next) => {
     try {
         const { refreshToken } = req.cookies;
+
         const user = await getUserRefreshToken(refreshToken);
 
         const newAccessToken = createAccessToken(user);

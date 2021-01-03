@@ -1,0 +1,42 @@
+@import '../../assets/_variable';
+
+.auth {
+    display: flex;
+    justify-content: center;
+    margin-top: 18em;
+
+    .remember {
+        display: inherit;
+        margin-bottom: 2em;
+        align-items: center;
+
+        input[type="checkbox"] {
+            margin-right: 1em;
+            cursor: pointer;
+        }
+
+        span {
+            font-size: 12px;
+        }
+    }
+
+    button {
+        padding: 1.5em 2em;
+        width: 15em;
+        border: none;
+        border-radius: 12px;
+        background-color: $color5;
+        box-shadow: 0px 3px 6px $color6;
+        margin: 1em auto;
+        cursor: pointer;
+        outline: none;
+
+        &:active {
+            box-shadow: none;
+        }
+    }
+
+    a {
+        text-align: center;
+    }
+}

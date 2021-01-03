@@ -1,54 +1,65 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import Card from '../../components/card/card.component';
+import { getAll as getAllCategory } from '../../store/category/category.action';
+import { getAll as getAllTag } from '../../store/tag/tag.action';
+import ListArticle from '../../components/list_article/list_article.component';
 import './home.scss';
 
-export default function Home(props) {
+function Home({ categories, tags, getAllCategory, getAllTag }) {
     const articles = [...Array(8).keys()];
 
+    useEffect(() => {
+        getAllCategory();
+    }, [getAllCategory]);
+
+    useEffect(() => {
+        getAllTag();
+    }, [getAllTag]);
     return (
         <div className="home">
             <div className="home__menubar">
                 <div className="home__menubar--category">
                     <span className="title">category</span>
                     <ul className="content">
-                        <li className="content--item">
-                            <Link to={'/category/data-struct-and-algorithm'}>
-                                Data structure and Algorithm
-                            </Link>
-                        </li>
-                        <li className="content--item">
-                            <Link to={'/category/web-application'}>
-                                Web Application
-                            </Link>
-                        </li>
-                        <li className="content--item">
-                            <Link to={'/category/devopts'}>DevOpts</Link>
-                        </li>
+                        {categories &&
+                            categories.map((category, index) => (
+                                <li className="content--item" key={index}>
+                                    <Link to={'/category/' + category.slug}>
+                                        {category.title} (
+                                        {category.count_article})
+                                    </Link>
+                                </li>
+                            ))}
                     </ul>
                 </div>
                 <div className="home__menubar--tag">
                     <span className="title">tag</span>
                     <ul className="content">
-                        <li className="content--item">
-                            <Link to={'/category/data-struct-and-algorithm'}>
-                                C/C++
-                            </Link>
-                        </li>
-                        <li className="content--item">
-                            <Link to={'/category/web-application'}>React</Link>
-                        </li>
-                        <li className="content--item">
-                            <Link to={'/category/devopts'}>Python</Link>
-                        </li>
+                        {tags &&
+                            tags.map((tag, index) => (
+                                <li className="content--item" key={index}>
+                                    <Link to={'/tag/' + tag.slug}>
+                                        {tag.title}
+                                    </Link>
+                                </li>
+                            ))}
                     </ul>
                 </div>
             </div>
-            <section className="home__new-article">
-                {articles.map((ele, index) => (
-                    <Card key={index} {...ele} />
-                ))}
-            </section>
+            <ListArticle articles={articles} />
         </div>
     );
 }
+
+const mapStateToProps = ({ CategoryReducer, TagReducer }) => ({
+    categories: CategoryReducer,
+    tags: TagReducer,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    getAllCategory: () => dispatch(getAllCategory()),
+    getAllTag: () => dispatch(getAllTag()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
