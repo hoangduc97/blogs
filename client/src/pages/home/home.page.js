@@ -3,11 +3,18 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getAll as getAllCategory } from '../../store/category/category.action';
 import { getAll as getAllTag } from '../../store/tag/tag.action';
+import { getAll as getAllArticle } from '../../store/article/article.action';
 import ListArticle from '../../components/list_article/list_article.component';
 import './home.scss';
 
-function Home({ categories, tags, getAllCategory, getAllTag }) {
-    const articles = [...Array(8).keys()];
+function Home({
+    categories,
+    tags,
+    articles,
+    getAllCategory,
+    getAllTag,
+    getAllArticle,
+}) {
 
     useEffect(() => {
         getAllCategory();
@@ -16,6 +23,11 @@ function Home({ categories, tags, getAllCategory, getAllTag }) {
     useEffect(() => {
         getAllTag();
     }, [getAllTag]);
+
+    useEffect(() => {
+        getAllArticle();
+    }, [getAllArticle]);
+
     return (
         <div className="home">
             <div className="home__menubar">
@@ -52,14 +64,16 @@ function Home({ categories, tags, getAllCategory, getAllTag }) {
     );
 }
 
-const mapStateToProps = ({ CategoryReducer, TagReducer }) => ({
+const mapStateToProps = ({ CategoryReducer, TagReducer, ArticleReducer }) => ({
     categories: CategoryReducer,
     tags: TagReducer,
+    articles: ArticleReducer.articlesInfo,
 });
 
 const mapDispatchToProps = (dispatch) => ({
     getAllCategory: () => dispatch(getAllCategory()),
     getAllTag: () => dispatch(getAllTag()),
+    getAllArticle: () => dispatch(getAllArticle()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

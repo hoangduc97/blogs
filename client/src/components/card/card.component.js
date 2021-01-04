@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom';
 import './card.scss';
 
 function Card(props) {
+    const { title, slug, updatedAt, category } = props;
     return (
         <div className="card">
-            <Link to={'/article/abc'}>
+            <Link to={'/article/' + slug}>
                 <img
                     className="card__image"
                     src="https://dummyimage.com/640x360"
@@ -13,15 +14,17 @@ function Card(props) {
                 />
             </Link>
             <div className="card__info">
-                <Link to={'/article/abc'} className="card__info--title">
-                    Join the Awwwards Jury 2021 - Seeking Leading Digital
-                    Creatives
+                <Link to={'/article/' + slug} className="card__info--title">
+                    {title}
                 </Link>
                 <div className="card__info--orther">
                     <span className="in_category">
-                        Added to <Link to={'/category/avc'}>News</Link>
+                        Added to{' '}
+                        <Link to={'/category/' + category.slug}>
+                            {category.title}
+                        </Link>
                     </span>
-                    <span className="publish_date">December 7, 2020</span>
+                    <span className="publish_date">{updatedAt}</span>
                 </div>
             </div>
         </div>

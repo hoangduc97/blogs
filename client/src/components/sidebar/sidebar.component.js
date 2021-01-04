@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-    MdClose,
-    AiOutlineFacebook,
-    FiGithub,
-    AiOutlineInstagram,
-} from 'react-icons/all';
+import { MdClose, FiGithub, AiOutlineLinkedin } from 'react-icons/all';
 import { Link } from 'react-router-dom';
 import SidebarData from './sidebar.data';
 import './sidebar.scss';
@@ -30,14 +25,11 @@ export default function Sidebar(props) {
                 ))}
             </ul>
             <div className="sidebar__footer">
-                <a href="https://facebook.com">
-                    <AiOutlineFacebook />
-                </a>
                 <a href="https://github.com/hoangduc97dn">
                     <FiGithub />
                 </a>
-                <a href="https://instagram.com">
-                    <AiOutlineInstagram />
+                <a href="https://linkedin.com">
+                    <AiOutlineLinkedin />
                 </a>
             </div>
         </div>

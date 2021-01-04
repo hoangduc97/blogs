@@ -6,7 +6,7 @@ import validate from './article.validate';
 
 const router = express.Router();
 router.get('/', ArticleService._getAll);
-router.get('/:id', ArticleService._getOne);
+router.get('/:slug', ArticleService._getDetail);
 router.post(
     '/',
     [authJwt([role.MANAGER, role.WRITER]), ...validate],

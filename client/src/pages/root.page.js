@@ -4,7 +4,7 @@ import Sidebar from '../components/sidebar/sidebar.component';
 import RootRouter from './root.router';
 import './root.scss';
 
-const RootPage = (props) => {
+const RootPage = () => {
     const [toggle, setToggle] = useState(false);
     const handleToggle = (newToggle) => setToggle(newToggle);
 

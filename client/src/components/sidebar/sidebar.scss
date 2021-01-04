@@ -34,6 +34,7 @@
             box-shadow: 1px 0 0 0 $color4, 0 1px 0 0 $color4,
                 0px 0px 0 0 $color4, 0px 0 0 0 $color4 inset,
                 0 1px 0 0 $color4 inset;
+
             a {
                 display: block;
                 position: relative;
@@ -60,33 +61,9 @@
 
         a {
             display: flex;
-            &:nth-child(1) {
-                svg {
-                    color: #4867aa;
-                }
-            }
-            &:nth-child(2) {
-                svg {
-                    color: $color2;
-                }
-            }
-            &:nth-child(3) {
-                svg {
-                    display: inline-block;
-                    text-align: center;
-                    border-radius: 8px;
-                    color: aliceblue;
-                    line-height: 250px;
-                    vertical-align: middle;
-                    background: radial-gradient(
-                        circle at 30% 107%,
-                        #fdf497 0%,
-                        #fdf497 5%,
-                        #fd5949 45%,
-                        #d6249f 60%,
-                        #285aeb 90%
-                    );
-                }
+
+            svg {
+                color: #4867aa;
             }
         }
     }

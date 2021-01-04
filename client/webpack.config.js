@@ -48,4 +48,9 @@ module.exports = {
             'process.env': JSON.stringify(dotenv.parsed),
         }),
     ],
+    devServer: {
+        port: dotenv.parsed.CLIENT_PORT,
+        historyApiFallback: true,
+        compress: true,
+    },
 };

@@ -5,13 +5,13 @@ const getAll = () => {
     return api.get(API_POST_PATH);
 };
 
-const getOne = (articleId) => {
-    return api.get(API_POST_PATH + '/' + articleId);
+const getDetail = (articleSlug) => {
+    return api.get(API_POST_PATH + '/' + articleSlug);
 };
 
 const article = {
     getAll,
-    getOne,
+    getDetail,
 };
 
 export default article;

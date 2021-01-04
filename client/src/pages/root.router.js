@@ -5,6 +5,10 @@ import Loading from '../components/loading/loading.component';
 
 const routes = [
     {
+        path: '/article/:articleSlug',
+        Component: React.lazy(() => import('./article/article.page')),
+    },
+    {
         path: '/category/:category_id',
         Component: React.lazy(() => import('./article/article.page')),
     },
@@ -34,7 +38,7 @@ const routes = [
     },
 ];
 
-const Router = (props) => {
+const Router = () => {
     return (
         <Suspense fallback={<Loading />}>
             <TransitionGroup>
@@ -48,7 +52,7 @@ const Router = (props) => {
                                     classNames="fade"
                                     appear
                                 >
-                                    <Component />
+                                    <Component {...match} />
                                 </CSSTransition>
                             )}
                         </Route>

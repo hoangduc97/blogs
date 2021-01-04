@@ -1,12 +1,21 @@
-const initialState = [];
+import constants from './article.constant';
 
-const article = (state = initialState, type) => {
+const initialState = {};
+const article = (state = initialState, { type, payload }) => {
     switch (type) {
-        case value:
-            
-            break;
-    
+        case constants.GET_ALL_SUCCESS:
+            return {
+                ...state,
+                articlesInfo: [...payload],
+            };
+        case constants.GET_DETAIL_SUCCESS:
+            return {
+                ...state,
+                articleDetail: payload,
+            };
         default:
-            break;
+            return state;
     }
-}
+};
+
+export default article;

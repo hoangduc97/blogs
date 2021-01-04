@@ -28,6 +28,9 @@ const article = new mongoose.Schema(
             unique: true,
             lowercase: true,
         },
+        avatar: {
+            type: String,
+        },
         content: {
             type: String,
             required: true,

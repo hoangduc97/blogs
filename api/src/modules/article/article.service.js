@@ -11,8 +11,6 @@ import Logger from '../../logger/logger';
 const _getAll = async (req, res, next) => {
     try {
         Article.find({})
-            .populate('author')
-            .populate('tags')
             .populate('category')
             .exec()
             .then((data) => {
@@ -31,9 +29,9 @@ const _getAll = async (req, res, next) => {
     }
 };
 
-const _getOne = async (req, res, next) => {
+const _getDetail = async (req, res, next) => {
     try {
-        const filter = { _id: req.params['id'] };
+        const filter = { slug: req.params['slug'] };
         Article.findOne(filter)
             .populate('author')
             .populate('tags')
@@ -165,7 +163,7 @@ const _delete = async (req, res, next) => {
 
 const ArticleService = {
     _getAll,
-    _getOne,
+    _getDetail,
     _create,
     _update,
     _delete,
