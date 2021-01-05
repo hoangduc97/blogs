@@ -1,8 +1,8 @@
 import React from 'react';
 import { FcMenu } from 'react-icons/all';
 import { Link } from 'react-router-dom';
-import ThemeLogo from '../logo/theme.logo';
-import Search from './search/search.component';
+// import ThemeLogo from '../logo/theme.logo';
+// import Search from './search/search.component';
 import './header.scss';
 
 const Header = (props) => {
@@ -14,13 +14,13 @@ const Header = (props) => {
                 <FcMenu onClick={(e) => handleToggle(true)} />
             </div>
             <div className="header--content">
-                <Search />
+                {/* <Search /> */}
                 <Link to={'/'} className="header--content__logo">
                     ZRIK
                 </Link>
             </div>
             <div className="header--theme">
-                <ThemeLogo />
+                {/* <ThemeLogo /> */}
             </div>
         </header>
     );
