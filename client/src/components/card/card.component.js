@@ -9,7 +9,7 @@ function Card(props) {
             <Link to={'/article/' + slug}>
                 <img
                     className="card__image"
-                    src="https://dummyimage.com/640x360"
+                    src="https://dummyimage.com/640x640"
                     alt="card"
                 />
             </Link>
@@ -19,7 +19,7 @@ function Card(props) {
                 </Link>
                 <div className="card__info--orther">
                     <span className="in_category">
-                        Added to{' '}
+                        Added to
                         <Link to={'/category/' + category.slug}>
                             {category.title}
                         </Link>

@@ -44,6 +44,7 @@ const register = async (req, res, next) => {
                         username: user.username,
                         avatar_url: user.avatar_url,
                         bookmark_article: user.bookmark_article,
+                        role: user.role,
                         _id: user._id,
                         email: user.account.email,
                     },
@@ -84,14 +85,18 @@ const login = async (req, res, next) => {
                     user: {
                         username: user.username,
                         avatar_url: user.avatar_url,
+                        role: user.role,
                         bookmark_article: user.bookmark_article,
                         _id: user._id,
                         email: user.account.email,
                     },
                     token: accessToken,
                 });
+            } else {
+                return res.status(status.UNAUTHORIZED).json({
+                    message: Message[1305],
+                });
             }
-            throw new ErrorHandler(status.UNAUTHORIZED, Message[1305], 1305);
         });
     } catch (error) {
         next(error);
@@ -110,9 +115,7 @@ const logout = async (req, res, next) => {
 const refreshToken = async (req, res, next) => {
     try {
         const { refreshToken } = req.cookies;
-
         const user = await getUserRefreshToken(refreshToken);
-
         const newAccessToken = createAccessToken(user);
         const newRefreshToken = createRefreshToken(user);
         setTokenCookie(res, newRefreshToken);
@@ -123,6 +126,7 @@ const refreshToken = async (req, res, next) => {
             user: {
                 username: user.username,
                 avatar_url: user.avatar_url,
+                role: user.role,
                 bookmark_article: user.bookmark_article,
                 _id: user._id,
                 email: user.account.email,

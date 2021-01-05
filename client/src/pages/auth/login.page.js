@@ -1,16 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
 import { HiOutlineMail, AiOutlineLock, AiFillWarning } from 'react-icons/all';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { emailValidate, passwordValidate } from './auth.validation';
+import { login } from '../../store/auth/auth.action';
 import Form from '../../components/form/form.component';
 import Input from '../../components/input/input.component';
 import Tooltip from '../../components/tooltip/tooltip.component';
 import './auth.scss';
 
-function Login() {
+function Login(props) {
+    const history = useHistory();
+
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
-    const [remember, setRemember] = useState(false);
 
     const [emailError, setEmailError] = useState('');
     const [passError, setPassError] = useState('');
@@ -23,13 +26,14 @@ function Login() {
         setPassError(passwordValidate(e.target.value));
         setPass(e.target.value);
     };
-    const handleRemember = (e) => setRemember(e.target.checked);
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
         if (!(emailError && passError)) {
-            console.log('login');
+            props.login({ email: email, password: pass }, (url) => {
+                history.push(url);
+            });
         }
     };
 
@@ -64,14 +68,7 @@ function Login() {
                     }
                     invalid={!!passError}
                 />
-                <div className="remember">
-                    <input
-                        type="checkbox"
-                        checked={remember}
-                        onChange={handleRemember}
-                    />
-                    <span>remember me</span>
-                </div>
+                {props.error && <p>{props.error}</p>}
                 <button type="submit">LOGIN</button>
                 <Link to={'/register'}>Not a member? Sign up now</Link>
             </Form>
@@ -79,4 +76,11 @@ function Login() {
     );
 }
 
-export default Login;
+const mapStateToProps = ({ AuthReducer }) => ({
+    error: AuthReducer.loginError,
+});
+const mapDispatchToProps = (dispatch) => ({
+    login: (data, cb) => dispatch(login(data, cb)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

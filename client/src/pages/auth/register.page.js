@@ -5,22 +5,25 @@ import {
     MdConfirmationNumber,
     AiFillWarning,
 } from 'react-icons/all';
-import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom';
 import {
     emailValidate,
     passwordValidate,
     confirmValidate,
 } from './auth.validation';
+import { register } from '../../store/auth/auth.action';
 import Form from '../../components/form/form.component';
 import Input from '../../components/input/input.component';
 import Tooltip from '../../components/tooltip/tooltip.component';
 import './auth.scss';
 
-function Register() {
+function Register(props) {
+    const history = useHistory();
+
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
     const [confirm, setConfirm] = useState('');
-    const [remember, setRemember] = useState(false);
 
     const [emailError, setEmailError] = useState('');
     const [passError, setPassError] = useState('');
@@ -36,15 +39,16 @@ function Register() {
     };
     const handleConfirm = (e) => {
         setConfirmError(confirmValidate(e.target.value, pass));
-        setPass(e.target.value);
+        setConfirm(e.target.value);
     };
-    const handleRemember = (e) => setRemember(e.target.checked);
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
         if (!(emailError && passError)) {
-            console.log('register');
+            props.register({ email: email, password: pass }, (url) => {
+                history.post(url);
+            });
         }
     };
 
@@ -93,18 +97,18 @@ function Register() {
                     }
                     invalid={!!confirmError}
                 />
-                <div className="remember">
-                    <input
-                        type="checkbox"
-                        checked={remember}
-                        onChange={handleRemember}
-                    />
-                    <span>remember me</span>
-                </div>
+                {props.error && <p>{props.error}</p>}
                 <button type="submit">REGISTER</button>
                 <Link to={'/login'}>Already account? Sign in now</Link>
             </Form>
         </div>
     );
 }
-export default Register;
+const mapStateToProps = ({ AuthReducer }) => ({
+    error: AuthReducer.registerError,
+});
+const mapDispatchToProps = (dispatch) => ({
+    register: (data, cb) => dispatch(register(data, cb)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Register);

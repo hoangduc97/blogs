@@ -31,6 +31,10 @@ const article = new mongoose.Schema(
         avatar: {
             type: String,
         },
+        summary: {
+            type: String,
+            required: true,
+        },
         content: {
             type: String,
             required: true,

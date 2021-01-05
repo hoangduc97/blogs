@@ -9,7 +9,8 @@
     margin-bottom: 2em;
     display: flex;
     align-items: center;
-
+    position: relative;
+    
     &>svg {
         position: absolute;
         font-size: 2em;

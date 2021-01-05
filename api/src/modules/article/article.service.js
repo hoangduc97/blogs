@@ -67,6 +67,7 @@ const _create = async (req, res, next) => {
             title: req.body.title,
             slug: convert_slug(req.body.title),
             content: req.body.content,
+            summary: req.body.summary,
             tags: req.body.tags ? [...req.body.tags] : [],
             category: req.body.category,
         };
@@ -116,6 +117,7 @@ const _update = async (req, res, next) => {
             author_id: _author._id,
             title: req.body.title,
             slug: convert_slug(req.body.title),
+            summary: req.body.summary,
             content: req.body.content,
             tags: req.body.tags ? [...req.body.tags] : [],
             category: req.body.category,
