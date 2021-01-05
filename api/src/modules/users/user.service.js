@@ -115,6 +115,7 @@ const logout = async (req, res, next) => {
 const refreshToken = async (req, res, next) => {
     try {
         const { refreshToken } = req.cookies;
+        console.log(refreshToken);
         const user = await getUserRefreshToken(refreshToken);
         const newAccessToken = createAccessToken(user);
         const newRefreshToken = createRefreshToken(user);

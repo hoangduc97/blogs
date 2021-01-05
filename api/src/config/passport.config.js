@@ -2,10 +2,18 @@ import passport from 'passport';
 import JwtStrategy from 'passport-jwt';
 import User from '../modules/users/user.model';
 
+const cookieExtractor = function (req) {
+    let token = null;
+    if (req && req.cookies) token = req.cookies['refreshToken'];
+    return token;
+};
+
 const jwtOptions = {
-    jwtFromRequest: JwtStrategy.ExtractJwt.fromAuthHeaderAsBearerToken(),
+    jwtFromRequest:
+        cookieExtractor() ||
+        JwtStrategy.ExtractJwt.fromAuthHeaderAsBearerToken(),
     secretOrKey: process.env.JWT_SECRET_OR_KEY,
-    algorithms: ['HS256']
+    algorithms: ['HS256'],
 };
 
 // configure passport to use the local strategy

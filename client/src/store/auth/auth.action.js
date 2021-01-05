@@ -5,13 +5,15 @@ const login = (data, cb) => (dispatch) => {
     dispatch({ type: constants.LOGIN_REQUEST });
     auth.login(data)
         .then((res) => {
-            console.log(res.cookie);
             dispatch({ type: constants.LOGIN_SUCCESS, payload: res.data });
             if (res.data.user.role == process.env.ROLE_USER) cb('/');
             else cb('/admin/dashboard');
         })
         .catch((err) =>
-            dispatch({ type: constants.LOGIN_FAILURE, payload: err.response.data })
+            dispatch({
+                type: constants.LOGIN_FAILURE,
+                payload: err.response.data,
+            })
         );
 };
 
@@ -24,7 +26,10 @@ const register = (data, cb) => (dispatch) => {
             else cb('/admin/dashboard');
         })
         .catch((err) =>
-            dispatch({ type: constants.REGISTER_FAILURE, payload: err.response.data })
+            dispatch({
+                type: constants.REGISTER_FAILURE,
+                payload: err.response.data,
+            })
         );
 };
 
@@ -38,7 +43,10 @@ const refreshToken = () => (dispatch) => {
             });
         })
         .catch((err) =>
-            dispatch({ type: constants.REFRESH_TOKEN_FAILURE, payload: err.response.data })
+            dispatch({
+                type: constants.REFRESH_TOKEN_FAILURE,
+                payload: err.response.data,
+            })
         );
 };
 
@@ -50,7 +58,10 @@ const logout = (cb) => (dispatch) => {
             cb('/');
         })
         .catch((err) =>
-            dispatch({ type: constants.LOGOUT_FAILURE, payload: err.response.data })
+            dispatch({
+                type: constants.LOGOUT_FAILURE,
+                payload: err.response.data,
+            })
         );
 };
 
