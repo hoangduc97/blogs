@@ -14,7 +14,6 @@ const create = (data) => {
 };
 
 const update = (data) => {
-    console.log(data);
     return apiAuth.put(API_POST_PATH + '/' + data._id, (data = data));
 };
 
