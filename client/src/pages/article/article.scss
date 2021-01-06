@@ -24,7 +24,7 @@
             }
         }
 
-        & > .collected {
+        &>.collected {
             box-shadow: none;
             border: 2px solid $color3;
             color: $color3;
@@ -64,6 +64,7 @@
 
         &--body {
             font-size: 1.2em;
+            width: 100%;
         }
     }
 }

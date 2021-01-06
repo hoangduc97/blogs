@@ -24,7 +24,10 @@
         background-color: $color5;
         width: 70%;
         padding: 1em 2em;
-
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        
         &--title {
             font-weight: 500;
             text-overflow: ellipsis;

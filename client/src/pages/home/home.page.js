@@ -25,8 +25,9 @@ function Home({ categories, articles, getAllCategory, getAllArticle }) {
                             categories.map((category, index) => (
                                 <li className="content--item" key={index}>
                                     <Link to={'/category/' + category.slug}>
-                                        {category.title} (
-                                        {category.count_article})
+                                        {category.title} 
+                                        {/* (
+                                        {category.count_article}) */}
                                     </Link>
                                 </li>
                             ))}
