@@ -1,12 +1,9 @@
 const winston = require('winston');
 const consoleTransport = new winston.transports.Console();
-const fileTransport = [
-    new winston.transports.File({ filename: './error.log', level: 'error' }),
-    new winston.transports.File({ filename: './rest.log' }),
-];
+
 const myWinstonOptions = {
     transports: [
-        process.env.API_ENV == 'dev' ? consoleTransport : fileTransport,
+        consoleTransport
     ],
 };
 const logger = new winston.createLogger(myWinstonOptions);
