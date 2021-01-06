@@ -103,7 +103,7 @@ const _update = async (req, res, next) => {
         // Get filter
         const _author = await retrieveToken(req.headers);
         const filter = {
-            slug: req.body['slug'],
+            slug: req.params['slug'],
             author: _author._id,
         };
 
@@ -115,8 +115,6 @@ const _update = async (req, res, next) => {
             content: req.body.content,
             category: req.body.category,
         };
-        console.log(filter);
-        console.log(data_update);
         Article.findOneAndUpdate(filter, data_update, { new: true })
             .then((data) => {
                 return res.status(status.SUCCESS).json({
