@@ -7,7 +7,7 @@ const login = (data, cb) => (dispatch) => {
         .then((res) => {
             dispatch({ type: constants.LOGIN_SUCCESS, payload: res.data });
             if (res.data.user.role == process.env.ROLE_USER) cb('/');
-            else cb('/admin/dashboard');
+            else cb('/admin');
         })
         .catch((err) =>
             dispatch({
@@ -23,7 +23,7 @@ const register = (data, cb) => (dispatch) => {
         .then((res) => {
             dispatch({ type: constants.REGISTER_SUCCESS, payload: res.data });
             if (res.data.user.role == process.env.ROLE_USER) cb('/');
-            else cb('/admin/dashboard');
+            else cb('/admin/article');
         })
         .catch((err) =>
             dispatch({

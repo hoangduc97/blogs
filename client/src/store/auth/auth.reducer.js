@@ -6,11 +6,13 @@ const category = (state = { ...initialState }, { type, payload }) => {
         case constants.LOGIN_SUCCESS:
         case constants.REGISTER_SUCCESS:
         case constants.REFRESH_TOKEN_SUCCESS:
+            localStorage.setItem('token', payload.token);
             return {
                 user: payload.user,
                 token: payload.token,
             };
         case constants.LOGOUT_SUCCESS:
+            localStorage.clear();
             return initialState;
 
         case constants.LOGIN_FAILURE:

@@ -2,6 +2,7 @@ import React, { Suspense } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import Loading from '../components/loading/loading.component';
+import AdminRouter from './admin.router';
 import AuthRouter from './auth.router';
 
 const routes = [
@@ -46,6 +47,11 @@ const authRoutes = [
     },
 ];
 
+const adminRoutes = {
+    path: '/admin/:admin',
+    Component: React.lazy(() => import('./admin/admin.page')),
+};
+
 const Router = () => {
     return (
         <Suspense fallback={<Loading />}>
@@ -65,6 +71,18 @@ const Router = () => {
                             )}
                         </AuthRouter>
                     ))}
+                    <AdminRouter exact path={adminRoutes.path}>
+                        {({ match }) => (
+                            <CSSTransition
+                                in={match != null}
+                                timeout={300}
+                                classNames="fade"
+                                appear
+                            >
+                                <adminRoutes.Component {...match} />
+                            </CSSTransition>
+                        )}
+                    </AdminRouter>
                     {routes.map(({ path, Component }) => (
                         <Route key={path} exact path={path}>
                             {({ match }) => (

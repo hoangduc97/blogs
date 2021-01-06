@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
-import ReactMarkdown from 'react-markdown';
-import gfm from 'remark-gfm';
+import MDEditor from '@uiw/react-md-editor';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getDetail } from '../../store/article/article.action';
@@ -41,15 +40,12 @@ function Article(props) {
                                 </Link>
                                 -
                                 <p className="highlight highlight__time">
-                                    {article.createdAt}
+                                    {article.createdAt.split("T")[0]}
                                 </p>
                             </span>
                         </div>
                         <div className="article__content--body">
-                            <ReactMarkdown
-                                plugins={[gfm]}
-                                children={article.content}
-                            />
+                            <MDEditor.Markdown source={article.content} />
                         </div>
                     </section>
                 </div>

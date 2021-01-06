@@ -1,0 +1,43 @@
+@import '../../assets/_variable';
+
+.admin {
+    max-width: 1000px;
+    margin: auto;
+    padding-top: 5em;
+    display: flex;
+    flex-direction: column;
+
+    &__menu {
+        display: inherit;
+        margin-bottom: 2em;
+
+        &--item {
+            display: flex;
+            padding: 1em 2em;
+            border: 2px solid $color6;
+            margin-right: 5em;
+            align-items: center;
+            text-decoration: none;
+            color: $color2;
+
+            .info {
+                margin-right: 2em;
+                line-height: 1.4;
+
+                p {
+                    text-transform: uppercase;
+                    font-size: 1.2em;
+                }
+
+                span {
+                    font-size: .9em;
+                }
+            }
+
+            svg {
+                font-size: 1.5em;
+                color: $color3;
+            }
+        }
+    }
+}

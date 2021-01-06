@@ -1,0 +1,26 @@
+@import '../../../assets/_variable';
+
+.article_writer {
+    display: flex;
+    flex-direction: column;
+
+    &>* {
+        margin-bottom: 2em;
+        display: flex;
+        flex-direction: column;
+    }
+
+    &--save {
+        padding: 1em 2em;
+        background-color: $color3;
+        color: $color5;
+        border: none;
+        align-items: center;
+        cursor: pointer;
+
+        &:hover,
+        &:focus {
+            box-shadow: 1px 3px 6px $color3_1;
+        }
+    }
+}

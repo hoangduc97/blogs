@@ -2,7 +2,7 @@ import React from 'react';
 import { MdClose, FiGithub, AiOutlineLinkedin } from 'react-icons/all';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import SidebarData from './sidebar.data';
+import SidebarData, { adminData } from './sidebar.data';
 import './sidebar.scss';
 
 function Sidebar(props) {
@@ -18,18 +18,18 @@ function Sidebar(props) {
               path: '/login',
           };
 
+    const sidebar =
+        !user || user.role == process.env.ROLE_USER
+            ? [auth, ...SidebarData]
+            : [auth, ...adminData];
+
     return (
         <div className="sidebar" style={style}>
             <div className="sidebar__header">
                 <MdClose onClick={(e) => handleToggle(false)} />
             </div>
             <ul className="sidebar__content">
-                <li className="sidebar__content--item">
-                    <Link to={auth.path} onClick={(e) => handleToggle(false)}>
-                        {auth.title}
-                    </Link>
-                </li>
-                {SidebarData.map((ele, index) => (
+                {sidebar.map((ele, index) => (
                     <li key={index} className="sidebar__content--item">
                         <Link
                             to={ele.path}

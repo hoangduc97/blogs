@@ -8,7 +8,16 @@ const api = axios.create({
     headers: {
         'Content-Type': 'application/json',
     },
-    withCredentials: true
+    withCredentials: true,
+});
+
+export const apiAuth = axios.create({
+    baseURL: BASE_URL,
+    headers: {
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem('token'),
+    },
+    withCredentials: true,
 });
 
 export default api;

@@ -12,12 +12,6 @@ const article = new mongoose.Schema(
             ref: 'Category',
             required: true,
         },
-        tags: [
-            {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: 'Tag',
-            },
-        ],
         title: {
             type: String,
             required: true,

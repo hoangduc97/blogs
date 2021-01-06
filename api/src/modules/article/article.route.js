@@ -13,12 +13,12 @@ router.post(
     ArticleService._create
 );
 router.put(
-    '/:id',
+    '/:slug',
     [authJwt([role.MANAGER, role.WRITER]), ...validate],
     ArticleService._update
 );
 router.delete(
-    '/:id',
+    '/:slug',
     [authJwt([role.MANAGER, role.WRITER])],
     ArticleService._delete
 );

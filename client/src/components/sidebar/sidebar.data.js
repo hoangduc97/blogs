@@ -9,4 +9,15 @@ const sidebarData = [
     },
 ];
 
+export const adminData = [
+    {
+        title: 'Article',
+        path: '/admin/article',
+    },
+    // {
+    //     title: 'User',
+    //     path: '/admin/user',
+    // },
+]
+
 export default sidebarData;

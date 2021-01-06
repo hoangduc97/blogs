@@ -1,0 +1,102 @@
+@import '../../../assets/_variable';
+
+.article {
+    display: flex;
+    flex-direction: column;
+
+    &>* {
+        margin-bottom: 2em;
+    }
+
+    &__write {
+        width: 10em;
+        padding: 1em;
+        background: $color3;
+        color: $color5;
+        text-transform: uppercase;
+        outline: none;
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+        text-align: center;
+
+        &:hover,
+        &:focus {
+            box-shadow: 1px 3px 6px $color3_1;
+        }
+    }
+
+    &__list {
+        border: 1px solid $color6;
+
+        &--item {
+            border-bottom: 1px solid $color6;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .title {
+                padding: 0 1em;
+                font-weight: 500;
+                width: 40%;
+
+                a {
+                    color: $color2;
+                }
+            }
+
+            .create,
+            .category {
+                width: 15%;
+
+                &>span {
+                    color: $color6;
+                    font-size: .9em;
+                }
+            }
+
+            .setting {
+                width: 30%;
+                display: flex;
+                justify-content: flex-end;
+
+                &>* {
+                    margin: 1em;
+                    border: none;
+                    cursor: pointer;
+                    color: $color5;
+                    outline: none;
+                    padding: .6em 1.2em;
+                    transition: box-shadow .3s all ease;
+                }
+
+                .edit {
+                    background-color: $color3;
+
+                    &:hover,
+                    &:focus {
+                        box-shadow: 1px 3px 6px $color3_1;
+                    }
+                }
+
+                .unpublish {
+                    background-color: $color3_2;
+
+                    &:hover,
+                    &:focus {
+                        box-shadow: 1px 3px 6px $color6;
+                    }
+                }
+
+                .publish {
+                    background-color: $color3_2;
+
+                    &:hover,
+                    &:focus {
+                        box-shadow: 1px 3px 6px $color3_2;
+                    }
+                }
+            }
+        }
+    }
+}

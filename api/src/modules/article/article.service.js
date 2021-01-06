@@ -34,7 +34,6 @@ const _getDetail = async (req, res, next) => {
         const filter = { slug: req.params['slug'] };
         Article.findOne(filter)
             .populate('author')
-            .populate('tags')
             .populate('category')
             .exec()
             .then((data) => {
@@ -68,7 +67,6 @@ const _create = async (req, res, next) => {
             slug: convert_slug(req.body.title),
             content: req.body.content,
             summary: req.body.summary,
-            tags: req.body.tags ? [...req.body.tags] : [],
             category: req.body.category,
         };
         const found = await check_existed(Article, {
@@ -105,21 +103,16 @@ const _update = async (req, res, next) => {
         // Get filter
         const _author = await retrieveToken(req.headers);
         const filter = {
-            _id: req.body['_id'],
+            slug: req.body['slug'],
             author: _author._id,
         };
-        // Check article_id existed
-        const found = await check_existed(Article, filter);
-        if (!found) {
-            throw new ErrorHandler(status.BAD_REQUEST, Message[1323], 1323);
-        }
+
         const data_update = {
             author_id: _author._id,
             title: req.body.title,
             slug: convert_slug(req.body.title),
             summary: req.body.summary,
             content: req.body.content,
-            tags: req.body.tags ? [...req.body.tags] : [],
             category: req.body.category,
         };
         Article.findOneAndUpdate(filter, data_update, { new: true })
@@ -141,7 +134,7 @@ const _update = async (req, res, next) => {
 
 const _delete = async (req, res, next) => {
     try {
-        const filter = { _id: req.params['id'] };
+        const filter = { slug: req.params['slug'] };
         const found = await check_existed(Article, filter);
         if (!found) {
             throw new ErrorHandler(status.BAD_REQUEST, Message[1323], 1323);

@@ -3,14 +3,14 @@ import { connect } from 'react-redux';
 import { Redirect, Route } from 'react-router-dom';
 import { refreshToken } from '../store/auth/auth.action';
 
-function AuthRouter(props) {
+function AdminRouter(props) {
     const { user, refreshToken } = props;
 
     useEffect(() => {
-        if (!user) refreshToken();
+        if (typeof user === 'undefined') refreshToken();
     }, [refreshToken]);
 
-    if (user) {
+    if (!user || user.role == process.env.ROLE_USER) {
         return <Redirect to={'/'} />;
     }
     return <Route {...props} />;
@@ -24,4 +24,4 @@ const mapDispatchToProps = (dispatch) => ({
     refreshToken: () => dispatch(refreshToken()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(AuthRouter);
+export default connect(mapStateToProps, mapDispatchToProps)(AdminRouter);

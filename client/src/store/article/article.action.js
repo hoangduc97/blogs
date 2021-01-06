@@ -31,4 +31,36 @@ const getDetail = (articleSlug) => (dispatch) => {
         );
 };
 
-export { getAll, getDetail };
+const create = (data, cb) => (dispatch) => {
+    dispatch({ type: constants.CREATE_REQUEST });
+    article
+        .create(data)
+        .then((res) => {
+            dispatch({
+                type: constants.CREATE_SUCCESS,
+                payload: res.data.data,
+            });
+            cb('/admin/article');
+        })
+        .catch((err) =>
+            dispatch({ type: constants.CREATE_FAILURE, payload: err })
+        );
+};
+
+const update = (data, cb) => (dispatch) => {
+    dispatch({ type: constants.UPDATE_REQUEST });
+    article
+        .update(data)
+        .then((res) => {
+            dispatch({
+                type: constants.UPDATE_SUCCESS,
+                payload: res.data.data,
+            });
+            cb('/admin/article');
+        })
+        .catch((err) =>
+            dispatch({ type: constants.UPDATE_FAILURE, payload: err })
+        );
+};
+
+export { getAll, getDetail, create, update };
